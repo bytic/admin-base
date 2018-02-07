@@ -1,0 +1,23 @@
+{
+  "name": "bytic/admin-base",
+  "type": "library",
+  "description": "Admin interface package for bytic framework",
+  "homepage": "https://github.com/bytic/admin-base",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nip\\AdminBase\\": "src"
+    }
+  },
+  "require": {
+    "php": "^7.0"
+  },
+  "require-dev": {
+  }
+}
