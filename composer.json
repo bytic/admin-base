@@ -12,7 +12,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Nip\\AdminBase\\": "src"
+      "ByTIC\\AdminBase\\": "src"
     }
   },
   "require": {
