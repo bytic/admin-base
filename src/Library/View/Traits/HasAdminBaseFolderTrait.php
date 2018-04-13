@@ -12,6 +12,6 @@ trait HasAdminBaseFolderTrait
 {
     public function addNamespacePath()
     {
-        $this->addPath(__DIR__ . '../..//themes/bootstrap3views/', 'AdminBase');
+        $this->addPath(__DIR__ . '/../../../themes/bootstrap3/views/', 'AdminBase');
     }
 }

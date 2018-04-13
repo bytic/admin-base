@@ -15,9 +15,17 @@
       "ByTIC\\AdminBase\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "ByTIC\\AdminBase\\Tests\\": "tests",
+      "ByTIC\\AdminBase\\Tests\\Fixtures\\": "tests/fixtures"
+    }
+  },
   "require": {
-    "php": "^7.0"
+    "php": "^7.0",
+    "bytic/view": "^1.0"
   },
   "require-dev": {
+    "phpunit/phpunit": "^7.1"
   }
 }
