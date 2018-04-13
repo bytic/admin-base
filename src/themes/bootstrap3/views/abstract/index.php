@@ -6,7 +6,7 @@ $idTable = isset($idTable) ? $idTable : '';
 
 <?php echo $this->Flash()->render($this->controller); ?>
 
-<?php if (is_file($this->buildPath("/" . $this->controller . "/modules/filters"))) { ?>
+<?php if ($this->existPath("/" . $this->controller . "/modules/filters")) { ?>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-inverse">
@@ -35,7 +35,7 @@ $idTable = isset($idTable) ? $idTable : '';
 <?php } ?>
 
     <div class="btn-group" style="overflow: hidden;margin-bottom: 30px">
-        <?php if (is_file($this->buildPath("/" . $this->controller . "/modules/right-buttons"))) { ?>
+        <?php if ($this->existPath("/" . $this->controller . "/modules/right-buttons")) { ?>
             <div class="right" style="margin-bottom:20px;">
                 <?php echo $this->load("/" . $this->controller . "/modules/right-buttons"); ?>
             </div>
@@ -53,7 +53,7 @@ $idTable = isset($idTable) ? $idTable : '';
 
 <?php
 $viewFile = "/" . $this->controller . "/modules/index/pre-list";
-if (is_file($this->buildPath($viewFile))) {
+if ($this->existPath($viewFile)) {
     $this->load($viewFile);
 }
 ?>
@@ -79,7 +79,7 @@ if (is_file($this->buildPath($viewFile))) {
 
     <?php
     $viewFile = "/" . $this->controller . "/modules/index/post-list";
-    if (is_file($this->buildPath($viewFile))) {
+    if ($this->existPath($viewFile)) {
         $this->load($viewFile);
     }
     ?>

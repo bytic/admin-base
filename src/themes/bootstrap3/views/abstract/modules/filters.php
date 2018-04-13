@@ -1,4 +1,4 @@
-<?php if (is_file($this->buildPath("/".$this->controller."/modules/filters"))) { ?>
+<?php if ($this->existPath("/".$this->controller."/modules/filters")) { ?>
     <form method="get" action="<?php echo $this->modelManager->getURL(); ?>" id="filter-form" class="filters form-vertical well">
         <div class="row">
             <?php echo $this->load("/".$this->controller."/modules/filters"); ?>

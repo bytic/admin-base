@@ -10,10 +10,10 @@
 
         <?php
         $viewFile = "/" . $this->controller . "/modules/item-form";
-        if (!is_file($this->buildPath($viewFile))) {
+        if (!$this->existPath($viewFile)) {
             $viewFile = '/abstract/modules/item-form';
         }
-        $this->load($viewFile, array("action" => $this->modelManager->getAddURL()));
+        $this->load($viewFile, ["action" => $this->modelManager->getAddURL()]);
         ?>
     </div>
 </div>

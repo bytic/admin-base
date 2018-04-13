@@ -6,7 +6,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <?php echo $this->title; ?>
-                    <?php if (is_file($this->buildPath("/".$this->controller."/modules/item/title-after"))) { ?>
+                    <?php if ($this->existPath("/".$this->controller."/modules/item/title-after")) { ?>
                         <?php echo $this->load("/".$this->controller."/modules/item/title-after"); ?>
                     <?php } ?>
                 </h4>
@@ -24,7 +24,7 @@
                         </div>
                     <?php } ?>
 
-                    <?php if (is_file($this->buildPath("/".$this->controller."/modules/item/top-buttons"))) { ?>
+                    <?php if ($this->existPath("/".$this->controller."/modules/item/top-buttons")) { ?>
                         <div class="right delete">
                             <div class="buttons inline right">
                                 <?php echo $this->load("/".$this->controller."/modules/item/top-buttons"); ?>
@@ -38,7 +38,7 @@
             <div class="box-content">
                 <?php echo $this->Flash()->render($this->controller); ?>
 
-                <?php if (is_file($this->buildPath("/".$this->controller."/modules/item/right-buttons"))) { ?>
+                <?php if ($this->existPath("/".$this->controller."/modules/item/right-buttons")) { ?>
                     <div class="right delete">
                         <div class="buttons inline right">
                             <?php echo $this->load("/".$this->controller."/modules/item/right-buttons"); ?>
