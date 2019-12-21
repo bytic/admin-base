@@ -6,7 +6,7 @@ $selected = isset($selected) ? $selected : null;
     <?php if ($item['enabled']) { ?>
         <?php $hasSubMenu = count($item['submenus']) > 0; ?>
         <?php $sectionSelected = (isset($item['active']) && $item['active']) or ($section === $expanded); ?>
-        <li class="<?php echo $sect ionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' has-sub' : ''; ?>">
+        <li class="<?php echo $sectionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' has-sub' : ''; ?>">
             <a href="<?php echo $item['href'] ? $item['href'] : 'javascript:'; ?>"
                class="<?php echo isset($item['class']) ? $item['class'] : ''; ?>"
                 <?php echo isset($item['attributes']) ? $this->HTML()->attributes($item['attributes']) : ''; ?>
