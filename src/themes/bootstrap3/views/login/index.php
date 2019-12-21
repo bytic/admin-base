@@ -1,5 +1,4 @@
 <?php
-
 $usersManager = \Nip\Records\Locator\ModelLocator::get('users');
 ?>
 <div class="page-container brand-header">
