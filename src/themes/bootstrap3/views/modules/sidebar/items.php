@@ -1,10 +1,12 @@
-<?php $expanded = isset($expanded) ? $expanded : null ?>
-<?php $selected = isset($selected) ? $selected : null ?>
+<?php
+$expanded = isset($expanded) ? $expanded : null;
+$selected = isset($selected) ? $selected : null;
+?>
 <?php foreach ($menu as $section => $item) { ?>
     <?php if ($item['enabled']) { ?>
         <?php $hasSubMenu = count($item['submenus']) > 0; ?>
         <?php $sectionSelected = (isset($item['active']) && $item['active']) or ($section === $expanded); ?>
-        <li class="<?php echo $sectionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' has-sub' : ''; ?>">
+        <li class="<?php echo $sect ionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' has-sub' : ''; ?>">
             <a href="<?php echo $item['href'] ? $item['href'] : 'javascript:'; ?>"
                class="<?php echo isset($item['class']) ? $item['class'] : ''; ?>"
                 <?php echo isset($item['attributes']) ? $this->HTML()->attributes($item['attributes']) : ''; ?>
@@ -28,7 +30,7 @@
                             $classPrefix = 'fa';
                             break;
                     }
-                    echo '<span class="'.$classPrefix.' '.$item['icon'].($sectionSelected ? ' glyphglyphicon-white' : '').'"></span>';
+                    echo '<span class="' . $classPrefix . ' ' . $item['icon'] . ($sectionSelected ? ' glyphglyphicon-white' : '') . '"></span>';
                 }
                 ?>
 
@@ -43,7 +45,7 @@
                                title="<?php echo $sub['name']; ?>"
                                 <?php echo isset($item['attributes']) ? $this->HTML()->attributes($sub['attributes']) : ''; ?>
                             >
-                                <?php echo isset($sub['icon']) ? '<span class="glyphicon '.$sub['icon'].'"></span>' : ''; ?>
+                                <?php echo isset($sub['icon']) ? '<span class="glyphicon ' . $sub['icon'] . '"></span>' : ''; ?>
                                 <?php echo $sub['name']; ?>
                             </a>
                         </li>
