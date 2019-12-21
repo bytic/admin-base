@@ -10,6 +10,12 @@ namespace ByTIC\AdminBase\Library\View\Traits;
  */
 trait HasAdminBaseFolderTrait
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addAdminBaseNamespacePath();
+    }
+
     /**
      * @deprecated Use addAdminBaseNamespacePath()
      */
@@ -21,5 +27,6 @@ trait HasAdminBaseFolderTrait
     public function addAdminBaseNamespacePath()
     {
         $this->addPath(__DIR__ . '/../../../themes/bootstrap3/views/', 'AdminBase');
+        $this->addPath(__DIR__ . '/../../../themes/bootstrap3/views/');
     }
 }
