@@ -14,7 +14,7 @@ class HasAdminBaseFolderTraitTest extends AbstractTest
     public function testAddNamespacePath()
     {
         $view = new ViewWithTrait();
-        $view->addNamespacePath();
+        $view->addAdminBaseNamespacePath();
 
         $paths = $view->getFinder()->getPaths();
         self::assertArrayHasKey('AdminBase', $paths);
