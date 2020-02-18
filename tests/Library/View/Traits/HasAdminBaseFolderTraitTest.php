@@ -11,7 +11,6 @@ use ByTIC\AdminBase\Tests\Fixtures\ViewWithTrait;
  */
 class HasAdminBaseFolderTraitTest extends AbstractTest
 {
-
     public function testAddNamespacePath()
     {
         $view = new ViewWithTrait();
@@ -27,6 +26,6 @@ class HasAdminBaseFolderTraitTest extends AbstractTest
         );
 
         $content = $view->load('AdminBase::breadcrumbs');
-        self::assertEquals('',$content);
+        self::assertEquals('', $content);
     }
 }

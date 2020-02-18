@@ -15,8 +15,7 @@ $breadcrumbs = isset($this->breadcrumbs) ? $this->breadcrumbs : false;
                 }
                 if ($item == $lastCrumb) {
                     $classes[] = 'active';
-                }
-                ?>
+                } ?>
                 <li<?php echo $classes ? ' class="' . implode(" ", $classes) . '"' : ''; ?>>
                     <?php if ($item != $lastCrumb) { ?>
                         <a href="<?php echo htmlentities($item['url']); ?>"
@@ -29,7 +28,8 @@ $breadcrumbs = isset($this->breadcrumbs) ? $this->breadcrumbs : false;
                         </span>
                     <?php } ?>
                 </li>
-            <?php } ?>
+            <?php
+            } ?>
         </ul>
     </div>
 <?php } ?>
