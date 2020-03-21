@@ -1,0 +1,11 @@
+@import "./variables";
+@import "~bootstrap/scss/bootstrap";
+
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+//$roboto-font-path: "~mdbootstrap/font/roboto/";
+//$image-path: "~mdbootstrap/img/";
+@import "~bootstrap-material-design/scss/core";
+
+@import "./layout";

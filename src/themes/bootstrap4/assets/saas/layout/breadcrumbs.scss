@@ -1,0 +1,41 @@
+
+
+#breadcrumbs {
+  margin-bottom: 6px;
+}
+
+#breadcrumbs hr {
+  margin: 0px;
+}
+
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+  border: 0px;
+  color: #aaa;
+  background: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.breadcrumb span {
+}
+
+.breadcrumb a {
+  color: #aaa;
+}
+
+.breadcrumb a:hover {
+  color: #646464;
+  text-decoration: none;
+}
+
+.breadcrumb > li + li:before {
+  content: "/ ";
+  padding: 0px 5px;
+  color: #CCC;
+}
