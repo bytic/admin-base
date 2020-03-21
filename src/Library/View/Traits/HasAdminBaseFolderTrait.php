@@ -2,11 +2,15 @@
 
 namespace ByTIC\AdminBase\Library\View\Traits;
 
+use ByTIC\AdminBase\AdminBase;
+use ByTIC\AdminBase\Utility\Paths;
+use Nip\View\ViewFinder\ViewFinderInterface;
+
 /**
  * Trait HasAdminBaseFolderTrait
  * @package ByTIC\AdminBase\Library\View\Traits
  *
- * @method addPath($path, $namespace)
+ * @method addPath($path, $namespace = ViewFinderInterface::MAIN_NAMESPACE)
  */
 trait HasAdminBaseFolderTrait
 {
@@ -26,7 +30,15 @@ trait HasAdminBaseFolderTrait
 
     public function addAdminBaseNamespacePath()
     {
-        $this->addPath(__DIR__ . '/../../../themes/bootstrap3/views/', 'AdminBase');
-        $this->addPath(__DIR__ . '/../../../themes/bootstrap3/views/');
+        $this->addPath(Paths::themePath('/views/'), 'AdminBase');
+        $this->addPath(Paths::themePath('/views/'));
+    }
+
+    /**
+     * @return string
+     */
+    protected function adminBaseTheme()
+    {
+        return AdminBase::theme();
     }
 }
