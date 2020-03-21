@@ -30,7 +30,7 @@ $selected = isset($selected) ? $selected : null;
                             $classPrefix = 'fa';
                             break;
                     }
-                    echo '<span class="' . $classPrefix . ' ' . $item['icon'] . ($sectionSelected ? ' glyphglyphicon-white' : '') . '"></span>';
+                    echo '<i class="' . $classPrefix . ' ' . $item['icon'] . ($sectionSelected ? ' glyphglyphicon-white' : '') . '"></i>';
                 }
                 ?>
 

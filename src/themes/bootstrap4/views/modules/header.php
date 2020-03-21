@@ -17,8 +17,9 @@ use Nip\Records\Locator\ModelLocator;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a href="index.html" class="navbar-brand">
-            Color Admin Material
+
+        <a class="navbar-brand" href="<?php echo $this->Url()->admin(); ?>">
+            <?php echo config('app.name'); ?>
         </a>
     </div>
     <!-- end navbar-header -->
@@ -26,11 +27,9 @@ use Nip\Records\Locator\ModelLocator;
     <!-- begin header-nav -->
     <ul class="navbar-nav navbar-right">
         <li class="dropdown navbar-user">
-            <a href="#" class="dropdown-toggle"
-               data-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-user icon-white"></i>
                 <span class="d-none d-md-inline"><?php echo $this->user->getName(); ?></span>
-                <b class="caret"></b>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="<?php echo ModelLocator::get('Administrators')->compileURL('ChangePassword'); ?>"

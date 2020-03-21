@@ -13,7 +13,7 @@
 	padding-top: $header-height;
 	background: $blue-grey-800;
 	z-index: $sidebar-zindex;
-	
+
 	@include transform(translateZ(0));
 	@if $enable-rtl {
 		left: auto;
@@ -23,25 +23,25 @@
 		padding-top: 0;
 		left: $sidebar-width * -1;
 		z-index: $header-zindex + 1;
-		
+
 		@if $enable-rtl {
 			left: auto;
 			right: $sidebar-width * -1;
 		}
 	}
-	
+
 	& .nav {
 		display: block;
-		
+
 		@if $enable-rtl {
 			padding-right: 0;
 		}
-		
+
 		& > li {
 			position: relative;
-			
+
 			@include clearfix();
-			
+
 			& > a {
 				padding: rem(10px) rem(20px);
 				line-height: rem(20px);
@@ -49,9 +49,9 @@
 				display: block;
 				text-decoration: none;
 				font-weight: 500;
-				
+
 				@include clearfix();
-				
+
 				& i {
 					float: left;
 					margin-right: rem(10px);
@@ -63,7 +63,7 @@
 					line-height: rem(24px);
 					font-size: rem(24px);
 					color: $blue-grey-600;
-					
+
 					@if $enable-rtl {
 						float: right;
 						margin-right: 0;
@@ -81,7 +81,7 @@
 					background-size: cover;
 					background-position: center;
 					background-repeat: no-repeat;
-					
+
 					@include border-radius($border-radius);
 					@include display-flex();
 					@include flex-align(center);
@@ -90,7 +90,7 @@
 						margin-right: 0;
 						margin-left: rem(10px);
 					}
-					
+
 					& img {
 						max-width: 100%;
 						max-height: 100%;
@@ -109,13 +109,13 @@
 					padding-top: 0;
 					padding-bottom: 0;
 					margin-left: rem(8px);
-					
+
 					&.label-theme {
 						@include gradient-enabled {
 							@include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
 						}
 					}
-					
+
 					@if $enable-rtl {
 						margin-left: 0;
 						margin-right: rem(8px);
@@ -138,11 +138,11 @@
 					z-index: 10;
 					color: $white;
 					background: $primary;
-					
+
 					@include gradient-enabled {
 						@include gradient-linear(to bottom, (lighten($primary, 8%) 0%, darken($primary, 8%) 100%));
 					}
-					
+
 					& i {
 						color: $white;
 					}
@@ -156,7 +156,7 @@
 						} @else {
 							background: rgba($black, .65);
 						}
-						
+
 						@include gradient-enabled {
 							@if ($primary-color == 'black') {
 								background: rgba($white, .35);
@@ -174,12 +174,12 @@
 				font-size: rem(13px);
 				color: $white;
 				font-weight: 400;
-				
+
 				& a {
 					padding: 0;
 					margin: 0;
 					display: inline;
-					
+
 					&:hover,
 					&:focus {
 						background: none;
@@ -196,7 +196,7 @@
 				color: $white;
 				background: $dark-darker;
 				overflow: hidden;
-				
+
 				& a {
 					padding: 0;
 				}
@@ -206,7 +206,7 @@
 					display: block;
 					color: $white;
 					font-weight: 500;
-					
+
 					&:hover {
 						& .cover {
 							&.with-shadow {
@@ -226,11 +226,11 @@
 					background-size: cover;
 					background-position: center;
 					background-repeat: no-repeat;
-					
+
 					@include display-flex();
 					@include flex-align(center);
 					@include border-radius($border-radius-lg * 10);
-					
+
 					& img {
 						max-width: 100%;
 						max-height: 100%;
@@ -250,7 +250,7 @@
 				& .info {
 					font-size: rem(14px);
 					position: relative;
-					
+
 					& .caret {
 						margin-top: rem(2px);
 					}
@@ -268,10 +268,10 @@
 					left: 0;
 					right: 0;
 					bottom: 0;
-					background: url('images/cover-sidebar-user.jpg');
+					background: url('../images/cover-sidebar-user.jpg');
 					background-repeat: no-repeat;
 					background-size: cover;
-					
+
 					&.with-shadow {
 						&:before {
 							content: '';
@@ -281,7 +281,7 @@
 							top: 0;
 							bottom: 0;
 							background: rgba(23,35,41, .75);
-							
+
 							@include transition(all .2s linear);
 						}
 					}
@@ -289,7 +289,7 @@
 			}
 			&.nav-search {
 				padding: rem(20px);
-				
+
 				& + li {
 					padding-top: 0;
 				}
@@ -300,19 +300,19 @@
 					padding-right: 0;
 					border-bottom: 1px solid rgba($white, .2);
 					color: $white;
-					
+
 					@include border-radius(0);
-					
+
 					&:focus {
 						border-color: rgba($white, .5);
-						
+
 						@include box-shadow(none);
 					}
 				}
 			}
 			&.nav-widget {
 				padding: rem(10px) rem(20px);
-				
+
 				& i {
 					margin-right: auto;
 				}
@@ -324,7 +324,7 @@
 			}
 			& .text-theme {
 				margin-left: rem(5px);
-				
+
 				@if $enable-rtl {
 					margin-right: rem(5px);
 					margin-left: 0;
@@ -359,7 +359,7 @@
 			& > li {
 				& > a {
 					color: $blue-grey-300;
-					
+
 					& .caret {
 						margin-top: rem(-1px);
 						left: rem(-5px);
@@ -389,11 +389,11 @@
 				}
 			}
 		}
-		
+
 		@for $i from 2 through 50 {
 			$time: 15 + (15 * $i);
 			$delay: $time * 1ms;
-			
+
 			&.nav-profile.epxand > li,
 			& .has-sub.expand > .sub-menu > li {
 				&:nth-child(#{$i}) {
@@ -414,18 +414,18 @@
 				text-align: center;
 				font-size: rem(16px);
 				border: none;
-				
+
 				@include fontawesome();
 				@if $enable-rtl {
 					float: left;
 				}
-				
+
 				&:before {
 					content: '\f0da';
 					display: block;
 					text-align: center;
 					opacity: 0.5;
-					
+
 					@include transition(all .2s linear);
 					@if $enable-rtl {
 						content: '\f0d9';
@@ -433,7 +433,7 @@
 				}
 			}
 		}
-		
+
 		&.active,
 		&.expanding,
 		&.expand {
@@ -441,7 +441,7 @@
 				& .caret {
 					&:before {
 						opacity: 1.0;
-						
+
 						@include transform(rotate(90deg));
 						@if $enable-rtl {
 							@include transform(rotate(-90deg));
@@ -467,27 +467,27 @@
 		margin: 0;
 		position: relative;
 		display: none;
-		
+
 		@if $enable-rtl {
 			padding-left: 0;
 			padding-right: rem(39px);
 		}
-		
+
 		& > li {
 			position: relative;
-			
+
 			& > a {
 				padding: rem(3px) rem(20px) rem(3px) rem(54px);
 				display: block;
 				color: rgba($white, .6);
 				text-decoration: none;
 				position: relative;
-				
+
 				@if $enable-rtl {
 					padding-right: rem(15px);
 					padding-left: rem(20px);
 				}
-				
+
 				&:hover,
 				&:focus {
 					color: $white;
@@ -502,7 +502,7 @@
 		& .sub-menu {
 			padding: 0 0 0 rem(15px);
 			background: none;
-			
+
 			@if $enable-rtl {
 				padding-left: 0;
 				padding-right: rem(15px);
@@ -515,14 +515,14 @@
 		padding: rem(5px) rem(20px) rem(5px) rem(10px) !important;
 		background: $blue-grey-900;
 		color: $white;
-		
+
 		@include border-radius($border-radius * 5 0 0 $border-radius * 5);
 		@if $enable-rtl {
 			float: left;
-			
+
 			@include border-radius(0 $border-radius * 5 $border-radius * 5 0);
 		}
-		
+
 		& i {
 			margin: 0 !important;
 			color: $white;
@@ -549,7 +549,7 @@
 					border-top: 1px solid $blue-grey-900;
 					border-bottom: 1px solid $blue-grey-900;
 				}
-				
+
 				&.expanding,
 				&.expand {
 					& > a {
@@ -566,11 +566,11 @@
 	}
 	&.sidebar-transparent {
 		background: none;
-		
+
 		& + .sidebar-bg {
-			background: url(images/cover-sidebar.jpg);
+			background: url(../images/cover-sidebar.jpg);
 			background-size: cover;
-			
+
 			&:before {
 				content: '';
 				position: absolute;
@@ -590,7 +590,7 @@
 				}
 				&.nav-profile {
 					background: rgba($black, .25);
-					
+
 					& a {
 						&:hover,
 						&:focus {
@@ -599,7 +599,7 @@
 					}
 					& .cover {
 						background: none;
-						
+
 						&.with-shadow {
 							&:before {
 								background: none;
@@ -614,7 +614,7 @@
 		}
 		& .sub-menu {
 			background: none;
-			
+
 			& > li {
 				&:before {
 					background: rgba($black, .45);
@@ -643,7 +643,7 @@
 	bottom: 0;
 	width: $sidebar-width;
 	z-index: $sidebar-zindex - 10;
-	
+
 	@include box-shadow((0 2px 2px 0 rgba($black,.14), 0 3px 1px -2px rgba($black,.2), 0 1px 5px 0 rgba($black,.12)));
 	@if $enable-rtl {
 		left: auto;
@@ -653,7 +653,7 @@
 		padding-top: 0;
 		left: $sidebar-width * -1;
 		z-index: $header-zindex;
-		
+
 		@include box-shadow(none);
 		@if $enable-rtl {
 			left: auto;
