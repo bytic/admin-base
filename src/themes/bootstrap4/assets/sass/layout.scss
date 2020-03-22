@@ -1,28 +1,8 @@
+@import "./layout/breadcrumbs";
+@import "./layout/header";
+
 #header {
   padding: 0;
-}
-
-#content {
-  padding: 0;
-
-  .inner {
-    padding: 10px;
-  }
-
-  .page-header {
-    padding: 20px 20px 10px 30px;
-
-    background: #ffffff;
-    margin: 0 0 30px;
-    -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-
-    .page-title {
-      line-height: 30px;
-      font-size: 21px;
-      margin: 0;
-    }
-  }
 }
 
 #sidebar {
@@ -77,5 +57,5 @@ $input-btn-line-height-xs: 1.1 !default;
 
 .btn.btn-xs {
   // line-height: ensure proper height of button next to small input
-  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-sm, $input-btn-line-height-xs, $btn-border-radius-sm);
+  //@include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-sm, $input-btn-line-height-xs, $btn-border-radius-sm);
 }
