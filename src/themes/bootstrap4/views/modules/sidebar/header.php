@@ -1,5 +1,4 @@
 <li class="nav-profile">
-    <div class="image">
-        <img src="<?php echo asset('/images/logo-white.png'); ?>" style="width:100%"/>
-    </div>
+    <img src="<?php echo asset('/images/logos/logo-white.png'); ?>" class="img-fluid"/>
+    <!--    <div class="image"></div>-->
 </li>
