@@ -184,7 +184,7 @@
 														&.year,
 														&.month,
 														&.century {
-															font-weight: 500;
+															font-weight: 600;
 															color: lighten($dark, 30%);
 															text-shadow: none;
 									
@@ -205,7 +205,7 @@
 														}
 													}
 													&.day {
-														font-weight: 500;
+														font-weight: 600;
 														color: lighten($dark, 15%);
 														padding: rem(5px);
 									

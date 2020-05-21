@@ -19,35 +19,23 @@
 	@include clearfix();
 	@include display-flex();
 	@include flex(1);
-	@include box-shadow(0 1px 1px rgba($black ,.14));
 	@include media-breakpoint-down(sm) {
 		display: block;
 	}
 	
 	& .navbar-toggle {
 		position: relative;
-		padding: 0;
+		padding: rem(10px);
+		margin-right: rem(10px);
+		margin-left: auto;
 		background-color: transparent;
 		background-image: none;
 		border: none;
 		outline: none;
-		width: $header-height;
-		height: $header-height;
-		display: block;
 		
+		@include border-radius($border-radius);
 		@include media-breakpoint-up(md) {
 			display: none;
-		}
-		@include media-breakpoint-down(sm) {
-			height: $header-height-sm;
-			
-			& + .navbar-brand {
-				@if $enable-rtl {
-					margin-right: 0;
-				} @else {
-					margin-left: 0;
-				}
-			}
 		}
 		@if $enable-rtl {
 			margin-right: 0;
@@ -56,11 +44,11 @@
 		
 		& .icon-bar {
 			display: block;
-			background: $black;
-			width: rem(20px);
-			height: rem(1px);
-			margin: 0 auto;
-				
+			width: rem(22px);
+			height: rem(2px);
+			
+			@include border-radius($border-radius);
+			
 			& + .icon-bar {
 				margin-top: rem(4px);
 			}
@@ -78,38 +66,19 @@
 				margin-left: 0;
 			}
 		}
-		&.navbar-toggle-left {
-			display: none;
-			
-			@if $enable-rtl {
-				margin-left: rem(-15px);
-			} @else {
-				margin-right: rem(-15px);
-			}
-			
-			@include media-breakpoint-up(md) {
-				display: block;
-			}
-			@include media-breakpoint-down(sm) {
-				& + .navbar-brand {
-					@if $enable-rtl {
-						margin-right: rem(60px);
-					} @else {
-						margin-left: rem(60px);
-					}
-				}
-			}
-		}
 	}
 	& .navbar-header {
 		@include clearfix();
 		@include display-flex();
 		@include flex-align(center);
+		@include media-breakpoint-up(md) {
+			width: $sidebar-width;
+		}
 	}
 	& .navbar-brand {
-		padding: rem(15px);
+		padding: rem(10px) rem(20px);
 		height: $header-height;
-		font-weight: 300;
+		font-weight: 100;
 		font-size: rem(18px);
 		line-height: rem(30px);
 		text-decoration: none;
@@ -120,20 +89,6 @@
 		@if $enable-rtl {
 			margin-right: 0;
 			margin-left: rem(16px);
-		}
-		@include media-breakpoint-down(sm) {
-			height: $header-height-sm;
-			margin: 0 $header-height;
-			
-			@include flex-justify-content(center);
-			
-			& + .navbar-toggle {
-				@if $enable-rtl {
-					margin-right: -$header-height;
-				} @else {
-					margin-left: -$header-height;
-				}
-			}
 		}
 		
 		& img {
@@ -169,7 +124,7 @@
 			@include flex-justify-content(flex-end);
 			@include flex(1);
 			
-			border-top: 1px solid lighten($border-color, 10%);
+			border-top: 1px solid mix($white, $silver, 75%);
 			padding-left: 15px;
 			padding-right: 15px;
 		}
@@ -180,35 +135,26 @@
 			& > a {
 				display: block;
 				text-decoration: none;
-				line-height: rem(30px);
+				line-height: rem(20px);
 				padding: rem(15px);
 				border: none;
-				
-				@include media-breakpoint-down(sm) {
-					line-height: rem(20px);
-					height: $header-height-sm;
-				}
 				
 				& .label {
 					position: absolute;
 					top: rem(8px);
-					right: rem(8px);
+					right: rem(5px);
 					display: block;
-					background: $red;
-					line-height: rem(22px);
-					font-weight: 500;
+					background: $primary;
+					line-height: rem(12px);
+					font-weight: 600;
 					color: $white;
-					padding: 0;
-					min-width: rem(22px);
-					height: rem(22px);
-					font-size: rem(13px);
+					padding: rem(3px) rem(6px);
 					
 					@include border-radius($border-radius-lg * 5);
-					@include media-breakpoint-down(sm) {
-						top: rem(4px);
-					}
 				}
 				& i {
+					top: 1px;
+					position: relative;
 					font-size: rem(16px);
 				}
 				&:hover,
@@ -217,16 +163,10 @@
 				}
 				&.icon {
 					& i {
-						font-size: rem(22px);
-						height: rem(30px);
-						line-height: rem(30px);
-						margin: 0;
+						font-size: rem(24px);
+						height: rem(24px);
+						margin: rem(-2px) 0;
 						display: block;
-						
-						@include media-breakpoint-down(sm) {
-							height: rem(20px);
-							line-height: rem(20px);
-						}
 					}
 				}
 			}
@@ -240,9 +180,6 @@
 			&.dropdown {
 				& .dropdown-menu {
 					margin: 0;
-					
-					@include border-top-right-radius(0);
-					@include border-top-left-radius(0);
 				}
 				
 				&.dropdown-lg {
@@ -252,15 +189,15 @@
 						left: rem(20px) !important;
 						right: rem(20px) !important;
 						padding: rem(20px);
-						
+							
 						@include transform(none !important);
 						@include media-breakpoint-up(md) {
 							top: 100% !important;
 						}
 						@include media-breakpoint-down(sm) {
 							overflow: scroll;
-							top: $header-height * 2 + rem(1px) !important;
-							max-height: calc(100vh - #{$header-height * 2 + rem(1px)});
+							top: $header-height-sm * 2 + rem(1px) !important;
+							max-height: calc(100vh - #{$header-height-sm * 2 + rem(1px)});
 						}
 						
 						&.dropdown-menu-lg {
@@ -366,42 +303,24 @@
 	}
 	& .navbar-user {
 		& img {
-			width: rem(36px);
-			height: rem(36px);
+			float: left;
+			width: rem(30px);
+			height: rem(30px);
+			margin: rem(-5px) rem(10px) rem(-5px) 0;
 			
 			@include border-radius($border-radius-lg * 5);
-			@if $enable-rtl {
-				margin: rem(-3px) rem(10px) rem(-3px) 0;
-				float: left;
-			} @else {
-				float: right;
-				margin: rem(-3px) 0 rem(-3px) rem(10px);
-			}
-			@include media-breakpoint-down(sm) {
-				float: none;
-				margin: rem(-8px) 0;
-			}
 		}
 		& .image {
-			width: rem(36px);
-			height: rem(36px);
+			float: left;
+			width: rem(30px);
+			height: rem(30px);
+			margin: rem(-5px) rem(10px) rem(-5px) 0;
 			overflow: hidden;
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
 			
 			@include border-radius($border-radius-lg * 5);
-			@if $enable-rtl {
-				margin: rem(-3px) rem(10px) rem(-3px) 0;
-				float: left;
-			} @else {
-				float: right;
-				margin: rem(-3px) 0 rem(-3px) rem(10px);
-			}
-			@include media-breakpoint-down(sm) {
-				float: none;
-				margin: rem(-8px) 0;
-			}
 			
 			&.image-icon {
 				font-size: rem(22px);
@@ -414,10 +333,10 @@
 				& i {
 					float: none;
 					display: block;
-					font-size: rem(36px);
+					font-size: rem(22px);
 					text-align: center;
 					width: auto;
-					margin: 0 auto rem(-12px);
+					margin: 0 auto rem(-8px);
 				}
 			}
 		}
@@ -456,57 +375,7 @@
 			}
 		}
 	}
-	& .search-form {
-		position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 100%;
-    height: $header-height;
-    background: $white;
-    
-    @include transition(all .3s ease);
-    @include display-flex();
-    @include flex-align(center);
-    @include media-breakpoint-down(sm) {
-    	height: $header-height - rem(10px);
-    	@include transition(none);
-    }
-    
-    & .search-btn,
-    & .close {
-    	height: 100%;
-			width: $header-height;
-			color: lighten($black, 25%);
-			z-index: 1000;
-			background: 0 0;
-			border: none;
-			padding: 0;
-			outline: 0;
-			margin: 0;
-			float: none;
-			
-			@include display-flex();
-			@include flex-align(center);
-			@include flex-justify-content(center);
-    }
-    & .form-control {
-    	border: none;
-			height: 100%;
-			color: $black;
-			padding-left: 0;
-			padding-right: 0;
-			font-size: rem(16px);
-			
-			@include border-radius(0);
-			@include box-shadow(none);
-    }
-	}
 	
-	&.header-search-toggled {
-		& .search-form {
-			bottom: 0;
-		}
-	}
 	&.navbar-default {
 		background: $white;
 		
@@ -521,19 +390,19 @@
 		& .navbar-nav {
 			& > li {
 				& > a {
-					color: lighten($black, 35%);
+					color: $dark;
 				}
 			}
 		}
 	}
 	&.navbar-inverse {
-		background: mix($black, $blue-grey, 60%);
+		background: $dark-darker;
 		
 		& .navbar-toggle {
-			color: rgba($white, .75);
+			color: lighten($dark, 30%);
 			
 			& .icon-bar {
-				background: rgba($white, .75);
+				background: lighten($dark, 30%);
 			}
 		}
 		& .navbar-brand {
@@ -541,16 +410,11 @@
 		}
 		& .navbar-nav {
 			@include media-breakpoint-down(sm) {
-				border-color: mix($black, $blue-grey, 45%);
+				border-color: $dark;
 			}
 			& > li {
 				& > a {
-					color: $white;
-					
-					&:hover,
-					&:focus {
-						color: rgba($white, .75);
-					}
+					color: rgba($white, .65);
 				}
 				
 				&.active {
@@ -581,7 +445,6 @@
 		}
 	}
 }
-
 .has-scroll {
 	& .header {
 		@include box-shadow(0 0 16px rgba($black, .15));

@@ -2,9 +2,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-inverse">
-            <div class="panel-heading">
-                <div class="panel-heading-btn">
+        <div class="card panel-inverse">
+            <div class="card-header">
+                <div class="card-header-btn">
                     <?php if ($delete) { ?>
                         <div class="right buttons inline delete" style="padding-left: 10px">
                             <form method="post" action="<?php echo $this->item->getDeleteURL(); ?>"
@@ -26,7 +26,7 @@
                     <?php } ?>
                 </div>
 
-                <h4 class="panel-title">
+                <h4 class="card-title">
                     <?php echo $this->title; ?>
                     <?php if ($this->existPath("/".$this->controller."/modules/item/title-after")) { ?>
                         <?php echo $this->load("/".$this->controller."/modules/item/title-after"); ?>
@@ -34,7 +34,7 @@
                 </h4>
             </div>
 
-            <div class="panel-body">
+            <div class="card-body">
                 <?php echo $this->Flash()->render($this->controller); ?>
 
                 <?php

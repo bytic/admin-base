@@ -82,7 +82,7 @@ body {
 								height: auto;
 								line-height: 1;
 								padding: rem(7px) rem(9px);
-								font-weight: 500;
+								font-weight: 600;
 								color: $dark;
 								border: none;
 								
@@ -147,7 +147,7 @@ body {
 				}
 			}
 			& .drp-selected {
-				font-weight: 500;
+				font-weight: 600;
 				color: lighten($dark, 30%);
 			}
 		}
@@ -192,7 +192,7 @@ body {
 					}
 					
 					& li {
-						font-weight: 500;
+						font-weight: 600;
 						color: lighten($dark, 30%);
 						
 						@include media-breakpoint-down(md) {

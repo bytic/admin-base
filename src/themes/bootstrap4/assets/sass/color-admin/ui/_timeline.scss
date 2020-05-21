@@ -75,13 +75,13 @@
 
 		& .date {
 			display: block;
-			font-weight: 500;
+			font-weight: 600;
 			line-height: rem(16px);
 			font-size: rem(12px);
 		}
 		& .time {
 			display: block;
-			font-weight: 500;
+			font-weight: 600;
 			line-height: rem(24px);
 			font-size: rem(20px);
 			color: $dark;
@@ -151,7 +151,7 @@
 		}
 		& .username {
 			font-size: rem(16px);
-			font-weight: 500;
+			font-weight: 600;
 			color: $dark;
 			
 			& a {
@@ -161,7 +161,7 @@
 		& .views {
 			float: right;
 			color: lighten($dark, 30%);
-			font-weight: 500;
+			font-weight: 600;
 			
 			@if $enable-rtl {
 				float: left;
@@ -268,7 +268,7 @@
 		background: $white;
 		border-top: 1px solid $border-color;
 		padding-top: rem(15px);
-		font-weight: 500;
+		font-weight: 600;
 		
 		& a {
 			&:not(.btn) {
@@ -283,7 +283,7 @@
 	}
 	& .timeline-likes {
 		color: lighten($dark, 30%);
-		font-weight: 500;
+		font-weight: 600;
 		font-size: rem(12px);
 		
 		@include display-flex();

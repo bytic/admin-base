@@ -1,5 +1,5 @@
 .dropdown-menu {
-	font-size: $font-size-base;
+	font-size: rem(12px);
 	
 	@include box-shadow($dropdown-box-shadow);
 	@if $enable-rtl {
@@ -8,12 +8,13 @@
 }
 .dropdown-item {
 	padding: rem(5px) rem(15px);
-	color: $black;
+	font-weight: 600;
+	color: lighten($dark, 15%);
 	text-decoration: none;
 	
 	&:hover,
 	&:focus {
 		color: $dark;
-		background: $silver;
+		background: lighten($dark, 75%);
 	}
 }

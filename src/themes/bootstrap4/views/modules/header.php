@@ -4,23 +4,22 @@ use Nip\Records\Locator\ModelLocator;
 
 ?>
 <!-- begin #header -->
-<div id="header" class="header navbar-default">
+<header id="header" class="navbar navbar-light bg-white">
     <!-- begin navbar-header -->
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed navbar-toggle-left" data-click="sidebar-minify">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+        <?php echo $this->load('/modules/header/section'); ?>
 
         <a class="navbar-brand" href="<?php echo $this->Url()->admin(); ?>">
             <?php echo config('app.name'); ?>
         </a>
+
+        <button type="button" class="navbar-toggle collapsed navbar-toggle-left" data-click="sidebar-minify">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
     <!-- end navbar-header -->
 
@@ -47,4 +46,4 @@ use Nip\Records\Locator\ModelLocator;
             </div>
         </li>
     </ul>
-</div>
+</header>

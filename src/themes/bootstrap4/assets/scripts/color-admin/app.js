@@ -91,7 +91,10 @@ var handleSidebarMenu = function() {
     "use strict";
     
 	var expandTime = ($('.sidebar').attr('data-disable-slide-animation')) ? 0 : 250;
-	$(document).on('click', '.sidebar .nav > .has-sub > a', function() {
+	$(document).on('click', '.sidebar .nav > .has-sub > a', function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+
 		var target = $(this).next('.sub-menu');
 		var otherMenu = $('.sidebar .nav > li.has-sub > .sub-menu').not(target);
 
@@ -118,7 +121,10 @@ var handleSidebarMenu = function() {
 			});
 		}
 	});
-	$(document).on('click', '.sidebar .nav > .has-sub .sub-menu li.has-sub > a', function() {
+	$(document).on('click', '.sidebar .nav > .has-sub .sub-menu li.has-sub > a', function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+
 		if ($('.page-sidebar-minified').length === 0) {
 			var target = $(this).next('.sub-menu');
 			if ($(target).is(':visible')) {

@@ -7,7 +7,7 @@
 	to { right: 0; }
 }
 .top-menu {
-	background: $blue-grey-800;
+	background: $dark-darker;
 	left: 0;
 	right: 0;
 	z-index: $top-menu-zindex;
@@ -36,12 +36,11 @@
 			display: block;
 			
 			& > a {
-				padding: rem(13px) rem(20px);
-				color: $blue-grey-200;
+				padding: rem(10px) rem(20px);
+				color: rgba($white, .6);
 				line-height: rem(20px);
 				text-decoration: none;
 				white-space: nowrap;
-				font-weight: 500;
 				
 				@include display-flex();
 				@include flex-align(center);
@@ -50,13 +49,11 @@
 				}
 				
 				& i {
-					font-size: rem(24px);
+					font-size: rem(14px);
 					margin-right: rem(10px);
 					line-height: rem(20px);
-					width: rem(24px);
+					width: rem(14px);
 					text-align: center;
-					margin-top: rem(-2px);
-					margin-bottom: rem(-2px);
 					
 					@if $enable-rtl {
 						margin-right: 0;
@@ -84,9 +81,10 @@
 				}
 				& .icon-img {
 					float: left;
-					margin-right: rem(10px);
-					width: rem(24px);
-					height: rem(24px);
+					margin-right: rem(7px);
+					margin-left: rem(-3px);
+					width: rem(20px);
+					height: rem(20px);
 					overflow: hidden;
 					
 					@include border-radius($border-radius);
@@ -94,8 +92,8 @@
 					@include flex-align(center);
 					@if $enable-rtl {
 						float: right;
-						margin-left: rem(10px);
-						margin-right: rem(0);
+						margin-left: rem(7px);
+						margin-right: rem(-3px);
 					}
 					
 					& img {
@@ -115,29 +113,18 @@
 				}
 			}
 			
-			&.active,
-			&.active:hover,
-			&.active:focus {
-				& > a,
-				& > a:hover,
-				& > a:focus {
+			&.active {
+				& > a {
 					position: relative;
 					z-index: 10;
 					color: $white;
-					background: $primary;
 					
 					& i {
-						color: $white;
+						color: $primary;
 					}
 					&.label,
 					&.badge {
 						background: rgba($black, .4);
-						
-						@if $enable-rtl {
-							margin-right: rem(5px);
-						} @else {
-							margin-left: rem(5px);
-						}
 					}
 				}
 			}
@@ -157,7 +144,7 @@
 					line-height: $top-menu-height;
 					width: $top-menu-height;
 					height: $top-menu-height;
-					background: $blue-grey-800;
+					background: $dark;
 					
 					& i {
 						float: none;
@@ -170,7 +157,7 @@
 					}
 					&:hover,
 					&:focus {
-						background: $blue-grey-700;
+						background: darken($dark, 4%);
 					}
 				}
 				&.menu-control-left {
@@ -243,7 +230,7 @@
 			height: rem(20px);
 			line-height: rem(20px);
 			text-align: center;
-			font-size: rem(14px);
+			font-size: rem(11px);
 			border: none;
 			margin-left: rem(5px);
 			
@@ -262,7 +249,7 @@
 			}
 			
 			&:before {
-				content: '\f0da';
+				content: '\f054';
 				display: block;
 				text-align: center;
 				opacity: 0.5;
@@ -274,7 +261,7 @@
 		& .sub-menu {
 			display: none;
 			top: $top-menu-height;
-			background: $blue-grey-900;
+			background: $dark;
 			list-style-type: none;
 			margin: 0;
 			padding: rem(10px) 0;
@@ -301,11 +288,11 @@
 					@include display-flex();
 					@include flex-align(center);
 					@include media-breakpoint-down(sm) {
-						padding-left: rem(54px);
+						padding-left: rem(44px);
 						
 						@if $enable-rtl {
 							padding-left: rem(20px);
-							padding-right: rem(54px);
+							padding-right: rem(44px);
 						}
 					}
 					

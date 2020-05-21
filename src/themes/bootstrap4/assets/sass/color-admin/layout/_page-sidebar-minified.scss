@@ -6,7 +6,7 @@
 		& .nav {
 			& > li {
 				& > a {
-					padding: rem(10px) rem(15px);
+					padding: rem(10px) rem(20px);
 					
 					& span {
 						display: none;
@@ -37,7 +37,7 @@
 		}
 		& .caret {
 			position: absolute;
-			top: rem(12px);
+			top: rem(10px);
 			
 			@if $enable-rtl {
 				left: rem(5px);
@@ -182,7 +182,7 @@
 								left: rem(3px);
 							}
 							&:before {
-								content: '\f0d9';
+								content: '\f053';
 							}
 						}
 					}

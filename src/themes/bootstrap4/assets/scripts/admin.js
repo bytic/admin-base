@@ -1,4 +1,4 @@
 import 'bootstrap';
 
-import './color-admin/material'
+import './color-admin/default'
 import './color-admin/app'

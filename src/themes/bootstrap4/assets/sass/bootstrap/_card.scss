@@ -1,0 +1,41 @@
+.card .card-header {
+  @include display-flex();
+  padding: rem(10px) rem(15px);
+  border: none;
+
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    @include flex(1);
+    font-size: $font-size-sm;
+    line-height: $font-size-base;
+  }
+
+  & .card-header-btn,
+  & .card-heading-btn {
+    @include display-flex();
+    @include flex-align(center);
+
+    & .btn {
+      margin-top: rem(-7px);
+      margin-bottom: rem(-7px);
+
+      &.btn-sm {
+        margin-top: rem(-5px);
+        margin-bottom: rem(-5px);
+      }
+
+      &.btn-xs {
+        margin-top: rem(-1px);
+        margin-bottom: rem(-1px);
+      }
+    }
+  }
+}
+
+.card-inverse {
+  & > .card-header {
+    background: darken($dark, 7.5%);
+    color: transparentize($white, .3);
+  }
+}

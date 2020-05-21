@@ -75,7 +75,7 @@ body {
 					font-size: rem(14px);
 					line-height: rem(20px);
 					padding-bottom: 0;
-					font-weight: 500;
+					font-weight: 600;
 					color: $white;
 					text-shadow: none;
 					
@@ -132,7 +132,7 @@ body {
 						text-indent: 0;
 						font-family: inherit;
 						font-size: rem(12px);
-						font-weight: 500;
+						font-weight: 600;
 						line-height: rem(12px);
 						margin-top: rem(-6px);
 					}
@@ -154,7 +154,7 @@ body {
 				& .gritter-item {
 					& .gritter-title {
 						color: $dark;
-						font-weight: 500;
+						font-weight: 600;
 					}
 					& p {
 						color: lighten($dark, 15%);

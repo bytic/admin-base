@@ -11,10 +11,10 @@ if ($selected) {
 <div id="sidebar" class="sidebar">
     <!-- begin sidebar scrollbar -->
     <div data-scrollbar="true" data-height="100%">
-        <ul class="nav">
-            <?php echo $this->load('header'); ?>
-            <?php echo $this->load('section'); ?>
-        </ul>
+<!--        <ul class="nav">-->
+<!--            --><?php ////echo $this->load('header'); ?>
+<!--            --><?php ////echo $this->load('section'); ?>
+<!--        </ul>-->
         <ul class="nav nav-list">
             <?php echo $this->load('items', ['menu' => $menu]); ?>
         </ul>

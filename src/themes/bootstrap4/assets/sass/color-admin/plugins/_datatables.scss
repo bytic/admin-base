@@ -19,7 +19,7 @@ body {
 					& .dt-autofill-question {
 						padding: rem(15px);
 						border-color: $border-color;
-						font-weight: 500;
+						font-weight: 600;
 						color: lighten($dark, 15%);
 						
 						@include flex(1);
@@ -78,7 +78,7 @@ body {
 				border: none;
 				background: none;
 				padding: 0;
-				font-weight: 500;
+				font-weight: 600;
 				margin: 0;
 				font-size: rem(24px);
 				color: lighten($dark, 70%);
@@ -87,7 +87,7 @@ body {
 				padding: 0;
 				margin-top: rem(5px);
 				font-size: rem(12px);
-				font-weight: 500;
+				font-weight: 600;
 				color: lighten($dark, 45%);
 			}
 		}
@@ -160,9 +160,9 @@ body {
 					
 					&.selected {
 						& td {
-							background: lighten($yellow, 20%);
-							color: darken($yellow, 40%);
-							font-weight: 500;
+							background: lighten($yellow, 40%);
+							color: darken($yellow, 30%);
+							font-weight: 600;
 						}
 					}
 					&.dt-rowReorder-moving {
@@ -264,7 +264,7 @@ body {
 			& label {
 				margin-left: auto;
 				color: lighten($dark, 15%);
-				font-weight: 500;
+				font-weight: 600;
 				margin: 0;
 				
 				@include display-flex();
@@ -292,7 +292,7 @@ body {
 			
 			& label {
 				color: lighten($dark, 15%);
-				font-weight: 500;
+				font-weight: 600;
 				margin: 0;
 				
 				@include display-flex();
@@ -319,7 +319,7 @@ body {
 			margin: 0 0 rem(15px) !important;
 		}
 		& .dataTables_info {
-			font-weight: 500;
+			font-weight: 600;
 			color: lighten($dark, 30%);
 			
 			@include media-breakpoint-down(xs) {
@@ -353,7 +353,7 @@ body {
 						color: lighten($dark, 30%);
 						background-color: $white;
 						border: 1px solid $border-color;
-						font-weight: 500;
+						font-weight: 600;
 						text-decoration: none;
 						outline: none;
 						

@@ -1,0 +1,190 @@
+.page-sidebar-minified {
+  & .sidebar {
+    width: $sidebar-minified-width;
+    position: absolute;
+
+    & .nav {
+      & > li {
+        & > a {
+          padding: rem(10px) rem(20px);
+
+          & span {
+            display: none;
+          }
+
+          & i {
+            margin: 0;
+          }
+        }
+      }
+
+      & li {
+        &.has-sub {
+          & > .sub-menu {
+            display: none !important;
+          }
+        }
+      }
+    }
+
+    & .nav-profile {
+      display: none;
+
+      &.expand {
+        display: none !important;
+      }
+    }
+
+    & .nav-header,
+    & .nav-search {
+      display: none;
+    }
+
+    & .caret {
+      position: absolute;
+      top: rem(10px);
+
+      right: rem(5px);
+
+      &:before {
+        @include transform(rotate(0deg) !important);
+      }
+    }
+
+    & .slimScrollDiv {
+      & .slimScrollBar,
+      & .slimScrollRail {
+        display: none !important;
+      }
+    }
+
+    &.sidebar-right {
+      & .slimScrollDiv,
+      & .slimScrollDiv > div {
+        overflow: hidden !important;
+      }
+
+      & .slimScrollBar {
+        display: block !important;
+      }
+    }
+  }
+
+  & .sidebar-bg {
+    width: $sidebar-minified-width;
+  }
+
+  & .content {
+    margin-left: $sidebar-minified-width;
+    @include media-breakpoint-down(sm) {
+
+      margin-left: 0;
+    }
+  }
+
+  & .footer {
+    margin-left: $sidebar-minified-width + $content-padding-x;
+    @include media-breakpoint-down(sm) {
+
+      margin-left: $content-padding-x-sm;
+    }
+  }
+
+  & .sidebar-minify-btn {
+    & i {
+      &:before {
+        content: '\f101';
+      }
+    }
+  }
+
+  & .map {
+    @include media-breakpoint-up(md) {
+      left: $sidebar-minified-width;
+    }
+  }
+
+  &.page-with-right-sidebar {
+    @include media-breakpoint-up(md) {
+      right: $sidebar-minified-width;
+      left: 0;
+    }
+
+    & .content {
+      margin-right: $sidebar-minified-width;
+      margin-left: 0;
+
+      @include media-breakpoint-down(sm) {
+        margin-right: 0;
+      }
+    }
+
+    & .footer {
+      margin-right: $sidebar-minified-width + $content-padding-x;
+      margin-left: $content-padding-x;
+      @include media-breakpoint-down(sm) {
+        margin-right: $content-padding-x-sm;
+      }
+    }
+
+    & .sidebar {
+      & .nav {
+        & > li {
+          & > a {
+            & .icon-img,
+            & i {
+              float: none;
+              width: auto;
+
+              margin: 0 0 0 rem(5px);
+            }
+
+            & .caret {
+              position: absolute;
+
+              right: auto;
+              left: rem(3px);
+
+              &:before {
+                content: '\f053';
+              }
+            }
+          }
+
+          & > .sub-menu {
+            padding: rem(10px) rem(30px) rem(10px) 0;
+          }
+        }
+      }
+    }
+
+    & .sidebar-minify-btn {
+      & i {
+        &:before {
+          content: '\f100';
+        }
+      }
+    }
+  }
+
+  &.page-sidebar-fixed {
+    & .sidebar {
+      position: fixed;
+
+      & .slimScrollDiv,
+      & .slimScrollDiv > div {
+        overflow: hidden !important;
+      }
+    }
+  }
+
+  &:not(.page-sidebar-fixed) {
+    & .sidebar {
+      & .slimScrollDiv,
+      & .slimScrollDiv > div {
+        overflow: visible !important;
+        height: auto !important;
+      }
+    }
+  }
+}

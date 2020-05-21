@@ -24,6 +24,10 @@ a {
 			& > a {
 				& .label {
 					background: $primary;
+					
+					@if ($primary-color == 'yellow') {
+						color: $black;
+					}
 				}
 			}
 		}
@@ -35,9 +39,6 @@ a {
 			& > a {
 				& .label {
 					&.label-theme {
-						@if $primary-color == 'yellow' or $primary-color == 'lime' {
-							color: $black;
-						}
 						@include gradient-enabled {
 							@include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
 						}
@@ -46,32 +47,59 @@ a {
 			}
 			&.active {
 				& > a {
-					background: $primary;
-					
-					@if $primary-color == 'yellow' or $primary-color == 'lime' {
-						color: $black;
-						
-						& i {
-							color: $black;
-						}
-					}
-					
 					@include gradient-enabled {
+						@if ($primary-color == 'yellow') {
+							color: $dark;	
+						}
 						@include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
 					}
 					
+					& i {
+						color: $primary;
+					}
 					& .label {
 						&.label-theme {
-							@if ($primary-color == 'black') {
-								background: rgba($white, .35);
-							} @else {
-								background: rgba($black, .65);
+							@if ($primary-color == 'yellow') {
+								color: $white;	
 							}
 							@include gradient-enabled {
-								@if ($primary-color == 'black') {
-									background: rgba($white, .35);
-								} @else {
-									background: rgba($black, .65);
+								background: rgba($black, .65);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	& .sub-menu {
+		& > li {
+			&.active {
+				&:after {
+					border-color: $primary;
+				}
+			}
+		}
+	}
+}
+.page-with-light-sidebar {
+	&.gradient-enabled {
+		& .sidebar {
+			& .nav {
+				& > li {
+					&.active {
+						& > a {
+							@if ($primary-color == 'yellow') {
+								color: $dark;
+							} @else {
+								color: $white;
+							}
+							@include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
+							
+							& .label {
+								&.label-theme {
+									@if ($primary-color == 'yellow') {
+										color: $white;	
+									}
 								}
 							}
 						}
@@ -86,7 +114,9 @@ a {
 		& > li {
 			&.active {
 				& > a {
-					background: $primary;
+					& i {
+						color: $primary;
+					}
 				}
 			}
 		}
@@ -98,7 +128,6 @@ a {
 			&.active {
 				&:after {
 					border-color: $primary;
-					background: $primary;
 				}
 			}
 		}
@@ -106,9 +135,17 @@ a {
 }
 .bg-theme {
 	background-color: $primary !important;
+	
+	@if ($primary-color == 'yellow') {
+		color: $black;
+	}
 }
 .label-theme {
 	background-color: $primary;
+	
+	@if ($primary-color == 'yellow') {
+		color: $black;
+	}
 }
 .text-theme {
 	color: $primary;

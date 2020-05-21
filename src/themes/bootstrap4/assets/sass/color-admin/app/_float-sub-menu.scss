@@ -2,7 +2,7 @@
 	position: fixed;
 	width: $sidebar-width;
 	margin: 0;
-	background: $blue-grey-900;
+	background: darken($dark, 4%);
 	z-index: $float-submenu-zindex;
 	
 	& .float-sub-menu {
@@ -20,15 +20,16 @@
 			
 			& > a {
 				line-height: rem(18px);
+				padding: rem(3px) rem(20px) rem(3px) rem(15px);
 				display: block;
 				text-decoration: none;
 				position: relative;
-				color: $blue-grey-400;
+				color: rgba($white, .6);
 				
 				@if $enable-rtl {
-					padding: rem(4px) rem(15px) rem(4px) rem(20px);
+					padding: rem(3px) rem(15px) rem(3px) rem(20px);
 				} @else {
-					padding: rem(4px) rem(20px) rem(4px) rem(15px);
+					padding: rem(3px) rem(20px) rem(3px) rem(15px);
 				}
 				
 				& .caret {
@@ -37,7 +38,7 @@
 					height: rem(20px);
 					line-height: rem(20px);
 					text-align: center;
-					font-size: rem(14px);
+					font-size: rem(11px);
 					margin-top: rem(-1px);
 					border: none;
 				
@@ -54,9 +55,9 @@
 						opacity: 0.5;
 						
 						@if $enable-rtl {
-							content: '\f0d9';
+							content: '\f053';
 						} @else {
-							content: '\f0da';
+							content: '\f054';
 						}
 						@include transition(all .2s linear);
 					}
@@ -69,7 +70,7 @@
 				&:after {
 					content: '';
 					position: absolute;
-					background: $blue-grey-800;
+					background: $dark;
 					top: rem(11px);
 					width: rem(11px);
 					height: rem(2px);
@@ -84,7 +85,7 @@
 			
 			&:before {
 				content: '';
-				background: $blue-grey-800;
+				background: $dark;
 				position: absolute;
 				top: 0;
 				bottom: 0;
@@ -101,13 +102,13 @@
 				position: absolute;
 				width: rem(6px);
 				height: rem(6px);
+				border: 1px solid rgba($white, .25);
 				top: rem(11px);
 				margin-top: rem(-2px);
 				z-index: 10;
-				background: $blue-grey-800;
-				border: 1px solid $blue-grey-800;
+				background: darken($dark, 4%);
 				
-				@include border-radius($border-radius * 10);
+				@include border-radius($border-radius);
 				@if $enable-rtl {
 					right: 0;
 				} @else {
@@ -133,7 +134,7 @@
 			&.has-sub {
 				& > a {
 					&:before {
-						background: $blue-grey-900;
+						background: $dark;
 					}
 				}
 			}
@@ -155,7 +156,6 @@
 				}
 				&:after {
 					border-color: $primary;
-					background: $primary;
 				}
 			}
 			&.expanding,
@@ -221,7 +221,7 @@
 		top: rem(20px);
 		width: rem(28px);
 		height: rem(2px);
-		background: $blue-grey-800;
+		background: $dark;
 		
 		@if $enable-rtl {
 			right: 0;
@@ -233,7 +233,7 @@
 		position: absolute;
 		top: rem(20px);
 		width: rem(2px);
-		background: $blue-grey-800;
+		background: $dark;
 		
 		@if $enable-rtl {
 			right: rem(26px);

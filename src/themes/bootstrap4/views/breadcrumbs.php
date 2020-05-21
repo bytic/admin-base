@@ -21,7 +21,6 @@
                         <a href="<?php echo htmlentities($item['url']); ?>" title="<?php echo $item['title']; ?>">
                             <?php echo $item['title']; ?>
                         </a>
-                        <span class="divider">/</span>
                     <?php } else { ?>
                         <span><?php echo $item['title']; ?></span>
                     <?php } ?>

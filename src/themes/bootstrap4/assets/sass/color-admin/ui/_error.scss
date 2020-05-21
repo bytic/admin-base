@@ -2,11 +2,11 @@
 	margin: 0 auto;
 	text-align: center;
 	height: 100vh;
-
+	
 	@include display-flex();
 	@include flex-direction-column();
 	@include flex-justify-content(center);
-
+	
 	& .error-code,
 	& .error-content {
 		@include flex(1);
@@ -18,7 +18,7 @@
 		line-height: 1;
 		text-shadow: 10px 10px 0px rgba($dark, .2);
 		padding: rem(30px);
-
+		
 		@include display-flex();
 		@include flex-justify-content(center);
 		@include flex-align(flex-end);
@@ -34,7 +34,7 @@
 		bottom: 0;
 		padding: rem(30px);
 		background: $dark;
-		background-image: url(../images/error-page-pattern.png);
+		background-image: url(images/error-page-pattern.png);
 	}
 	& .error-message {
 		color: $white;

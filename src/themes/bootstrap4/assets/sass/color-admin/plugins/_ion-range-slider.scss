@@ -43,7 +43,7 @@
 		font-size: $font-size-base;
 		background: lighten($dark, 75%);
 		color: lighten($dark, 15%);
-		font-weight: 500;
+		font-weight: 600;
 	}
 	& .irs-slider {
 		background: $white;
@@ -267,7 +267,7 @@
 		& .irs-to,
 		& .irs-single {
 			font-size: rem(11px);
-			font-weight: 500;
+			font-weight: 600;
 			
 			&:before {
 				border-top-color: $dark;	
@@ -277,7 +277,7 @@
 		& .irs-max {
 			color: $dark;
 			font-size: rem(11px);
-			font-weight: 500;
+			font-weight: 600;
 			background: mix($white, $silver, 50%);
 		}
 	}

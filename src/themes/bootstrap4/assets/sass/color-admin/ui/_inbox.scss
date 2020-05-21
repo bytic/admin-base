@@ -1,7 +1,7 @@
 .inbox {
 	& .nav-title {
 		font-size: rem(11px);
-		color: lighten($dark, 25%);
+		color: lighten($dark, 45%);
 		padding: rem(15px) rem(15px) rem(7px);
 	}
 	& .nav-inbox {
@@ -22,7 +22,7 @@
 				border-radius: 0;
 				padding: rem(8px) rem(20px);
 				color: $dark;
-				font-weight: 500;
+				font-weight: 600;
 				
 				& i {
 					width: rem(20px);
@@ -37,7 +37,7 @@
 			}
 			&.active {
 				& > a {
-					background: lighten($dark, 75%);
+					background: lighten($dark, 70%);
 					color: $dark;
 				}
 			}
@@ -61,7 +61,7 @@
 		
 		& .tagit {
 			border: none !important;
-			border-bottom: 1px solid lighten($border-color, 5%) !important;
+			border-bottom: 1px solid $border-color !important;
 			padding: rem(10px) rem(12px) rem(10px) rem(45px) !important;
 			
 			@include border-radius(0);
@@ -76,7 +76,7 @@
 		}
 		& .form-control {
 			border: none !important;
-			border-bottom: 1px solid lighten($border-color, 5%) !important;
+			border-bottom: 1px solid $border-color !important;
 			padding: rem(10px) rem(12px) rem(10px) rem(45px) !important;
 			
 			@include border-radius(0);
@@ -92,8 +92,8 @@
 			bottom: 0;
 			line-height: rem(16px);
 			padding-left: rem(10px);
-			margin-bottom: 0;
 			width: rem(45px);
+			margin-bottom: 0;
 			
 			@include display-flex();
 			@include flex-align(center);
@@ -108,7 +108,7 @@
 	& .email-subject {
 		& .form-control {
 			border: none !important;
-			border-bottom: 1px solid lighten($border-color, 5%) !important;
+			border-bottom: 1px solid $border-color !important;
 			padding: rem(10px) rem(12px) rem(10px) rem(12px) !important;
 			
 			@include border-radius(0);
@@ -137,7 +137,7 @@
 				}
 			}
 			& > li {
-				margin: 0 rem(10px) rem(5px) 0;
+				margin: 0 rem(5px) rem(5px) 0;
 				
 				@if $enable-rtl {
 					margin-right: 0;
@@ -147,7 +147,7 @@
 		}
 		& .wysihtml5-sandbox {
 			padding: rem(15px) !important;
-			border: 1px solid lighten($border-color, 5%) !important;
+			border: 1px solid $border-color !important;
 			
 			@include border-radius(0 !important);
 		}
@@ -164,7 +164,7 @@
 			width: rem(180px);
 			background: $white;
 			color: $dark;
-			font-weight: 500;
+			font-weight: 600;
 			position: relative;
 			margin-right: rem(15px);
 			margin-bottom: rem(15px);
@@ -436,11 +436,11 @@
 				
 				&.unread {
 					& .email-title {
-						font-weight: 500;
+						font-weight: 600;
 						color: $dark;
 					}
 					& .email-sender {
-						font-weight: 500;
+						font-weight: 600;
 					}
 				}
 				&.selected {

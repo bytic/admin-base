@@ -7,7 +7,7 @@
 	background: $white;
 	border: none;
 	
-	@include box-shadow(0 2px 10px rgba($black,.15));
+	@include box-shadow(none);
 	@include border-radius($border-radius-sm);
 	
 	& > .table-bordered,
@@ -78,11 +78,22 @@
 			border-right: none;
 			
 			&:first-child {
+				border-top-width: 0px;
+				
 				@include border-top-left-radius(0);
 				@include border-top-right-radius(0);
 			}
 			&:last-child {
 				border-bottom: none;
+			}
+		}
+	}
+	& > div {
+		& + .list-group {
+			& .list-group-item {
+				&:first-child {
+					border-top-width: 1px;
+				}
 			}
 		}
 	}

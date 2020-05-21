@@ -95,7 +95,7 @@
 								&.year,
 								&.month,
 								&.century {
-									font-weight: 500;
+									font-weight: 600;
 									color: lighten($dark, 30%);
 									text-shadow: none;
 									
@@ -116,7 +116,7 @@
 								}
 							}
 							&.day {
-								font-weight: 500;
+								font-weight: 600;
 								color: lighten($dark, 15%);
 								padding: rem(5px);
 									
@@ -210,7 +210,7 @@
 	& .input-daterange {
 		& .input-group-addon {
 			margin: 0;
-			font-weight: 500;
+			font-weight: 600;
 			background: lighten($dark, 65%);
 			color: lighten($dark, 30%);
 			

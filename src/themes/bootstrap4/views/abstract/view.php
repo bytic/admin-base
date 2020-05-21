@@ -2,9 +2,9 @@
 
 <div class="row">
     <div class="span12">
-        <div class="panel panel-inverse">
-            <div class="panel-heading">
-                <h4 class="panel-title">
+        <div class="card panel-inverse">
+            <div class="card-header">
+                <h4 class="card-title">
                     <?php echo $this->title; ?>
                     <?php if ($this->existPath("/".$this->controller."/modules/item/title-after")) { ?>
                         <?php echo $this->load("/".$this->controller."/modules/item/title-after"); ?>

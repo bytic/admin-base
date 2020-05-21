@@ -1,0 +1,14 @@
+.page-header-fixed {
+	//padding-top: $header-height;
+
+	@include media-breakpoint-down(sm) {
+		//padding-top: ($header-height-sm * 2) + rem(1px);
+	}
+
+	& header.navbar {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		z-index: $header-fixed-zindex;
+	}
+}
