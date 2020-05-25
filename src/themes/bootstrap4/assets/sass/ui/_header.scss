@@ -11,3 +11,28 @@
     }
   }
 }
+
+.navbar-sections {
+  .dropdown-item {
+    overflow: hidden;
+    padding-left: 10px;
+
+    .icon {
+      width: 25px;
+      height: 25px;
+      background-color: $primary;
+      display: block;
+      float: left;
+      margin-right: 10px;
+      color: #fff;
+      fill: #fff;
+      @include border-radius(4px);
+
+      svg {
+        max-height: 100%;
+        max-width: 100%;
+        margin: 4px;
+      }
+    }
+  }
+}
