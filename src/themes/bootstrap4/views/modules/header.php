@@ -4,7 +4,7 @@ use Nip\Records\Locator\ModelLocator;
 
 ?>
 <!-- begin #header -->
-<header id="header" class="navbar navbar-light bg-white">
+<header id="header" class="navbar navbar-expand navbar-light bg-white">
     <!-- begin navbar-header -->
     <div class="navbar-header">
         <?php echo $this->load('/modules/header/section'); ?>
@@ -24,7 +24,7 @@ use Nip\Records\Locator\ModelLocator;
     <!-- end navbar-header -->
 
     <!-- begin header-nav -->
-    <ul class="navbar-nav navbar-right">
+    <ul class="navbar-nav ml-md-auto">
         <li class="dropdown navbar-user">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-user icon-white"></i>
