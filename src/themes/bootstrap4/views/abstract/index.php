@@ -9,33 +9,10 @@ $modelManager = $this->modelManager;
 
 <?php echo $this->Flash()->render($this->controller); ?>
 
-<?php if ($this->existPath("/" . $this->controller . "/modules/filters")) { ?>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card panel-inverse">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        <?php echo translator()->translate('filters'); ?>
-                    </h4>
-                </div>
 
-                <div class="card-body">
-                    <form method="get" action="<?php echo $this->modelManager->getURL(); ?>" id="filter-form"
-                          class="filters ">
-                        <div class="row">
-                            <?php echo $this->load("/" . $this->controller . "/modules/filters"); ?>
+<?php echo $this->load("modules/filters"); ?>
 
-                            <button type="submit" class="btn btn-primary btn-large">
-                                <span class="glyphicon glyphicon-search glyphicon-white"></span>
-                                Filter
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
+<div class="mt-3"></div>
 
 <p>
     <?php if ($this->existPath("/" . $this->controller . "/modules/right-buttons")) { ?>
@@ -60,6 +37,7 @@ if ($this->existPath(($viewFile))) {
 }
 ?>
 
+<div class="mt-"
 
 <?php if ($this->fatalError) { ?>
     <div class="message-info message-error">

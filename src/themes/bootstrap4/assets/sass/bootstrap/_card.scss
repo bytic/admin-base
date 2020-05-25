@@ -1,5 +1,6 @@
 .card .card-header {
   @include display-flex();
+  align-items: center;
   padding: rem(10px) rem(15px);
   border: none;
 
