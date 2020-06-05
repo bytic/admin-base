@@ -37,8 +37,6 @@ if ($this->existPath(($viewFile))) {
 }
 ?>
 
-<div class="mt-"
-
 <?php if ($this->fatalError) { ?>
     <div class="message-info message-error">
         <?php echo $this->fatalError ?>
