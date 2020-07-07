@@ -1,5 +1,6 @@
 @import 'functions';
 @import "variables";
+@import 'mixins';
 
 //$roboto-font-path: "~mdbootstrap/font/roboto/";
 //$image-path: "~mdbootstrap/img/";
@@ -7,8 +8,6 @@
 
 @import "~bootstrap/scss/bootstrap";
 //@import "./color-admin/styles.scss";
-
-@import 'mixins';
 
 //$fa-font-path: "~font-awesome/fonts";
 //$fa-font-path: "~@fortawesome/webfonts";

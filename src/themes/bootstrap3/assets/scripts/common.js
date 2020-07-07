@@ -1,3 +1,5 @@
+var APP = {}
+
 !function ($) {
 
     $(function () {

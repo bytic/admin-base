@@ -7,5 +7,5 @@
 
     <?php echo $this->FacebookMeta(); ?>
 
-    <?php echo $this->load('head-assets'); ?>
+    <?php echo $this->load('/modules/head-assets'); ?>
 </head>
