@@ -19,9 +19,6 @@
 </div>
 
 <?php echo $this->load('/modules/footer'); ?>
-
-<?php echo $this->Scripts()->render('footer'); ?>
-<?php echo $this->Tooltips()->render(); ?>
 <?php echo $this->load('/modules/footer-body'); ?>
 </body>
 </html>
