@@ -1,8 +1,5 @@
 <?php
 
-$this->TinyMCE()->setBase(asset('/scripts/tinymce'));
-$this->TinyMCE()->init();
-
 echo $this->Stylesheets()->renderRaw();
 
 echo $this->Scripts()->render();
