@@ -1,0 +1,46 @@
+.breadcrumb {
+	padding: 0;
+	margin: 0;
+	background: none;
+	
+	& .breadcrumb-item {
+		line-height: rem(32px);
+		
+		& + .breadcrumb-item {
+			
+			&:before {
+				color: lighten($dark, 45%);
+			}
+		}
+		& a {
+			color: $dark;
+		}
+	}
+}
+
+
+#breadcrumbs {
+	margin-bottom: 6px;
+}
+
+#breadcrumbs hr {
+	margin: 0;
+}
+
+.breadcrumb span {
+}
+
+.breadcrumb a {
+	color: #aaa;
+}
+
+.breadcrumb a:hover {
+	color: #646464;
+	text-decoration: none;
+}
+
+.breadcrumb > li + li:before {
+	content: "/ ";
+	padding: 0 5px;
+	color: #CCC;
+}
