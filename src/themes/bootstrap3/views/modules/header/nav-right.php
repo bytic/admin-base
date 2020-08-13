@@ -10,9 +10,9 @@ $usersManager = \Nip\Records\Locator\ModelLocator::get('users');
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="<?php echo Users::instance()->getChangePasswordURL(); ?>"
-                   title="<?php echo Users::instance()->getLabel('password.change'); ?>">
-                    <?php echo Users::instance()->getLabel('password.change'); ?>
+            <li><a href="<?php echo $usersManager->compileURL('ChangePassword'); ?>"
+                   title="<?php echo $usersManager->getLabel('password.change'); ?>">
+                    <?php echo $usersManager->getLabel('password.change'); ?>
                 </a></li>
             <li class="divider"></li>
             <li><a href="<?php echo $this->Url()->assemble('admin.login.logout'); ?>" title="Logout"
