@@ -1,3 +1,6 @@
+import Cookies from 'js-cookie';
+import 'jquery-slimscroll';
+
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
 Version: 4.6.0
