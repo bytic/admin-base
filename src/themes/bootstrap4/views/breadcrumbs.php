@@ -16,7 +16,7 @@
                     $classes[] = 'active';
                 }
                 ?>
-                <li<?php echo $classes ? ' class="'.implode(" ", $classes).'"' : ''; ?>>
+                <li<?php echo $classes ? ' class="' . implode(" ", $classes) . '"' : ''; ?>>
                     <?php if ($item != $lastBreadcrumb) { ?>
                         <a href="<?php echo htmlentities($item['url']); ?>" title="<?php echo $item['title']; ?>">
                             <?php echo $item['title']; ?>

@@ -19,10 +19,10 @@
                         </div>
                     <?php } ?>
 
-                    <?php if ($this->existPath("/".$this->controller."/modules/item/top-buttons")) { ?>
+                    <?php if ($this->existPath("/" . $this->controller . "/modules/item/top-buttons")) { ?>
                         <div class="pull-right delete" >
                             <div class="buttons inline right">
-                                <?php echo $this->load("/".$this->controller."/modules/item/top-buttons"); ?>
+                                <?php echo $this->load("/" . $this->controller . "/modules/item/top-buttons"); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -30,8 +30,8 @@
 
                 <h4 class="panel-title">
                     <?php echo $this->title; ?>		
-                    <?php if ($this->existPath("/".$this->controller."/modules/item/title-after")) { ?>
-                        <?php echo $this->load("/".$this->controller."/modules/item/title-after"); ?>
+                    <?php if ($this->existPath("/" . $this->controller . "/modules/item/title-after")) { ?>
+                        <?php echo $this->load("/" . $this->controller . "/modules/item/title-after"); ?>
                     <?php } ?>
                 </h4>
             </div>
@@ -39,7 +39,7 @@
             <div class="panel-body">
                 <div style="max-width:800px">
                     <?php
-                    $viewFile = "/".$this->controller."/modules/item-form";
+                    $viewFile = "/" . $this->controller . "/modules/item-form";
                     if (!$this->existPath($viewFile)) {
                         $viewFile = '/abstract/modules/item-form';
                     }

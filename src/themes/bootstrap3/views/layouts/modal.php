@@ -15,7 +15,7 @@
             ->add('admin/modal/basic')
             ->add('admin/modal/structure')
             ->add('admin/modal/forms');
-        
+
     $this->Stylesheets()->add('ie6', 'lte IE 6');
 ?>
 

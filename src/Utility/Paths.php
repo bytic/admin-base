@@ -10,7 +10,6 @@ use ByTIC\AdminBase\AdminBase;
  */
 class Paths
 {
-
     /**
      * @param $path
      * @param $theme
