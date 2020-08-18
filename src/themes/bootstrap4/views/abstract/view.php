@@ -13,20 +13,20 @@
     </div>
 <?php } ?>
 
-<?php if ($this->existPath("/".$this->controller."/modules/item/top-buttons")) { ?>
+<?php if ($this->existPath("/" . $this->controller . "/modules/item/top-buttons")) { ?>
     <div class="pull-right delete">
         <div class="buttons inline right">
-            <?php echo $this->load("/".$this->controller."/modules/item/top-buttons"); ?>
+            <?php echo $this->load("/" . $this->controller . "/modules/item/top-buttons"); ?>
         </div>
     </div>
 <?php } ?>
 
 <?php echo $this->Flash()->render($this->controller); ?>
 
-<?php if ($this->existPath("/".$this->controller."/modules/item/right-buttons")) { ?>
+<?php if ($this->existPath("/" . $this->controller . "/modules/item/right-buttons")) { ?>
     <div class="pull-right delete">
         <div class="buttons inline right">
-            <?php echo $this->load("/".$this->controller."/modules/item/right-buttons"); ?>
+            <?php echo $this->load("/" . $this->controller . "/modules/item/right-buttons"); ?>
         </div>
     </div>
 <?php } ?>
