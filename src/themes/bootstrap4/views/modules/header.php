@@ -2,6 +2,7 @@
 
 use Nip\Records\Locator\ModelLocator;
 
+$currentSection = mvc_sections()->getCurrent();
 ?>
 <!-- begin #header -->
 <header id="header" class="navbar navbar-expand navbar-light bg-white">
@@ -9,7 +10,10 @@ use Nip\Records\Locator\ModelLocator;
     <div class="navbar-header">
         <?php echo $this->load('/modules/header/section'); ?>
 
-        <a class="navbar-brand" href="<?php echo $this->Url()->admin(); ?>">
+        <a class="navbar-brand" href="<?php echo \Nip\Router\route(request()->getModuleName()); ?>">
+            <span class="section-icon" style="<?php echo ($currentSection->color) ? 'background-color:'.$currentSection->color : ''; ?>">
+                <?php echo $currentSection->printIcon(); ?>
+            </span>
             <?php echo config('app.name'); ?>
         </a>
 

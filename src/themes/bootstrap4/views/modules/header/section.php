@@ -9,16 +9,16 @@ if (!$sections) {
 
 <ul class="navbar-nav navbar-sections">
     <li class="nav-item dropdown">
-        <a class="nav-item nav-link dropdown-toggle mr-md-2 px-2" href="#" id="admin-sections" data-toggle="dropdown"
+        <a class="nav-link dropdown-toggle mr-md-2 px-2" href="#" id="admin-sections" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-th"></i>
+            <i class="fas fa-fw fa-th"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-md-left" aria-labelledby="admin-sections">
             <?php foreach ($sections as $section) { ?>
                 <a class="dropdown-item" target="_blank"
                    href="<?php echo $section->getURL(\Nip\Router\route(request()->getModuleName())); ?>"
                 >
-                    <span class="icon" style="<?php echo ($section->color) ? 'background-color:'.$section->color : ''; ?>">
+                    <span class="section-icon" style="<?php echo ($section->color) ? 'background-color:'.$section->color : ''; ?>">
                         <?php echo $section->printIcon(); ?>
                     </span>
                     <?php echo $section->getName(); ?>
