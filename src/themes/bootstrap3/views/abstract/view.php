@@ -15,18 +15,18 @@
             </div>
         <?php } ?>
 
-        <?php if ($this->existPath("/".$this->controller."/modules/item/top-buttons")) { ?>
+        <?php if ($this->existPath("/" . $this->controller . "/modules/item/top-buttons")) { ?>
             <div class="pull-right delete" >
                 <div class="buttons inline right">
-                    <?php echo $this->load("/".$this->controller."/modules/item/top-buttons"); ?>
+                    <?php echo $this->load("/" . $this->controller . "/modules/item/top-buttons"); ?>
                 </div>
             </div>
         <?php } ?>
 
         <h4 class="panel-title">
             <?php echo $this->title; ?>		
-            <?php if ($this->existPath("/".$this->controller."/modules/item/title-after")) { ?>
-                <?php echo $this->load("/".$this->controller."/modules/item/title-after"); ?>
+            <?php if ($this->existPath("/" . $this->controller . "/modules/item/title-after")) { ?>
+                <?php echo $this->load("/" . $this->controller . "/modules/item/title-after"); ?>
             <?php } ?>
         </h4>
 
@@ -35,10 +35,10 @@
     <div class="panel-body">
         <?php echo $this->Flash()->render($this->controller); ?>
 
-        <?php if ($this->existPath("/".$this->controller."/modules/item/right-buttons")) { ?>
+        <?php if ($this->existPath("/" . $this->controller . "/modules/item/right-buttons")) { ?>
             <div class="pull-right delete" >
                 <div class="buttons inline right">
-                    <?php echo $this->load("/".$this->controller."/modules/item/right-buttons"); ?>
+                    <?php echo $this->load("/" . $this->controller . "/modules/item/right-buttons"); ?>
                 </div>
             </div>
         <?php } ?>
