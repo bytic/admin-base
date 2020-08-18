@@ -4,6 +4,8 @@ $selected = isset($selected) ? $selected : null;
 
 ?>
 <div id="sidebar" class="sidebar">
+    <?php echo $this->load('sidebar-minify'); ?>
+
     <!-- begin sidebar scrollbar -->
     <div data-scrollbar="true" data-height="100%">
         <ul class="nav">

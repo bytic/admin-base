@@ -14,7 +14,7 @@ $selected = isset($selected) ? $selected : null;
                 <?php echo $hasSubMenu ? '<b class="caret pull-right"></b>' : ''; ?>
 
                 <?php
-                if ($item['icon']) {
+                if (isset($item['icon']) && !empty($item['icon'])) {
                     $iconType = false;
                     if (strpos($item['icon'], 'glyphicon') === 0) {
                         $iconType = 'glyphicon';
@@ -31,6 +31,8 @@ $selected = isset($selected) ? $selected : null;
                             break;
                     }
                     echo '<i class="' . $classPrefix . ' ' . $item['icon'] . ($sectionSelected ? ' glyphglyphicon-white' : '') . '"></i>';
+                } else {
+                    echo '<i class="fa fa-th-large"></i>';
                 }
                 ?>
 
