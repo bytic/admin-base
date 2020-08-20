@@ -145,10 +145,10 @@
 
 			&.nav-header {
 				margin: 0;
-				padding: rem(15px) rem(20px) rem(3px);
-				line-height: rem(20px);
-				font-size: rem(11px);
-				color: rgba($white, .45);
+				padding: rem(15px) rem(10px) rem(3px);
+				line-height: rem(16px);
+				font-size: 85%;
+				color: rgba($white, .6);
 				font-weight: 600;
 
 				& a {
