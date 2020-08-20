@@ -1,6 +1,7 @@
 #header {
+  padding: 0;
 
-  @include box-shadow(1px 2px 4px 0 rgba(0,0,0,.03));
+  @include box-shadow(1px 2px 4px 0 rgba(0, 0, 0, .03));
 
   & .navbar-header {
     @include clearfix();
@@ -8,6 +9,17 @@
     @include flex-align(center);
     @include media-breakpoint-up(md) {
       width: $sidebar-width;
+    }
+  }
+}
+
+#header .navbar-nav {
+  > li > a {
+    line-height: 45px;
+    padding: 0 10px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
     }
   }
 }
