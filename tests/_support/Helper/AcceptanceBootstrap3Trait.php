@@ -14,7 +14,7 @@ trait AcceptanceBootstrap3Trait
      */
     public function seeHeaderTitle($title)
     {
-        $this->getBrowserModule()->see($title, 'h2');
+        $this->getBrowserModule()->see($title, '.page-title');
     }
 
     /**
