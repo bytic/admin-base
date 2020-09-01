@@ -6,7 +6,7 @@
 
 <?php echo $this->load('/modules/sidebar', ["selected" => $this->section]); ?>
 
-<div id="main" style="margin-top: 40px;">
+<div id="main">
     <?php echo $this->load('/modules/page-header'); ?>
 
     <div class="container-fluid">

@@ -1,14 +1,16 @@
 <?php
 /** @var \Nip\View $this */
 ?>
-<div id="page-heading" style="padding:0 15px;">
-    <div class="row">
+<div id="page-heading" >
+    <div class="row-fluid">
         <div class="col-md-8">
-            <h2><?php echo $this->title; ?></h2>
+            <h4 class="page-title">
+                <?php echo $this->title; ?>
+            </h4>
 
             <?php echo $this->controller == 'error' ? '' : $this->Breadcrumbs(); ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 page-actions">
             <div class="btn-toolbar" role="toolbar" style="margin-top: 15px;">
                 <?php
                 $viewFile = "/" . $this->controller . "/modules/header-buttons/" . $this->action;

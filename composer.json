@@ -12,7 +12,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "ByTIC\\AdminBase\\": "src"
+      "ByTIC\\AdminBase\\": "src",
+      "ByTIC\\AdminBase\\Tests\\Helper\\": "tests/_support/Helper"
     }
   },
   "autoload-dev": {
@@ -27,6 +28,7 @@
     "bytic/orm": "^0.9|^1.0"
   },
   "require-dev": {
+    "bytic/codeception": "^4.0",
     "phpunit/phpunit": "^7.1"
   }
 }

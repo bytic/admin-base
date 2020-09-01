@@ -1,13 +1,13 @@
 .breadcrumb {
-	padding: 0;
+	padding: 0  !important;
 	margin: 0;
-	background: none;
-	
+	background: none !important;
+
 	& .breadcrumb-item {
 		line-height: rem(32px);
-		
+
 		& + .breadcrumb-item {
-			
+
 			&:before {
 				color: lighten($dark, 45%);
 			}

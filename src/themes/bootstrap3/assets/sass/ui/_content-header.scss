@@ -1,7 +1,8 @@
 #main #page-heading {
   border-bottom: 1px solid $gray-100;
   color: $gray-600;
-  margin-bottom: rem(16px) / 2;
+  margin-bottom: 16px;
+  overflow: hidden;
 
   .page-title {
     font-size: $font-size-lg;
