@@ -1,5 +1,6 @@
 <?php
 $menu = isset($menu) ? $menu : [];
+$expanded = isset($expanded) ? $expanded : null;
 ?>
 
 <?php foreach ($menu as $section => $item) { ?>
@@ -10,7 +11,7 @@ $menu = isset($menu) ? $menu : [];
         $sectionSelected = (isset($item['active']) && $item['active']) or ($section === $expanded);
         ?>
         <li class="nav-item <?php echo $sectionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' dropdown' : ''; ?>">
-            <a href="<?php echo $item['href'] ? $item['href'] : 'javascript:'; ?>"
+            <a href="<?php echo isset($item['href']) ? $item['href'] : 'javascript:'; ?>"
                class="nav-link <?php echo isset($item['class']) ? $item['class'] : ''; ?><?php echo $hasSubMenu ? 'dropdown-toggle' : ''; ?>"
                 <?php echo $hasSubMenu ? 'role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' : ''; ?>
                 <?php echo isset($item['attributes']) ? $this->HTML()->attributes($item['attributes']) : ''; ?>
