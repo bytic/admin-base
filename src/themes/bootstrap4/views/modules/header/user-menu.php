@@ -20,7 +20,7 @@ $currentUserManager = $this->user->getManager();
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="<?php echo $currentUserManager->compileURL('ChangePassword'); ?>"
-                   class="dropdown-item"
+                   class="dropdown-item"  target="_blank"
                    title="<?php echo $currentUserManager->getLabel('password.change'); ?>">
                     <?php echo $currentUserManager->getLabel('password.change'); ?>
                 </a>

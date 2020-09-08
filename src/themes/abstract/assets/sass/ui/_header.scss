@@ -1,0 +1,47 @@
+
+#header .navbar-nav {
+  > li > a {
+    line-height: 45px;
+    padding: 0 10px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.section-icon {
+  width: 25px;
+  height: 25px;
+  background-color: $primary;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  color: #fff;
+  fill: #fff;
+  @include border-radius(4px);
+
+  svg {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 4px;
+  }
+}
+
+.navbar-sections {
+  .dropdown .dropdown-toggle {
+    &::after {
+      display: none;
+      content: "";
+      border: 0;
+    }
+    &:hover {
+      border-radius: 100%;
+      background-color: lighten($brand-primary, 40%);
+    }
+  }
+  .dropdown-item {
+    overflow: hidden;
+    padding-left: 10px;
+  }
+}

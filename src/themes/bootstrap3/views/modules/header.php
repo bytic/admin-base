@@ -1,6 +1,8 @@
 <div class="navbar navbar-fixed-top" role="navigation">
     <div class="navbar-inner">
         <div class="container-fluid">
+            <?php echo $this->load('/modules/header/section'); ?>
+
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
