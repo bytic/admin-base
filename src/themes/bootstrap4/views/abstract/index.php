@@ -9,8 +9,10 @@ $modelManager = $this->modelManager;
 
 <?php echo $this->Flash()->render($this->controller); ?>
 
-
-<?php echo $this->load("modules/filters"); ?>
+<?php echo $this->loadIf(
+    $this->existPath("/" . $this->controller . "/modules/filters"),
+    '/abstract/modules/panels/filters'
+); ?>
 
 <div class="mt-3"></div>
 
