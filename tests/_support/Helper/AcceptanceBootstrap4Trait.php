@@ -14,7 +14,7 @@ trait AcceptanceBootstrap4Trait
      */
     public function seeHeaderTitle($title)
     {
-        $this->getBrowserModule()->see($title, 'h2');
+        $this->getBrowserModule()->see($title, '.page-header .page-title');
     }
 
     /**
@@ -22,7 +22,7 @@ trait AcceptanceBootstrap4Trait
      */
     public function seePanelTitle($title)
     {
-        $this->getBrowserModule()->see($title, '.panel .panel-title');
+        $this->getBrowserModule()->see($title, '.card .card-title');
     }
 
     /**
