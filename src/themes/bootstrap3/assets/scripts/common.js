@@ -1,3 +1,6 @@
+
+import '../../../abstract/assets/scripts/jgrowl.js';
+
 var APP = {}
 
 !function ($) {
