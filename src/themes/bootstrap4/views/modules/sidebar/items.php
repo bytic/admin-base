@@ -4,7 +4,7 @@ $selected = isset($selected) ? $selected : null;
 ?>
 <?php foreach ($menu as $section => $item) { ?>
     <?php if ($item['enabled']) { ?>
-        <?php $hasSubMenu = count($item['submenus']) > 0; ?>
+        <?php $hasSubMenu = isset($item['submenus']) && is_array($item['submenus']) && count($item['submenus']) > 0; ?>
         <?php $sectionSelected = (isset($item['active']) && $item['active']) or ($section === $expanded); ?>
         <li class="<?php echo $sectionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' has-sub' : ''; ?>">
             <a href="<?php echo $item['href'] ? $item['href'] : 'javascript:'; ?>"
