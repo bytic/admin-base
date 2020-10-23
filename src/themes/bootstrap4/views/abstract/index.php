@@ -24,7 +24,8 @@ $modelManager = $this->modelManager;
     <?php } ?>
 
     <?php if ($add) { ?>
-        <a href="<?php echo $this->modelManager->getAddURL($addURLParams); ?>" class="btn btn-success"
+        <a href="<?php echo $this->modelManager->getAddURL($addURLParams); ?>"
+           class="btn btn-success add-<?php echo $this->modelManager->getController(); ?>"
            title="<?php echo $this->modelManager->getLabel('add'); ?>">
             <span class="glyphicon glyphicon-plus glyphicon-white"></span>
             <?php echo $this->modelManager->getLabel('add'); ?>
