@@ -29,4 +29,11 @@ $viewFile = "/" . $this->controller . "/modules/item-form";
 if (!$this->existPath($viewFile)) {
     $viewFile = '/abstract/modules/item-form';
 }
-echo $this->load($viewFile); ?>
+?>
+
+<div class="row">
+    <div class="col-xl-8 col-lg-10">
+        <?php echo $this->load($viewFile); ?>
+    </div>
+</div>
+

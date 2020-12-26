@@ -28,6 +28,7 @@
     "bytic/orm": "^0.9|^1.0"
   },
   "require-dev": {
+    "bytic/translation": "^0.9|^1.0",
     "bytic/codeception": "^4.0",
     "phpunit/phpunit": "^7.1"
   }
