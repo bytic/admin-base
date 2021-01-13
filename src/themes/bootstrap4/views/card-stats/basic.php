@@ -15,7 +15,7 @@ $description = isset($description) ? $description : null;
                     <?php echo $title; ?>
                 </h5>
                 <span class="h2 font-weight-bold mb-0">
-
+                    <?php echo $value; ?>
                 </span>
             </div>
             <?php if ($icon) { ?>
