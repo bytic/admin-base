@@ -1,0 +1,16 @@
+@import "../../../../abstract/assets/sass/ui/header";
+
+#header {
+  padding: 0;
+
+  @include box-shadow(1px 2px 4px 0 rgba(0, 0, 0, .03));
+
+  & .navbar-header {
+    @include clearfix();
+    @include display-flex();
+    @include flex-align(center);
+    @include media-breakpoint-up(md) {
+      width: $sidebar-width;
+    }
+  }
+}

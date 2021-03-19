@@ -1,0 +1,14 @@
+.content {
+  margin-left: $sidebar-width;
+
+  > .inner {
+    padding: $content-padding-y $content-padding-x;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-left: 0;
+    > .inner {
+      padding: $content-padding-y $content-padding-x;
+    }
+  }
+}

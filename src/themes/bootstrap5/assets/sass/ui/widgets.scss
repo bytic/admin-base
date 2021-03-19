@@ -1,0 +1,27 @@
+/** WIDGETS */
+.widget_separator {
+  overflow: auto;
+  background: url('#{$bytic-admin-image-path}/ccc_line.gif') repeat-x center;
+  clear: both;
+  margin: 20px 0;
+}
+
+.widget_separator p {
+  float: left;
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 0 15px;
+  font-style: italic;
+  text-transform: uppercase;
+  background: #F1F1F1;
+  padding: 3px 10px 3px 10px;
+}
+
+.widget_separator .title {
+  font-weight: 900;
+  color: #4374B4;
+}
+
+.table-widget {
+  margin-bottom: 0px;
+}

@@ -1,0 +1,25 @@
+.page-header {
+  border-top: 1px solid $gray-100;
+  border-bottom: 1px solid $gray-100;
+  color: $gray-600;
+  margin-bottom: $headings-margin-bottom;
+  padding: 15px $content-padding-x 0;
+  background-color: rgba(0,0,0,.03);
+
+  @include box-shadow(0 2px 2px 0 rgba(60, 75, 100, .05));
+
+  .page-title {
+    font-size: $font-size-base* 1.2;
+    color: $gray-900;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+.page-header nav {
+  font-size:  $font-size-base* 0.8;
+}
+
+.page-header .page-actions {
+  float: right;
+}

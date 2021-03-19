@@ -1,0 +1,14 @@
+
+$label-font-size:                   85% !default;
+$label-font-weight:                 $font-weight-bold !default;
+$label-padding-y:                   .25em !default;
+$label-padding-x:                   .4em !default;
+$label-border-radius:               $border-radius !default;
+
+//$label-transition:                  $btn-transition !default;
+//$label-focus-width:                 $input-btn-focus-width !default;
+
+$label-pill-padding-x:              .6em !default;
+// Use a higher than normal value to ensure completely rounded edges when
+// customizing padding or font-size on labels.
+$label-pill-border-radius:          10rem !default;
