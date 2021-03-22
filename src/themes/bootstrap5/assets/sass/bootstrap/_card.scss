@@ -38,5 +38,9 @@
   & > .card-header {
     background: darken($dark, 7.5%);
     color: transparentize($white, .3);
+
+    .card-title {
+      color: $white;
+    }
   }
 }
