@@ -6,3 +6,4 @@ vendor
 tests/_output/*
 
 composer.lock
+yarn.lock

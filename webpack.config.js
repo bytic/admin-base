@@ -49,7 +49,7 @@ Encore
             sourceComments: !Encore.isProduction(),
         };
     }, {})
-    .enableLessLoader()
+    // .enableLessLoader()
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
