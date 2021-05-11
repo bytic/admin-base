@@ -15,13 +15,17 @@ Encore
     .setOutputPath('dist')
     // public path used by the web server to access the output path
     .setPublicPath('/dist')
+    // .addEntry(
+    //     'bootstrap3/app',
+    //     ["./src/themes/bootstrap3/assets/scripts/common.js", "./src/themes/bootstrap3/assets/sass/admin.scss"]
+    // )
+    // .addEntry(
+    //     'bootstrap4/app',
+    //     ["./src/themes/bootstrap4/assets/scripts/admin.js", "./src/themes/bootstrap4/assets/sass/admin.scss"]
+    // )
     .addEntry(
-        'bootstrap3/app',
-        ["./src/themes/bootstrap3/assets/scripts/common.js", "./src/themes/bootstrap3/assets/sass/admin.scss"]
-    )
-    .addEntry(
-        'bootstrap4/app',
-        ["./src/themes/bootstrap4/assets/scripts/admin.js", "./src/themes/bootstrap4/assets/sass/admin.scss"]
+        'bootstrap5/app',
+        ["./src/themes/bootstrap5/assets/scripts/admin.js", "./src/themes/bootstrap5/assets/sass/admin.scss"]
     )
 
     .cleanupOutputBeforeBuild()
