@@ -1,5 +1,5 @@
 <?php
-$url = isset($url) ? $url : isset($item) ? $item->getURL() : '#';
+$url = $url ?? isset($item) ? $item->getURL() : '#';
 ?>
 
 <td class="cell-t1">
