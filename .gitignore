@@ -1,5 +1,7 @@
 .idea/workspace.xml
 
+dist
+
 node_modules
 vendor
 
