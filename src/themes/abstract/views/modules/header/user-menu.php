@@ -12,13 +12,14 @@ $currentUserManager = $this->user->getManager();
 <!-- begin header-nav -->
 
 <div class="collapse navbar-collapse" id="userHeaderNavbar">
-    <ul class="navbar-nav ml-md-auto">
+    <ul class="navbar-nav ml-md-auto ms-md-auto">
         <li class="nav-item dropdown navbar-user">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="nav-link dropdown-toggle"
+               data-toggle="dropdown" data-bs-toggle="dropdown" >
                 <i class="icon-user icon-white"></i>
                 <span class="d-none d-md-inline"><?php echo $this->user->getName(); ?></span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
                 <a href="<?php echo $currentUserManager->compileURL('ChangePassword'); ?>"
                    class="dropdown-item"  target="_blank"
                    title="<?php echo $currentUserManager->getLabel('password.change'); ?>">
