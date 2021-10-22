@@ -13,7 +13,7 @@ $description = $description ?? null;
 
 <div class="card card-stats mb-4 mb-xl-0 <?= $cardClasses; ?>">
     <div class="card-header">
-        <h5 class="card-title text-uppercase text-muted mb-3">
+        <h5 class="card-title">
             <?php echo $title; ?>
         </h5>
     </div>
@@ -21,7 +21,7 @@ $description = $description ?? null;
         <div class="row">
             <div class="col">
                 <span class="h2 font-weight-bold mb-0">
-                    <?= $link ? Anchor::url($link,$value) : $link; ?>
+                    <?= $link ? Anchor::url($link,$value) : $value; ?>
                 </span>
             </div>
             <?php if ($icon) { ?>
