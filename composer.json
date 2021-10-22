@@ -26,6 +26,7 @@
     "php": "^7.0",
     "bytic/view": "^0.9|^1.0",
     "bytic/orm": "^0.9|^1.0",
+    "bytic/html-helpers": "^1.0",
     "bytic/seo-meta": "^1.0"
   },
   "require-dev": {

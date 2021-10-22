@@ -1,21 +1,27 @@
 <?php
-$title = isset($title) ? $title : 'STAT';
-$value = isset($value) ? $value : '0';
+use ByTIC\Html\Tags\Anchor;
 
-$icon = isset($icon) ? $icon : null;
-$variation = isset($variation) ? $variation : null;
-$description = isset($description) ? $description : null;
+$title = $title ?? 'STAT';
+$value = $value ?? '0';
+
+$cardClasses = $cardClasses ?? null;
+$icon = $icon ?? null;
+$link = $link ?? null;
+$variation = $variation ?? null;
+$description = $description ?? null;
 ?>
 
-<div class="card card-stats mb-4 mb-xl-0">
+<div class="card card-stats mb-4 mb-xl-0 <?= $cardClasses; ?>">
+    <div class="card-header">
+        <h5 class="card-title text-uppercase text-muted mb-3">
+            <?php echo $title; ?>
+        </h5>
+    </div>
     <div class="card-body">
         <div class="row">
             <div class="col">
-                <h5 class="card-title text-uppercase text-muted mb-0">
-                    <?php echo $title; ?>
-                </h5>
                 <span class="h2 font-weight-bold mb-0">
-                    <?php echo $value; ?>
+                    <?= $link ? Anchor::url($link,$value) : $link; ?>
                 </span>
             </div>
             <?php if ($icon) { ?>
