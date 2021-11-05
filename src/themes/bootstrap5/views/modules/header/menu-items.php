@@ -13,7 +13,7 @@ $expanded = isset($expanded) ? $expanded : null;
         <li class="nav-item <?php echo $sectionSelected ? ' active' : ''; ?><?php echo $hasSubMenu ? ' dropdown' : ''; ?>">
             <a href="<?php echo isset($item['href']) ? $item['href'] : 'javascript:'; ?>"
                class="nav-link <?php echo isset($item['class']) ? $item['class'] : ''; ?><?php echo $hasSubMenu ? 'dropdown-toggle' : ''; ?>"
-                <?= $hasSubMenu ? 'role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' : ''; ?>
+                <?= $hasSubMenu ? 'role="button" data-bs-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' : ''; ?>
                 <?= isset($item['attributes']) ? $this->HTML()->attributes($item['attributes']) : ''; ?>
             >
 

@@ -14,7 +14,7 @@ if ($module == 'admin') {
 ?>
 
 <li class="nav-profile nav-section">
-    <a href="javascript:;" data-toggle="nav-profile">
+    <a href="javascript:" data-bs-toggle="nav-profile">
         <div class="info">
             <b class="caret pull-right"></b>John Smith
             <small>

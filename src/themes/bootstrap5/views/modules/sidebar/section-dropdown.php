@@ -5,7 +5,7 @@ $items = isset($items) ? $items : [];
 <li class="nav-header has-sub" style=" ">
 
     <a href="javascript:"
-       data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="navHeaderDropdown" style="font-size: 85%">
+       data-bs-toggle="collapse"  role="button" aria-expanded="false" aria-controls="navHeaderDropdown" style="font-size: 85%">
         <b class="caret pull-right"></b>
         <?php echo $name; ?>
     </a>

@@ -9,7 +9,7 @@ if (!$sections) {
 
 <ul class="navbar-nav navbar-sections">
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-md-2 px-2" href="#" id="admin-sections" data-toggle="dropdown"
+        <a class="nav-link dropdown-toggle mr-md-2 px-2" href="#" id="admin-sections" data-bs-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-th"></i>
         </a>
