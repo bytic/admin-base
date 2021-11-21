@@ -8,7 +8,6 @@ namespace ByTIC\AdminBase\Tests\Helper;
  */
 trait AcceptanceBootstrap4Trait
 {
-
     /**
      * @param $title
      */

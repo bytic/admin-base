@@ -19,7 +19,7 @@ class ViewHelper
         $view->addPath(Paths::themePath('/views/'), 'AdminBase');
         $view->addPath(Paths::themePath('/views/'));
 
-        $view->addPath(Paths::themePath('/views/','abstract'), 'AdminBase');
-        $view->addPath(Paths::themePath('/views/','abstract'));
+        $view->addPath(Paths::themePath('/views/', 'abstract'), 'AdminBase');
+        $view->addPath(Paths::themePath('/views/', 'abstract'));
     }
 }
