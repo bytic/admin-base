@@ -6,7 +6,7 @@ namespace ByTIC\AdminBase\Tests\Helper;
  * Trait AcceptanceBootstrap4Trait
  * @package ByTIC\AdminBase\Tests\Helper
  */
-trait AcceptanceBootstrap4Trait
+trait AcceptanceBootstrap5Trait
 {
 
     /**
