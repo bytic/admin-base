@@ -21,7 +21,7 @@ $description = $description ?? null;
         <div class="row">
             <div class="col">
                 <span class="h2 font-weight-bold mb-0">
-                    <?= $link ? Anchor::url($link,$value) : $value; ?>
+                    <?= $link ? Anchor::url($link, $value) : $value; ?>
                 </span>
             </div>
             <?php if ($icon) { ?>
