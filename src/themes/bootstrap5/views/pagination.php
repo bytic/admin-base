@@ -21,14 +21,18 @@ $pagesCount = $this->pages;
             if ($currentPage >= 7) {
                 if ($this->interval['min'] > 2) {
                     ?>
-                    <li class="page-item"><a href="<?php echo $this->paginator->url(1); ?>"
-                                             title="Pagina 1 / <?php echo $pagesCount; ?>">1</a></li>
+                    <li class="page-item">
+                        <a href="<?php echo $this->paginator->url(1); ?>" class="page-link"
+                           title="Pagina 1 / <?php echo $pagesCount; ?>">1</a>
+                    </li>
                     <?php
                 }
                 if ($this->interval['min'] > 3) {
                     ?>
-                    <li class="page-item"><a href="<?php echo $this->paginator->url(2); ?>"
-                                             title="Pagina 2 / <?php echo $pagesCount; ?>">2</a></li>
+                    <li class="page-item">
+                        <a href="<?php echo $this->paginator->url(2); ?>" class="page-link"
+                           title="Pagina 2 / <?php echo $pagesCount; ?>">2</a>
+                    </li>
                     <?php
                 }
             }
@@ -45,7 +49,7 @@ $pagesCount = $this->pages;
         <?php
         for ($i = $this->interval['min']; $i <= $this->interval['max']; $i++) {
             ?>
-            <li<?php echo $i == $currentPage ? ' class="active"' : ''; ?>>
+            <li class="page-item <?php echo $i == $currentPage ? 'active' : ''; ?>">
                 <a class="page-link" href="<?php echo $this->paginator->url($i); ?>"
                    title="Pagina <?php echo $i; ?> / <?php echo $pagesCount; ?>"><?php echo $i; ?></a>
             </li>
