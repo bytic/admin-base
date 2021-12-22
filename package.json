@@ -15,8 +15,7 @@
     "@fortawesome/fontawesome-free": "^5.9",
     "@popperjs/core": "^2.8",
     "bootstrap": "^4.0||^5.0",
-    "bootstrap-colorpicker": "^3.3",
-    "bootstrap-sass": "^3.4",
+    "bootstrap-colorpicker": "^3.4",
     "bootstrap-switch": "^3.3",
     "core-js": "^3.12",
     "font-awesome": "^4.7",
@@ -25,12 +24,10 @@
     "jquery-timepicker": "^1.3",
     "jquery-ui": "^1.12",
     "js-cookie": "^2.2",
-    "node-waves": "^0.7",
-    "popper.js": "^1.16"
+    "node-waves": "^0.7"
   },
   "devDependencies": {
-    "@symfony/webpack-encore": "^1.3",
-    "cross-env": "7.0",
+    "@symfony/webpack-encore": "^1.7",
     "node-sass": "^6.0",
     "sass-loader": "^11.1"
   }
