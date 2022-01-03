@@ -18,7 +18,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "ByTIC\\AdminBase\\Tests\\": "tests",
+      "ByTIC\\AdminBase\\Tests\\": "tests/src",
       "ByTIC\\AdminBase\\Tests\\Fixtures\\": "tests/fixtures"
     }
   },

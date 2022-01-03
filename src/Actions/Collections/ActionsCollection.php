@@ -11,7 +11,7 @@ use Nip\Collections\Typed\ClassCollection;
  */
 class ActionsCollection extends ClassCollection
 {
-    public const TYPE = AbstractAction::class;
+    protected $validClass = AbstractAction::class;
 
     public function addToolbarAction(AbstractAction $action)
     {
