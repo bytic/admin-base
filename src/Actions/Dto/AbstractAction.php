@@ -11,11 +11,13 @@ abstract class AbstractAction implements Action
 
     protected string $name;
     protected string $label;
-    protected string $icon;
+    protected ?string $icon = null;
 
     protected string $cssClass;
     protected string $htmlElement;
-    protected array $htmlAttributes = [];
+    protected array $htmlAttributes = [
+        'class' => '',
+    ];
 
     protected string $url = '';
 
@@ -70,7 +72,7 @@ abstract class AbstractAction implements Action
     /**
      * @return string
      */
-    public function getIcon(): string
+    public function getIcon(): ?string
     {
         return $this->icon;
     }

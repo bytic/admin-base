@@ -34,8 +34,17 @@ class ActionsFactory
         if (isset($data['name'])) {
             $action->setName($data['name']);
         }
+
         if (isset($data['label'])) {
             $action->setLabel($data['label']);
+        }
+
+        if (isset($data['url'])) {
+            $action->setUrl($data['url']);
+        }
+
+        if (isset($data['icon'])) {
+            $action->setIcon($data['icon']);
         }
 
         return $action;

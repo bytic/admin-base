@@ -7,6 +7,6 @@ use ByTIC\Html\Tags\Anchor;
 $attributes = $item->getHtmlAttributes();
 $attributes['title'] = $item->getLabel();
 $label = implode(' ', [$item->getIcon(), $item->getLabel()]);
-?>
+$attributes['class'] = implode(' ', [$attributes['class'], 'btn btn-primary']); ?>
 
 <?= Anchor::url($item->getUrl(), $label, $attributes) ?>
