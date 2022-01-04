@@ -1735,9 +1735,9 @@ var handleModalForms = function () {
 		url = new URL(url);
 		url.searchParams.set('_format', "modal");
 
-		var modalTitle = modalContainer.querySelector('.modal-title')
-		if (modalContainer.hasAttribute('data-modal-title')) {
-			modalTitle.textContent = modalContainer.getAttribute('data-modal-title');
+		var modalTitle = modalContainer.find('.modal-title')
+		if (modalContainer.data('modal-title')) {
+			modalTitle.textContent = modalContainer.data('modal-title');
 		}
 
 		$.ajax({
