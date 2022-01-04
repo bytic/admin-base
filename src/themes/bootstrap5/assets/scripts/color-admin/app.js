@@ -1731,6 +1731,15 @@ var handleModalForms = function () {
 	function showFormAjax(modalContainer, url, type, dataParams) {
 		type = typeof type !== 'undefined' ? type : 'GET';
 		dataParams = typeof dataParams !== 'undefined' ? dataParams : [];
+
+		url = new URL(url);
+		url.searchParams.set('_format', "modal");
+
+		var modalTitle = modalContainer.querySelector('.modal-title')
+		if (modalContainer.hasAttribute('data-modal-title')) {
+			modalTitle.textContent = modalContainer.getAttribute('data-modal-title');
+		}
+
 		$.ajax({
 			type: type,
 			url: url,

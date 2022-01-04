@@ -8,7 +8,7 @@ if (!$this->existPath("/" . $this->controller . "/modules/filters")) {
         <div class="panel panel-inverse">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <?php echo translator()->translate('filters'); ?>
+                    <?php echo translator()->trans('filters'); ?>
                 </h4>
             </div>
 

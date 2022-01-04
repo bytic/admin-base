@@ -2,7 +2,7 @@
 $menu = [];
 
 $menu[] = [
-    'name' => translator()->translate('dashboard'),
+    'name' => translator()->trans('dashboard'),
     'href' => $this->Url()->assemble('admin'),
     'icon' => 'glyphicon-home',
     'enabled' => true,

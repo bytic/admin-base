@@ -1,14 +1,14 @@
 <?php
-$delete = isset($delete) ? $delete : true;
+$delete = !isset($delete) || $delete;
 ?>
 
 <?php if ($delete) { ?>
     <div class="pull-right buttons inline delete" style="padding-left: 10px">
         <form method="post" action="<?php echo $this->item->getDeleteURL(); ?>"
-              onsubmit="return confirm('<?php echo translator()->translate('general.messages.confirm'); ?>');">
+              onsubmit="return confirm('<?php echo translator()->trans('general.messages.confirm'); ?>');">
             <button type="submit" class="right btn btn-danger btn-xs">
                 <i class="icon-white icon-remove"></i>
-                <?php echo translator()->translate('delete'); ?>
+                <?php echo translator()->trans('delete'); ?>
             </button>
         </form>
     </div>
@@ -32,8 +32,7 @@ if (!$this->existPath($viewFile)) {
 ?>
 
 <div class="row">
-    <div class="col-xl-8 col-lg-10">
+    <div class="col col-xl-8 col-lg-10">
         <?php echo $this->load($viewFile); ?>
     </div>
 </div>
-

@@ -1,15 +1,15 @@
 <?php
-    if (!$url) {
-        $url = $item->getDeleteURL();
-    }
+if (!$url) {
+    $url = $item->getDeleteURL();
+}
 ?>
 
 <td class="cell-t1">
     <div class="buttons inline">
         <form method="post" action="<?php echo $url; ?>"
-              onsubmit="return confirm('<?php echo translator()->translate('general.messages.confirm'); ?>');">
+              onsubmit="return confirm('<?php echo translator()->trans('general.messages.confirm'); ?>');">
             <button type="submit" class="right inline btn btn-danger btn-xs">
-                <i class="icon-remove icon-white" ></i>
+                <i class="icon-remove icon-white"></i>
             </button>
         </form>
     </div>
