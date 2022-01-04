@@ -1728,26 +1728,6 @@ var handleModalForms = function () {
 		'</svg>' +
 		'</div>';
 
-	var targetModalHtml = '' +
-		'<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
-		'    <div class="modal-dialog">' +
-		'        <div class="modal-content">' +
-		'            <div class="modal-header">' +
-		'                <h4 class="modal-title" id="myModalLabel">Modal title</h4>' +
-		'                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
-		'            </div>' +
-		'            <div class="modal-body">' +
-		'                   ' +
-		'            </div>' +
-		'            <div class="modal-footer">' +
-		'                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-		'            </div>' +
-		'        </div>' +
-		'    </div>' +
-		'</div>';
-
-	$('body').append(targetModalHtml);
-
 	function showFormAjax(modalContainer, url, type, dataParams) {
 		type = typeof type !== 'undefined' ? type : 'GET';
 		dataParams = typeof dataParams !== 'undefined' ? dataParams : [];
