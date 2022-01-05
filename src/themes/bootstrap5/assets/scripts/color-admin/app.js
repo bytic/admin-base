@@ -1735,10 +1735,6 @@ var handleModalForms = function () {
         url = new URL(url);
         url.searchParams.set('_format', "modal");
 
-        var modalTitle = modalContainer.find('.modal-title')
-        if (modalContainer.data('modal-title')) {
-            modalTitle.textContent = modalContainer.data('modal-title');
-        }
 
         $.ajax({
             type: type,
@@ -1756,8 +1752,6 @@ var handleModalForms = function () {
                     var form = modalContainer.find(".modal-body form");
                     form.submit(function () {
                         var data = $(this).serializeArray();
-                        console.log(data);
-                        console.log($(this).attr('action'));
                         showFormAjax(modalContainer, $(this).attr('action'), 'POST', data);
                         return false;
                     });
@@ -1772,7 +1766,9 @@ var handleModalForms = function () {
     $("[data-bs-toggle=modalForm]").click(function (e) {
         e.preventDefault();
 
-        var modalContainer = $($(this).data('bs-target'));
+        var triggerElement = $(this);
+        var modalContainer = $(triggerElement.data('bs-target'));
+
         var myModal = new Modal(modalContainer);
         myModal.show();
 
@@ -1780,7 +1776,12 @@ var handleModalForms = function () {
             location.reload();
         });
 
-        showFormAjax(modalContainer, $(this).data('href'));
+        var modalTitle = modalContainer.find('.modal-title')
+        if (triggerElement.data('modal-title')) {
+            modalTitle.textContent = triggerElement.data('modal-title');
+        }
+
+        showFormAjax(modalContainer, triggerElement.data('href'));
     });
 };
 
