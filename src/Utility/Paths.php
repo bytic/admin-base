@@ -26,15 +26,15 @@ class Paths
      */
     public static function themeBase($theme = null)
     {
-        $theme = $theme ? $theme : AdminBase::theme();
+        $theme = $theme ?: AdminBase::theme();
         return static::themesBase() . DIRECTORY_SEPARATOR . $theme;
     }
 
     /**
      * @return string
      */
-    public static function themesBase()
+    public static function themesBase(): string
     {
-        return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'themes';
+        return dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'themes';
     }
 }

@@ -1,0 +1,12 @@
+<?php
+
+use ByTIC\AdminBase\Screen\Actions\Dto\BaseAction;
+use ByTIC\Html\Tags\Anchor;
+
+/** @var BaseAction $item */
+$attributes = $item->getHtmlAttributes();
+$attributes['title'] = $item->getLabel();
+$label = implode(' ', [$item->getIcon(), $item->getLabel()]);
+$attributes['class'] = implode(' ', [$attributes['class'], 'btn btn-primary']); ?>
+
+<?= Anchor::url($item->getUrl(), $label, $attributes) ?>

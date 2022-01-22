@@ -2,6 +2,8 @@
 
 namespace ByTIC\AdminBase\Library\Controllers\Traits;
 
+use ByTIC\AdminBase\Screen\Layouts\Dto\AbstractLayout;
+use ByTIC\AdminBase\Screen\Layouts\Dto\BaseLayout;
 use ByTIC\AdminBase\Utility\ViewHelper;
 
 /**
@@ -10,11 +12,14 @@ use ByTIC\AdminBase\Utility\ViewHelper;
  */
 trait HasAdminViewPathsTrait
 {
+    protected $adminBaseLayout = null;
+
     protected function bootHasAdminViewPathsTrait()
     {
         $this->after(
             function () {
                 $this->registerHelloViewPaths();
+                $this->registerAdminBaseLayout();
             }
         );
     }
@@ -23,5 +28,28 @@ trait HasAdminViewPathsTrait
     {
         $view = $this->getView();
         ViewHelper::registerFrontendPaths($view);
+    }
+
+    protected function registerAdminBaseLayout()
+    {
+        $layout = $this->adminBaseLayout();
+
+        $this->payload()->with([
+            '_adminBaseLayout' => $layout,
+            '_adminBaseHeaderNav' => $layout->headerNav()
+        ]);
+    }
+
+    protected function adminBaseLayout(): ?AbstractLayout
+    {
+        if ($this->adminBaseLayout === null) {
+            $this->adminBaseLayout = $this->adminBaseLayoutGenerate();
+        }
+        return $this->adminBaseLayout;
+    }
+
+    protected function adminBaseLayoutGenerate(): AbstractLayout
+    {
+        return new BaseLayout();
     }
 }

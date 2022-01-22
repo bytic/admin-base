@@ -14,7 +14,7 @@ class PathsTest extends AbstractTest
     public function test_themesBase()
     {
         self::assertSame(
-            PROJECT_BASE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'themes',
+            PROJECT_BASE_PATH . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'themes',
             Paths::themesBase()
         );
     }
