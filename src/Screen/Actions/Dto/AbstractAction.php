@@ -24,7 +24,7 @@ abstract class AbstractAction implements Action
     protected string $type;
 
     protected ?string $label = null;
-    protected $showLabel = false;
+    protected $showLabel = true;
 
     public function __construct()
     {

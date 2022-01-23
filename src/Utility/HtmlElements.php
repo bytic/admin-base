@@ -17,6 +17,7 @@ class HtmlElements
     {
         $attributes = $action->getHtmlAttributes();
         $attributes['title'] = $action->getLabel();
+        $attributes['target'] = $action->windowTarget();
         return $attributes;
     }
 

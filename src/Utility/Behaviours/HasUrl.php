@@ -22,9 +22,10 @@ trait HasUrl
     /**
      * @param string $url
      */
-    public function setUrl(string $url): void
+    public function setUrl(string $url): self
     {
         $this->url = $url;
+        return $this;
     }
 
     public function hasUrl(): bool
