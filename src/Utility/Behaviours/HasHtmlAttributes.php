@@ -2,40 +2,136 @@
 
 namespace ByTIC\AdminBase\Utility\Behaviours;
 
+use ByTIC\Html\Html\ClassList;
+
 /**
  *
  */
 trait HasHtmlAttributes
 {
-    protected string $cssClass;
     protected string $htmlElement;
-    protected array $htmlAttributes = [
-        'class' => '',
-    ];
+
+    protected array $htmlAttributes = [];
 
     /**
-     * @param $class
-     * @return string
+     * @param string|callable $class
+     * @return  static
      */
-    public function addCssClass($class): string
+    public function addClass($class): self
     {
-        $this->htmlAttributes['class'] .= ' ' . $class;
+        $classes = array_filter(explode(' ', $class), 'strlen');
+
+        $this->getClassList()->add(...$classes);
+
+        return $this;
     }
 
     /**
-     * @return string
+     * @param string|callable $class
+     * @return  static
      */
-    public function getCssClass(): string
+    public function removeClass($class): self
     {
+//        $class = Str::toString($class);
+
+        $classes = array_filter(explode(' ', $class), 'strlen');
+
+        $this->getClassList()->remove(...$classes);
+
+        return $this;
+    }
+
+    public function toggleClass(string $class, ?bool $force = null): self
+    {
+        $this->getClassList()->toggle($class, $force);
+
+        return $this;
+    }
+
+    /**
+     * @param string $class
+     * @return mixed
+     */
+    public function hasClass(string $class)
+    {
+        return $this->getClassList()->contains($class);
+    }
+
+    /**
+     * @return ClassList|mixed
+     */
+    public function getClassList()
+    {
+        if (!isset($this->htmlAttributes['class'])) {
+            $this->htmlAttributes['class'] = ClassList::create([]);
+        }
+        if (!($this->htmlAttributes['class'] instanceof ClassList)) {
+            $this->htmlAttributes['class'] = ClassList::create($this->htmlAttributes['class']);
+        }
         return $this->htmlAttributes['class'];
     }
 
     /**
-     * @param string $cssClass
+     * data
+     *
+     * @param string $name
+     * @param mixed $value
+     *
+     * @return  string|static
+     *
+     * @since  3.5.3
      */
-    public function setCssClass(string $cssClass): void
+    public function dataAttribute(string $name, $value = null)
     {
-        $this->htmlAttributes['class'] = $cssClass;
+        if ($value === null) {
+            return $this->getHtmlAttribute('data-' . $name);
+        }
+
+        return $this->setHtmlAttribute('data-' . $name, $value);
+    }
+
+    /**
+     * @param string $name Attribute name.
+     * @param mixed $default Default value.
+     */
+    public function getHtmlAttribute($name, $default = null)
+    {
+        if (empty($this->htmlAttributes[$name])) {
+            return $default;
+        }
+
+        return $this->htmlAttributes[$name];
+    }
+
+    /**
+     * @param string $name Attribute name.
+     * @param string $value The value to set into attribute.
+     */
+    public function setHtmlAttribute($name, $value)
+    {
+        $this->htmlAttributes[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return  bool
+     */
+    public function hasHtmlAttribute($name): bool
+    {
+        return isset($this->htmlAttributes[$name]);
+    }
+
+    /**
+     * @param string $name
+     * @return  static
+     */
+    public function removeHtmlAttribute($name): self
+    {
+        unset($this->htmlAttributes[$name]);
+
+        return $this;
     }
 
     /**
@@ -47,11 +143,13 @@ trait HasHtmlAttributes
     }
 
     /**
+     * Set all attributes.
      * @param array $htmlAttributes
      */
-    public function setHtmlAttributes(array $htmlAttributes): void
+    public function setHtmlAttributes(array $htmlAttributes): self
     {
         $this->htmlAttributes = $htmlAttributes;
+        return $this;
     }
 
 }

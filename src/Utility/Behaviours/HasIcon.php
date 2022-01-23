@@ -2,6 +2,9 @@
 
 namespace ByTIC\AdminBase\Utility\Behaviours;
 
+/**
+ *
+ */
 trait HasIcon
 {
     protected ?string $icon = null;

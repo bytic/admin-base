@@ -5,6 +5,7 @@ namespace ByTIC\AdminBase\Screen\Actions\Dto;
 use ByTIC\AdminBase\Utility\Behaviours\HasHtmlAttributes;
 use ByTIC\AdminBase\Utility\Behaviours\HasIcon;
 use ByTIC\AdminBase\Utility\Behaviours\HasName;
+use ByTIC\AdminBase\Utility\Behaviours\HasUrl;
 use ByTIC\AdminBase\Utility\Behaviours\Makeable;
 
 /**
@@ -16,15 +17,14 @@ abstract class AbstractAction implements Action
     use Makeable;
     use HasIcon;
     use HasHtmlAttributes;
+    use HasUrl;
 
     public const TYPE = 'action';
 
     protected string $type;
 
     protected ?string $label = null;
-
-
-    protected string $url = '';
+    protected $showLabel = false;
 
     public function __construct()
     {
@@ -60,6 +60,31 @@ abstract class AbstractAction implements Action
     }
 
     /**
+     * @return $this
+     */
+    public function hideLabel(): self
+    {
+        $this->showLabel = false;
+        return $this;
+    }
+
+    public function showLabel(): self
+    {
+        $this->showLabel = true;
+        return $this;
+    }
+
+    public function labelIsShown(): bool
+    {
+        return $this->showLabel;
+    }
+
+    public function labelIsHidden(): bool
+    {
+        return $this->showLabel == false;
+    }
+
+    /**
      * @return string
      */
     public function getHtmlElement(): string
@@ -73,26 +98,5 @@ abstract class AbstractAction implements Action
     public function setHtmlElement(string $htmlElement): void
     {
         $this->htmlElement = $htmlElement;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setUrl(string $url): void
-    {
-        $this->url = $url;
-    }
-
-    public function hasUrl(): bool
-    {
-        return !empty($this->url);
     }
 }

@@ -2,16 +2,26 @@
 
 /** @var ActionToolbar $toolbar */
 
+use ByTIC\AdminBase\Screen\Actions\Dto\DropdownAction;
 use ByTIC\AdminBase\Screen\ActionToolbars\Dto\ActionToolbar;
+use ByTIC\Html\Dom\DomBuilder;
 
+$attributes = $toolbar->getHtmlAttributes();
+$attributes['class'] .= ' action-toolbar navbar-nav';
 $actions = $toolbar->actions();
 if (count($actions) < 1) {
     return;
 }
 ?>
-<ul class="action-toolbar navbar-nav">
+<ul <?= DomBuilder::buildAttributes($attributes) ?>>
     <?php foreach ($actions as $action) { ?>
-        <li class="nav-item">
+        <?php
+        $class = ['nav-item'];
+        if ($action instanceof DropdownAction) {
+            $class[] = 'dropdown';
+        }
+        ?>
+        <li class="<?= implode(' ', $class) ?>">
             <?= $this->load('/admin-actions/' . $action->getType(), ['item' => $action]); ?>
         </li>
     <?php } ?>

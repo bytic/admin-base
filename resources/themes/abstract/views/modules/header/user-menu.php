@@ -5,7 +5,7 @@ $currentUserManager = $this->user->getManager();
 ?>
 
 
-<ul class="navbar-nav">
+<ul class="navbar-nav me-0">
     <li class="nav-item dropdown navbar-user">
         <a href="#" class="nav-link dropdown-toggle"
            data-toggle="dropdown" data-bs-toggle="dropdown">

@@ -4,6 +4,7 @@ namespace ByTIC\AdminBase\Screen\ActionToolbars\Dto;
 
 use ByTIC\AdminBase\Screen\Actions\Collections\ActionsCollection;
 use ByTIC\AdminBase\Screen\Actions\Dto\Action;
+use ByTIC\AdminBase\Utility\Behaviours\HasHtmlAttributes;
 use ByTIC\AdminBase\Utility\Behaviours\HasName;
 use ByTIC\AdminBase\Utility\Behaviours\Makeable;
 
@@ -14,6 +15,7 @@ class ActionToolbar
 {
     use Makeable;
     use HasName;
+    use HasHtmlAttributes;
 
     public const NAME_DEFAULT = 'main';
 
