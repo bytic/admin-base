@@ -25,7 +25,7 @@ Encore
     // )
     .addEntry(
         'bootstrap5/app',
-        ["./src/themes/bootstrap5/assets/scripts/admin.js", "./src/themes/bootstrap5/assets/sass/admin.scss"]
+        ["./resources/themes/bootstrap5/assets/scripts/admin.js", "./resources/themes/bootstrap5/assets/sass/admin.scss"]
     )
 
     .cleanupOutputBeforeBuild()

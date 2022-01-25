@@ -2,6 +2,8 @@
 
 namespace ByTIC\AdminBase\Utility\Behaviours;
 
+use ByTIC\Icons\Icon;
+
 /**
  *
  */
@@ -23,14 +25,17 @@ trait HasIcon
     }
 
     /**
-     * @param string $icon
+     * @param string|Icon $icon
      */
-    public function setIcon(string $icon): void
+    public function setIcon($icon): void
     {
         $this->icon = $icon;
     }
 
-    public function withIcon(string $icon): self
+    /**
+     * @param string|Icon $icon
+     */
+    public function withIcon($icon): self
     {
         $this->setIcon($icon);
 

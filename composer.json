@@ -36,5 +36,7 @@
     "bytic/translation": "^0.9|^1.0",
     "bytic/codeception": "^4.0",
     "bytic/phpqatools": "^1.0"
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

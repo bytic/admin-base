@@ -34,7 +34,11 @@ trait IsRenderable
         if (false === $this->shouldRender()) {
             return null;
         }
-        return $this->renderHtml();
+
+        return $this->renderHtml(
+            $this->renderTemplatePath(),
+            $this->renderVariables(),
+        );
     }
 
     /**
@@ -52,13 +56,14 @@ trait IsRenderable
         return true;
     }
 
-    protected function renderHtml(): string
+    /**
+     * @param $template
+     * @param $variables
+     * @return string
+     */
+    protected function renderHtml($template, $variables): string
     {
-        return $this->renderEngine()->load(
-            $this->renderTemplatePath(),
-            $this->renderVariables(),
-            true
-        );
+        return $this->renderEngine()->load($template, $variables, true);
     }
 
     protected function renderEngine(): ?View

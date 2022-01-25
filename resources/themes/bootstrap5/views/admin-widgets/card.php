@@ -4,9 +4,30 @@ use ByTIC\Html\Dom\DomBuilder;
 
 /** @var Stringable|string $content */
 /** @var Stringable|string $title */
-/** @var array $attributes */
 
+$attributes = $attributes ?? [];
 $headerTools = $headerTools ?? [];
+$theme = $theme ?? '';
+$themeMode = $themeMode ?? '';
+
+$attributes['class'] = $attributes['class'] ?? '';
+$attributes['class'] .= ' card';
+$attributes['class'] = trim($attributes['class']);
+
+$baseClass = 'card-';
+
+if ($themeMode == 'full') {
+    $baseClass = 'bg-';
+}
+
+if ($theme && $baseClass) {
+    $attributes['class'] .= ' ' . $baseClass . $theme;
+}
+
+if ($themeMode == 'outline') {
+    $attributes['class'] .= ' card-outline';
+}
+
 ?>
 <div<?= DomBuilder::buildAttributes($attributes) ?>>
     <div class="card-header">

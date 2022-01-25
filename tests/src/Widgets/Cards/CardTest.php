@@ -8,6 +8,8 @@ use ByTIC\AdminBase\Utility\Behaviours\HasContent;
 use ByTIC\AdminBase\Utility\Behaviours\HasTitle;
 use ByTIC\AdminBase\Widgets\Cards\Card;
 use ByTIC\Icons\Icons;
+use Mockery;
+use Mockery\Mock;
 
 /**
  *
@@ -38,6 +40,19 @@ class CardTest extends AbstractTest
         );
     }
 
+    public function test_success_outline()
+    {
+        $card = $this->basicCard();
+        $card
+            ->themeSuccess()
+            ->themeModeOutline();
+
+        self::assertXmlStringEqualsXmlFile(
+            TEST_FIXTURE_PATH . '/Widgets/Cards/success_outline.html',
+            (string)$card
+        );
+    }
+
     /**
      * @return HasContent|HasTitle|Card
      */
@@ -46,5 +61,13 @@ class CardTest extends AbstractTest
         return Card::make()
             ->withTitle('My Title')
             ->withContent('My Content');
+    }
+
+    /**
+     * @return Mock|Card
+     */
+    protected function cardMock()
+    {
+        return Mockery::mock(Card::class)->shouldAllowMockingProtectedMethods()->makePartial();
     }
 }
