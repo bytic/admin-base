@@ -15,17 +15,6 @@ trait HasTheme
      */
     public $theme;
 
-    /**
-     * The theme mode (full or outline).
-     *
-     * @var string
-     */
-    public $themeMode;
-
-    public function primaryTheme(): self
-    {
-        return $this->withTheme('primary');
-    }
 
     /**
      * @param string $theme
@@ -36,7 +25,19 @@ trait HasTheme
         return $this;
     }
 
-    public function secondaryTheme(): self
+    /**
+     * The theme mode (full or outline).
+     *
+     * @var string
+     */
+    public $themeMode;
+
+    public function themePrimary(): self
+    {
+        return $this->withTheme('primary');
+    }
+
+    public function themeSecondary(): self
     {
         return $this->withTheme('secondary');
     }

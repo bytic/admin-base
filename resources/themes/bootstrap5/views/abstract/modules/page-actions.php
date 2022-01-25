@@ -10,17 +10,17 @@ $actions = ActionsCollectionsFactory::from($actions ?? []);
 ); ?>
 
     <div class="mt-3"></div>
-    <p>
-<?php if ($this->existPath("/" . $this->controller . "/modules/right-buttons")) { ?>
-    <div class="right" style="margin-bottom:20px;">
-        <?php echo $this->load("/" . $this->controller . "/modules/right-buttons"); ?>
-    </div>
-<?php } ?>
+    <div>
+        <?php if ($this->existPath("/" . $this->controller . "/modules/right-buttons")) { ?>
+            <div class="right" style="margin-bottom:20px;">
+                <?php echo $this->load("/" . $this->controller . "/modules/right-buttons"); ?>
+            </div>
+        <?php } ?>
 
-<?php foreach ($actions as $action) { ?>
-    <?= $this->load("/admin-actions/action", ['item' => $action]); ?>
-<?php } ?>
-    </p>
+        <?php foreach ($actions as $action) { ?>
+            <?= $action; ?>
+        <?php } ?>
+    </div>
 
 <?php
 $viewFile = "/" . $this->controller . "/modules/index/pre-list";
