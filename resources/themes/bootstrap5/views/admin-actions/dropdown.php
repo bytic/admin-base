@@ -19,7 +19,7 @@ $attributes['aria-expanded'] = 'false';
 <ul class="dropdown-menu">
     <?php foreach ($item->getMenu() as $item) { ?>
         <li>
-            <?php $item->addClass('dropdown-item'); ?>
+            <?php $item->addHtmlClass('dropdown-item'); ?>
             <?= $this->load('/admin-actions/' . $item->getType(), ['item' => $item]); ?>
         </li>
     <?php } ?>

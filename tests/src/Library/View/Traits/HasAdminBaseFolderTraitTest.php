@@ -21,7 +21,7 @@ class HasAdminBaseFolderTraitTest extends AbstractTest
 
         $pathAdmin = $paths['AdminBase'];
         self::assertEquals(
-            realpath(PROJECT_BASE_PATH . '/resources/themes/bootstrap3/views/'),
+            realpath(PROJECT_BASE_PATH . '/resources/themes/bootstrap5/views/'),
             realpath($pathAdmin[0])
         );
 

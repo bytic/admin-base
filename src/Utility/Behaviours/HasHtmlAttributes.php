@@ -17,11 +17,11 @@ trait HasHtmlAttributes
      * @param string|callable $class
      * @return  static
      */
-    public function addClass($class): self
+    public function addHtmlClass($class): self
     {
         $classes = array_filter(explode(' ', $class), 'strlen');
 
-        $this->getClassList()->add(...$classes);
+        $this->getHtmlClassList()->add(...$classes);
 
         return $this;
     }
@@ -30,20 +30,20 @@ trait HasHtmlAttributes
      * @param string|callable $class
      * @return  static
      */
-    public function removeClass($class): self
+    public function removeHtmlClass($class): self
     {
 //        $class = Str::toString($class);
 
         $classes = array_filter(explode(' ', $class), 'strlen');
 
-        $this->getClassList()->remove(...$classes);
+        $this->getHtmlClassList()->remove(...$classes);
 
         return $this;
     }
 
-    public function toggleClass(string $class, ?bool $force = null): self
+    public function toggleHtmlClass(string $class, ?bool $force = null): self
     {
-        $this->getClassList()->toggle($class, $force);
+        $this->getHtmlClassList()->toggle($class, $force);
 
         return $this;
     }
@@ -52,15 +52,15 @@ trait HasHtmlAttributes
      * @param string $class
      * @return mixed
      */
-    public function hasClass(string $class)
+    public function hasHtmlClass(string $class)
     {
-        return $this->getClassList()->contains($class);
+        return $this->getHtmlClassList()->contains($class);
     }
 
     /**
      * @return ClassList|mixed
      */
-    public function getClassList()
+    public function getHtmlClassList()
     {
         if (!isset($this->htmlAttributes['class'])) {
             $this->htmlAttributes['class'] = ClassList::create([]);
@@ -72,16 +72,12 @@ trait HasHtmlAttributes
     }
 
     /**
-     * data
-     *
      * @param string $name
      * @param mixed $value
      *
      * @return  string|static
-     *
-     * @since  3.5.3
      */
-    public function dataAttribute(string $name, $value = null)
+    public function htmlDataAttribute(string $name, $value = null)
     {
         if ($value === null) {
             return $this->getHtmlAttribute('data-' . $name);
@@ -107,7 +103,7 @@ trait HasHtmlAttributes
      * @param string $name Attribute name.
      * @param string $value The value to set into attribute.
      */
-    public function setHtmlAttribute($name, $value)
+    public function setHtmlAttribute($name, $value): self
     {
         $this->htmlAttributes[$name] = $value;
 

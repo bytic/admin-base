@@ -8,7 +8,7 @@ namespace ByTIC\AdminBase;
  */
 class AdminBase
 {
-    protected static $theme = 'bootstrap3';
+    protected static $theme = 'bootstrap5';
 
     /**
      * @param null $theme

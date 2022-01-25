@@ -9,6 +9,13 @@ trait Makeable
 {
     public static function make(?string $name = null): self
     {
-        return (new static)->withName($name);
+        $make = new static();
+        if (method_exists($make, 'setName')) {
+            $make->setName($name);
+        }
+        if (method_exists($make, 'withName')) {
+            $make->withName($name);
+        }
+        return $make;
     }
 }
