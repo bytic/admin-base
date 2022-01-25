@@ -266,18 +266,10 @@ var handleSidebarMinify = function () {
 var handlePageContentView = function () {
     "use strict";
 
-    var hideClass = '';
-    var showClass = '';
+    var hideClass = 'd-none';
+    var showClass = 'show';
     var removeClass = '';
-    var bootstrapVersion = handleCheckBootstrapVersion();
 
-    if (bootstrapVersion >= 3 && bootstrapVersion < 4) {
-        hideClass = 'hide';
-        showClass = 'in';
-    } else if (bootstrapVersion >= 4 && bootstrapVersion < 5) {
-        hideClass = 'd-none';
-        showClass = 'show';
-    }
     $(window).on('load', function () {
         $.when($('#page-loader').addClass(hideClass)).done(function () {
             $('#page-container').addClass(showClass);
@@ -312,13 +304,8 @@ var handlePanelAction = function () {
     });
     $(document).on('click', '[data-click=panel-remove]', function (e) {
         e.preventDefault();
-        var bootstrapVersion = handleCheckBootstrapVersion();
 
-        if (bootstrapVersion >= 4 && bootstrapVersion < 5) {
-            $(this).tooltip('dispose');
-        } else {
-            $(this).tooltip('destroy');
-        }
+        $(this).tooltip('dispose');
         $(this).closest('.panel').remove();
     });
 
@@ -455,14 +442,8 @@ var handelTooltipPopoverActivation = function () {
 ------------------------------------------------ */
 var handleScrollToTopButton = function () {
     "use strict";
-    var bootstrapVersion = handleCheckBootstrapVersion();
-    var showClass = '';
+    var showClass = 'show';
 
-    if (bootstrapVersion >= 3 && bootstrapVersion < 4) {
-        showClass = 'in';
-    } else if (bootstrapVersion >= 4 && bootstrapVersion < 5) {
-        showClass = 'show';
-    }
     $(document).scroll(function () {
         var totalScroll = $(document).scrollTop();
 
@@ -1159,14 +1140,6 @@ var handleClearSidebarSelection = function () {
 var handleClearSidebarMobileSelection = function () {
     $('#page-container').removeClass('page-sidebar-toggled');
 };
-
-
-/* 23. Handle Check Bootstrap Version - added in V4.0
------------------------------------------------- */
-var handleCheckBootstrapVersion = function () {
-    return parseInt($.fn.tooltip.Constructor.VERSION);
-};
-
 
 /* 24. Handle Page Scroll Class - added in V4.0
 ------------------------------------------------ */
