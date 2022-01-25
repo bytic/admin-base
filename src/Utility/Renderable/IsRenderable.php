@@ -42,6 +42,16 @@ trait IsRenderable
     }
 
     /**
+     * @param $view
+     * @return $this
+     */
+    public function withView($view): self
+    {
+        $this->viewEngine = $view;
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     protected function shouldRender(): bool

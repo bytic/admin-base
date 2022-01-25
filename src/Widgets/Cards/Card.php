@@ -25,11 +25,23 @@ class Card extends AbstractWidget
      */
     protected $headerTools = [];
 
+    protected $wrapBody = true;
+
     public const VIEW = ViewHelper::VIEW_NAMESPACE . '::/admin-widgets/card';
 
     public function addHeaderTool(Stringable $tool): self
     {
         $this->headerTools[] = $tool;
+        return $this;
+    }
+
+    /**
+     * @param bool $wrap
+     * @return $this
+     */
+    public function wrapBody(bool $wrap = true): self
+    {
+        $this->wrapBody = $wrap;
         return $this;
     }
 
@@ -40,9 +52,10 @@ class Card extends AbstractWidget
             parent::renderVariables(),
             [
                 'title' => $this->title,
-                'content' => $this->content,
+                'content' => $this->getContent(),
                 'attributes' => $attributes,
                 'headerTools' => $this->headerTools,
+                'wrapBody' => $this->wrapBody,
                 'theme' => $this->theme,
                 'themeMode' => $this->themeMode,
             ]

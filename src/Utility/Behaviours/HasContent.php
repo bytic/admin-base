@@ -7,7 +7,7 @@ namespace ByTIC\AdminBase\Utility\Behaviours;
  */
 trait HasContent
 {
-    protected ?string $content = null;
+    protected $content = null;
 
     public function content(): ?string
     {
@@ -16,11 +16,15 @@ trait HasContent
 
     public function getContent(): ?string
     {
+        if (is_callable($this->content)) {
+            $this->content = call_user_func($this->content);
+        }
+
         return $this->content;
     }
 
     /**
-     * @param $name
+     * @param string|callable $name
      * @return $this
      */
     public function setContent($name): self
@@ -29,12 +33,24 @@ trait HasContent
     }
 
     /**
-     * @param string $name
+     * @param string|callable $name
      * @return self
      */
-    public function withContent(string $name): self
+    public function withContent($name): self
     {
         $this->content = $name;
         return $this;
+    }
+
+    /**
+     * @param $template
+     * @param $variables
+     * @return $this
+     */
+    public function withViewContent($template, $variables = []): self
+    {
+        return $this->withContent(function () use ($template, $variables) {
+            return $this->renderEngine()->load($template, $variables, true);
+        });
     }
 }

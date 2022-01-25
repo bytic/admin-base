@@ -27,7 +27,10 @@ if ($theme && $baseClass) {
 if ($themeMode == 'outline') {
     $attributes['class'] .= ' card-outline';
 }
-
+$wrapBody = $wrapBody ?? true;
+if ($wrapBody) {
+    $content = '<div class="card-body">' . $content . '</div>';
+}
 ?>
 <div<?= DomBuilder::buildAttributes($attributes) ?>>
     <div class="card-header">
@@ -42,7 +45,5 @@ if ($themeMode == 'outline') {
             </div><!-- /.box-tools -->
         <?php endif; ?>
     </div>
-    <div class="card-body">
-        <?= $content; ?>
-    </div>
+    <?= $content; ?>
 </div>
