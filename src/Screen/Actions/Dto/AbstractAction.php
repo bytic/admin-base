@@ -7,17 +7,20 @@ use ByTIC\AdminBase\Utility\Behaviours\HasIcon;
 use ByTIC\AdminBase\Utility\Behaviours\HasName;
 use ByTIC\AdminBase\Utility\Behaviours\HasUrl;
 use ByTIC\AdminBase\Utility\Behaviours\Makeable;
+use ByTIC\AdminBase\Utility\Renderable\IsRenderable;
+use ByTIC\AdminBase\Utility\Renderable\Renderable;
 
 /**
  *
  */
-abstract class AbstractAction implements Action
+abstract class AbstractAction implements Action, Renderable
 {
     use HasName;
     use Makeable;
     use HasIcon;
     use HasHtmlAttributes;
     use HasUrl;
+    use IsRenderable;
 
     public const TYPE = 'action';
 

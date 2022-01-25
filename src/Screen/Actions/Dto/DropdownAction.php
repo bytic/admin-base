@@ -2,11 +2,14 @@
 
 namespace ByTIC\AdminBase\Screen\Actions\Dto;
 
+use ByTIC\AdminBase\Utility\ViewHelper;
+
 /**
  *
  */
 class DropdownAction extends AbstractAction
 {
+    public const VIEW = ViewHelper::VIEW_NAMESPACE . '::/admin-actions/dropdown';
     public const TYPE = 'dropdown';
 
     /**

@@ -3,7 +3,7 @@
 namespace ByTIC\AdminBase\Tests\Screen\Actions\Collections;
 
 use ByTIC\AdminBase\Screen\Actions\Collections\ActionsCollection;
-use ByTIC\AdminBase\Screen\Actions\Dto\BaseAction;
+use ByTIC\AdminBase\Screen\Actions\Dto\ButtonAction;
 use ByTIC\AdminBase\Tests\AbstractTest;
 
 /**
@@ -15,7 +15,7 @@ class ActionsCollectionTest extends AbstractTest
     {
         $collection = new ActionsCollection();
 
-        $action = BaseAction::make('test');
+        $action = ButtonAction::make('test');
         $collection->add($action);
 
         self::assertTrue($collection->has('test'));

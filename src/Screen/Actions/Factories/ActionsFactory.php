@@ -3,7 +3,7 @@
 namespace ByTIC\AdminBase\Screen\Actions\Factories;
 
 use ByTIC\AdminBase\Screen\Actions\Dto\AbstractAction;
-use ByTIC\AdminBase\Screen\Actions\Dto\BaseAction;
+use ByTIC\AdminBase\Screen\Actions\Dto\ButtonAction;
 use ByTIC\AdminBase\Screen\Actions\Dto\DropdownAction;
 use ByTIC\AdminBase\Screen\Actions\Dto\MenuItem;
 use Exception;
@@ -15,7 +15,7 @@ class ActionsFactory
 {
     /**
      * @param $action
-     * @return AbstractAction|BaseAction
+     * @return AbstractAction|ButtonAction
      * @throws Exception
      */
     public static function from($action)
@@ -30,7 +30,7 @@ class ActionsFactory
         throw new Exception('Action must be an array or an instance of AbstractAction');
     }
 
-    public static function fromArray(array $data): BaseAction
+    public static function fromArray(array $data): ButtonAction
     {
         $class = static::getActionClass($data['type'] ?? null);
         $action = new $class();
@@ -66,6 +66,6 @@ class ActionsFactory
             case MenuItem::TYPE:
                 return MenuItem::class;
         }
-        return BaseAction::class;
+        return ButtonAction::class;
     }
 }
