@@ -10,3 +10,25 @@
 .card-stats .card-body {
   padding: 1rem 1.5rem;
 }
+
+// Card table
+.card {
+  // @include border-radius-sides(0, 0, $border-radius, $border-radius);
+  // .no-header & {
+  //   @include border-top-radius($border-radius);
+  // }
+
+  // Tables within the box body
+  > .table {
+    margin-bottom: 0;
+
+    > thead > tr > th,
+    > thead > tr > td {
+      border-top-width: 0;
+    }
+
+    tbody {
+
+    }
+  }
+}

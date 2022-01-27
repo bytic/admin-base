@@ -1,15 +1,22 @@
+.card {
+  @include box-shadow($card-shadow);
+
+  &:not([class*=border]) {
+    border: 0;
+  }
+}
+
 .card .card-header {
   @include display-flex();
   align-items: center;
-  padding: rem(10px) rem(15px);
-  border: none;
 
   .card-title {
     margin-top: 0;
     margin-bottom: 0;
     @include flex(1);
-    font-size: $font-size-sm;
-    line-height: $font-size-base;
+    font-size: $card-title-font-size;
+    font-weight: 600;
+    line-height: 1.4;
   }
 
   & .card-header-btn,
