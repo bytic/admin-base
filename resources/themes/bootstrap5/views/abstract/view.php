@@ -1,8 +1,9 @@
-<?php $delete = isset($delete) ? $delete : true; ?>
+<?php
+$delete = $delete ?? true;
+?>
 
-<div class="card card-inverse">
+<div class="card">
     <div class="card-header">
-
         <?php if ($this->existPath("/" . $this->controller . "/modules/item/top-buttons")) { ?>
             <div class="pull-right delete">
                 <div class="buttons inline right">
@@ -12,7 +13,7 @@
         <?php } ?>
 
         <h4 class="card-title">
-            <?php echo $this->title; ?>
+            <?= $this->title; ?>
             <?php if ($this->existPath("/" . $this->controller . "/modules/item/title-after")) { ?>
                 <?php echo $this->load("/" . $this->controller . "/modules/item/title-after"); ?>
             <?php } ?>
