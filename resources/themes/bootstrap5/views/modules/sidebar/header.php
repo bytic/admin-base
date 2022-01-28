@@ -1,7 +1,9 @@
 <?php
-$logoUrl = function_exists('logoUrl') ? logoUrl('logo-white.png') : asset('/images/logos/logo-white.png');
+$branding = $this->_adminBaseLayout->branding();
+if (false === $branding->hasLogo()) {
+    return;
+}
 ?>
 <li class="nav-profile">
-    <img src="<?php echo $logoUrl; ?>" class="img-fluid"/>
-    <!--    <div class="image"></div>-->
+    <img src="<?= $branding->getLogo(); ?>" class="img-fluid"/>
 </li>

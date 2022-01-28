@@ -1,6 +1,6 @@
 <?php
-$menu = isset($menu) ? $menu : [];
-$expanded = isset($expanded) ? $expanded : null;
+$menu = $menu ?? [];
+$expanded = $expanded ?? null;
 ?>
 
 <?php foreach ($menu as $section => $item) { ?>
