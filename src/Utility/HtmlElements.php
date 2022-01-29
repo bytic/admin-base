@@ -3,6 +3,7 @@
 namespace ByTIC\AdminBase\Utility;
 
 use ByTIC\AdminBase\Screen\Actions\Dto\AbstractAction;
+use ByTIC\Html\Dom\DomAttributes;
 
 /**
  *
@@ -11,9 +12,9 @@ class HtmlElements
 {
     /**
      * @param AbstractAction $action
-     * @return array
+     * @return array|DomAttributes
      */
-    public static function attributesForAction($action): array
+    public static function attributesForAction($action)
     {
         $attributes = $action->getHtmlAttributes();
         $attributes['title'] = $action->getLabel();

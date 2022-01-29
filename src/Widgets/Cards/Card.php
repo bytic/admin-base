@@ -47,13 +47,13 @@ class Card extends AbstractWidget
 
     protected function renderVariables(): array
     {
-        $attributes = $this->getHtmlAttributes();
         return array_merge(
             parent::renderVariables(),
             [
                 'title' => $this->title,
                 'content' => $this->getContent(),
-                'attributes' => $attributes,
+                'attributes' => $this->htmlAttributesFor(),
+                'attributes_body' => $this->htmlAttributesFor('body'),
                 'headerTools' => $this->headerTools,
                 'wrapBody' => $this->wrapBody,
                 'theme' => $this->theme,

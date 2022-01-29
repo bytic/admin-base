@@ -1,18 +1,19 @@
 <?php
 
-use ByTIC\Html\Dom\DomBuilder;
 
 /** @var Stringable|string $content */
+
 /** @var Stringable|string $title */
 
-$attributes = $attributes ?? [];
+use ByTIC\Html\Html\HtmlBuilder;
+
+$attributes = isset($attributes) ? $attributes->toArray() : [];
 $headerTools = $headerTools ?? [];
 $theme = $theme ?? '';
 $themeMode = $themeMode ?? '';
 
-$attributes['class'] = $attributes['class'] ?? '';
-$attributes['class'] .= ' card';
-$attributes['class'] = trim($attributes['class']);
+$attributes['class'] = $attributes['class'] ?? [];
+$attributes['class'][] = 'card';
 
 $baseClass = 'card-';
 
@@ -21,18 +22,22 @@ if ($themeMode == 'full') {
 }
 
 if ($theme && $baseClass) {
-    $attributes['class'] .= ' ' . $baseClass . $theme;
+    $attributes['class'][] = $baseClass . $theme;
 }
 
 if ($themeMode == 'outline') {
-    $attributes['class'] .= ' card-outline';
+    $attributes['class'][] = 'card-outline';
 }
+
+$attributes_body = isset($attributes_body) ? $attributes_body->toArray() : [];
+$attributes_body['class'][] = 'card-body';
+
 $wrapBody = $wrapBody ?? true;
 if ($wrapBody) {
-    $content = '<div class="card-body">' . $content . '</div>';
+    $content = '<div ' . HtmlBuilder::buildAttributes($attributes_body) . '>' . $content . '</div>';
 }
 ?>
-<div<?= DomBuilder::buildAttributes($attributes) ?>>
+<div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <div class="card-header">
         <h4 class="card-title">
             <?= $title ?>
@@ -42,7 +47,7 @@ if ($wrapBody) {
                 <?php foreach ($headerTools as $headerTool) : ?>
                     <?= $headerTool ?>
                 <?php endforeach; ?>
-            </div><!-- /.box-tools -->
+            </div>
         <?php endif; ?>
     </div>
     <?= $content; ?>

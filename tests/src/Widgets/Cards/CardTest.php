@@ -19,8 +19,9 @@ class CardTest extends AbstractTest
     public function test_basic()
     {
         $card = $this->basicCard();
+        $card->addHtmlClass('my-class', 'body');
 
-        self::assertXmlStringEqualsXmlFile(
+        self::assertEqualHtmlFile(
             TEST_FIXTURE_PATH . '/Widgets/Cards/basic.html',
             (string)$card
         );
@@ -34,7 +35,7 @@ class CardTest extends AbstractTest
                 ->setLabel('My Button')
                 ->withIcon(Icons::star())
         );
-        self::assertXmlStringEqualsXmlFile(
+        self::assertEqualHtmlFile(
             TEST_FIXTURE_PATH . '/Widgets/Cards/basic_tools.html',
             (string)$card
         );
@@ -47,7 +48,7 @@ class CardTest extends AbstractTest
             ->themeSuccess()
             ->themeModeOutline();
 
-        self::assertXmlStringEqualsXmlFile(
+        self::assertEqualHtmlFile(
             TEST_FIXTURE_PATH . '/Widgets/Cards/success_outline.html',
             (string)$card
         );

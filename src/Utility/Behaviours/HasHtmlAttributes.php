@@ -2,6 +2,7 @@
 
 namespace ByTIC\AdminBase\Utility\Behaviours;
 
+use ByTIC\Html\Dom\DomAttributes;
 use ByTIC\Html\Html\ClassList;
 
 /**
@@ -9,7 +10,7 @@ use ByTIC\Html\Html\ClassList;
  */
 trait HasHtmlAttributes
 {
-    protected string $htmlElement;
+    protected $htmlAttributesRootElement = 'root';
 
     protected array $htmlAttributes = [];
 
@@ -17,11 +18,11 @@ trait HasHtmlAttributes
      * @param string|callable $class
      * @return  static
      */
-    public function addHtmlClass($class): self
+    public function addHtmlClass($class, $element = null): self
     {
         $classes = array_filter(explode(' ', $class), 'strlen');
 
-        $this->getHtmlClassList()->add(...$classes);
+        $this->getHtmlClassList($element)->add(...$classes);
 
         return $this;
     }
@@ -30,20 +31,26 @@ trait HasHtmlAttributes
      * @param string|callable $class
      * @return  static
      */
-    public function removeHtmlClass($class): self
+    public function removeHtmlClass($class, $element = null): self
     {
 //        $class = Str::toString($class);
 
         $classes = array_filter(explode(' ', $class), 'strlen');
 
-        $this->getHtmlClassList()->remove(...$classes);
+        $this->getHtmlClassList($element)->remove(...$classes);
 
         return $this;
     }
 
-    public function toggleHtmlClass(string $class, ?bool $force = null): self
+    /**
+     * @param string $class
+     * @param bool|null $force
+     * @param $element
+     * @return $this
+     */
+    public function toggleHtmlClass(string $class, ?bool $force = null, $element = null): self
     {
-        $this->getHtmlClassList()->toggle($class, $force);
+        $this->getHtmlClassList($element)->toggle($class, $force);
 
         return $this;
     }
@@ -52,23 +59,19 @@ trait HasHtmlAttributes
      * @param string $class
      * @return mixed
      */
-    public function hasHtmlClass(string $class)
+    public function hasHtmlClass(string $class, $element = null)
     {
-        return $this->getHtmlClassList()->contains($class);
+        return $this->getHtmlClassList($element)->contains($class);
     }
 
     /**
      * @return ClassList|mixed
      */
-    public function getHtmlClassList()
+    public function getHtmlClassList($element = null)
     {
-        if (!isset($this->htmlAttributes['class'])) {
-            $this->htmlAttributes['class'] = ClassList::create([]);
-        }
-        if (!($this->htmlAttributes['class'] instanceof ClassList)) {
-            $this->htmlAttributes['class'] = ClassList::create($this->htmlAttributes['class']);
-        }
-        return $this->htmlAttributes['class'];
+        $attributes = $this->htmlAttributesFor($element);
+
+        return $attributes->getClassList();
     }
 
     /**
@@ -77,35 +80,32 @@ trait HasHtmlAttributes
      *
      * @return  string|static
      */
-    public function htmlDataAttribute(string $name, $value = null)
+    public function htmlDataAttribute(string $name, $value = null, $element = null)
     {
+        $attributes = $this->htmlAttributesFor($element);
         if ($value === null) {
-            return $this->getHtmlAttribute('data-' . $name);
+            return $attributes->data($name);
         }
-
-        return $this->setHtmlAttribute('data-' . $name, $value);
+        $attributes->data($name, $value);
+        return $this;
     }
 
     /**
      * @param string $name Attribute name.
      * @param mixed $default Default value.
      */
-    public function getHtmlAttribute($name, $default = null)
+    public function getHtmlAttribute($name, $default = null, $element = null)
     {
-        if (empty($this->htmlAttributes[$name])) {
-            return $default;
-        }
-
-        return $this->htmlAttributes[$name];
+        return $this->htmlAttributesFor($element)->getAttribute($name, $default);
     }
 
     /**
      * @param string $name Attribute name.
      * @param string $value The value to set into attribute.
      */
-    public function setHtmlAttribute($name, $value): self
+    public function setHtmlAttribute($name, $value, $element = null): self
     {
-        $this->htmlAttributes[$name] = $value;
+        $this->htmlAttributesFor($element)->setAttribute($name, $value);
 
         return $this;
     }
@@ -114,38 +114,64 @@ trait HasHtmlAttributes
      * @param string $name
      * @return  bool
      */
-    public function hasHtmlAttribute($name): bool
+    public function hasHtmlAttribute($name, $element = null): bool
     {
-        return isset($this->htmlAttributes[$name]);
+        return $this->htmlAttributesFor($element)->hasAttribute($name);
     }
 
     /**
      * @param string $name
      * @return  static
      */
-    public function removeHtmlAttribute($name): self
+    public function removeHtmlAttribute($name, $element = null): self
     {
-        unset($this->htmlAttributes[$name]);
+        $this->htmlAttributesFor($element)->removeAttribute($name);
 
         return $this;
     }
 
     /**
-     * @return array
+     * @param null $element
+     * @return DomAttributes
      */
-    public function getHtmlAttributes(): array
+    public function getHtmlAttributes($element = null): DomAttributes
     {
-        return $this->htmlAttributes;
+        return $this->htmlAttributesFor($element);
     }
 
     /**
      * Set all attributes.
      * @param array $htmlAttributes
      */
-    public function setHtmlAttributes(array $htmlAttributes): self
+    public function setHtmlAttributes(array $htmlAttributes, $element = null): self
     {
-        $this->htmlAttributes = $htmlAttributes;
+        $this->htmlAttributesFor($element)->setAttributes($htmlAttributes);
         return $this;
     }
 
+    /**
+     * @param $element
+     * @return array|DomAttributes
+     */
+    public function htmlAttributesFor($element = null): DomAttributes
+    {
+        $element = $this->htmlAttributesElementName($element);
+        if (!isset($this->htmlAttributes[$element])) {
+            $attributes = new DomAttributes();
+            $this->htmlAttributes[$element] = $attributes;
+        }
+        return $this->htmlAttributes[$element];
+    }
+
+    /**
+     * @param $element
+     * @return mixed|string|null
+     */
+    protected function htmlAttributesElementName($element = null)
+    {
+        if ($element === null) {
+            $element = $this->htmlAttributesRootElement;
+        }
+        return $element;
+    }
 }

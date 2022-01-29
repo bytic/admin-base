@@ -4,7 +4,7 @@
 
 use ByTIC\AdminBase\Screen\Actions\Dto\DropdownAction;
 use ByTIC\AdminBase\Screen\ActionToolbars\Dto\ActionToolbar;
-use ByTIC\Html\Dom\DomBuilder;
+use ByTIC\Html\Html\HtmlBuilder;
 
 $attributes = $toolbar->getHtmlAttributes();
 $attributes['class'] .= ' action-toolbar navbar-nav';
@@ -13,7 +13,7 @@ if (count($actions) < 1) {
     return;
 }
 ?>
-<ul <?= DomBuilder::buildAttributes($attributes) ?>>
+<ul <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <?php foreach ($actions as $action) { ?>
         <?php
         $class = ['nav-item'];

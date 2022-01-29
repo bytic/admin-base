@@ -17,7 +17,7 @@ class ButtonActionTest extends AbstractTest
     {
         $item = $this->basicButton();
 
-        self::assertXmlStringEqualsXmlFile(
+        self::assertEqualHtmlFile(
             TEST_FIXTURE_PATH . '/Screen/Actions/Dto/basic.html',
             (string)$item
         );
