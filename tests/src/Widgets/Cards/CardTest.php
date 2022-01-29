@@ -27,6 +27,18 @@ class CardTest extends AbstractTest
         );
     }
 
+    public function test_basic_icon()
+    {
+        $card = $this->basicCard();
+        $card->withIcon(
+            Icons::search()
+        );
+        self::assertEqualHtmlFile(
+            TEST_FIXTURE_PATH . '/Widgets/Cards/basic_icon.html',
+            (string)$card
+        );
+    }
+
     public function test_basic_tools()
     {
         $card = $this->basicCard();

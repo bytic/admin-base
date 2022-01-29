@@ -4,6 +4,7 @@ namespace ByTIC\AdminBase\Widgets\Cards;
 
 use ByTIC\AdminBase\Utility\Behaviours\HasContent;
 use ByTIC\AdminBase\Utility\Behaviours\HasHtmlAttributes;
+use ByTIC\AdminBase\Utility\Behaviours\HasIcon;
 use ByTIC\AdminBase\Utility\Behaviours\HasTheme;
 use ByTIC\AdminBase\Utility\Behaviours\HasTitle;
 use ByTIC\AdminBase\Utility\ViewHelper;
@@ -16,6 +17,7 @@ use Stringable;
 class Card extends AbstractWidget
 {
     use HasTitle;
+    use HasIcon;
     use HasContent;
     use HasHtmlAttributes;
     use HasTheme;
@@ -51,6 +53,7 @@ class Card extends AbstractWidget
             parent::renderVariables(),
             [
                 'title' => $this->title,
+                'icon' => $this->getIcon(),
                 'content' => $this->getContent(),
                 'attributes' => $this->htmlAttributesFor(),
                 'attributes_body' => $this->htmlAttributesFor('body'),
