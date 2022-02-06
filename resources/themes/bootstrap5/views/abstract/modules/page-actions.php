@@ -4,12 +4,13 @@ use ByTIC\AdminBase\Screen\Actions\Factories\ActionsCollectionsFactory;
 
 $actions = ActionsCollectionsFactory::from($actions ?? []);
 ?>
-<?= $this->loadIf(
-    $this->existPath("/" . $this->controller . "/modules/filters"),
-    '/abstract/modules/panels/filters'
-); ?>
 
-    <div class="mt-3"></div>
+<div class="my-4 d-gap gap-4">
+    <?= $this->loadIf(
+        $this->existPath("/" . $this->controller . "/modules/filters"),
+        '/abstract/modules/panels/filters'
+    ); ?>
+
     <div>
         <?php if ($this->existPath("/" . $this->controller . "/modules/right-buttons")) { ?>
             <div class="right" style="margin-bottom:20px;">
@@ -22,9 +23,11 @@ $actions = ActionsCollectionsFactory::from($actions ?? []);
         <?php } ?>
     </div>
 
-<?php
-$viewFile = "/" . $this->controller . "/modules/index/pre-list";
-if ($this->existPath(($viewFile))) {
-    $this->load($viewFile);
-}
-?>
+    <?php
+    $viewFile = "/" . $this->controller . "/modules/index/pre-list";
+    if ($this->existPath(($viewFile))) {
+        $this->load($viewFile);
+    }
+    ?>
+
+</div>

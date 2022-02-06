@@ -6,6 +6,9 @@ use ByTIC\AdminBase\Screen\Actions\Factories\ActionsFactory;
 use ByTIC\Icons\Icons;
 use Nip\Records\AbstractModels\RecordManager;
 
+$tableClasses = $tableClasses ?? '';
+$tableClasses .= ' table-striped table-bordered table-hover';
+
 $add = $add ?? true;
 $addURLParams = $addURLParams ?? [];
 
@@ -27,9 +30,9 @@ $idTable = $idTable ?? '';
 $modelManager = $this->modelManager;
 ?>
 
-<?php echo $this->Flash()->render($this->controller); ?>
+<?= $this->Flash()->render($this->controller); ?>
 
-<?php echo $this->loadWithFallback(
+<?= $this->loadWithFallback(
     $this->existPath("/" . $this->controller . "/modules/page-actions/" . $this->action),
     '/abstract/modules/page-actions',
     ["actions" => $actions]
@@ -41,17 +44,19 @@ $modelManager = $this->modelManager;
     </div>
 <?php } else { ?>
 
-    <?php echo $this->load('modules/list', [
-        "items" => $this->items,
-        "add" => $add,
-        "tableClasses" => (isset($tableClasses) ? $tableClasses : false),
-        "addURLParams" => $addURLParams,
-        "idTable" => $idTable,
-        "manager" => $this->modelManager,
-        "controller" => $this->controller,
-    ]); ?>
+    <div class="bg-white">
+        <?= $this->load('modules/list', [
+            "items" => $this->items,
+            "add" => $add,
+            "tableClasses" => $tableClasses,
+            "addURLParams" => $addURLParams,
+            "idTable" => $idTable,
+            "manager" => $this->modelManager,
+            "controller" => $this->controller,
+        ]); ?>
+    </div>
 
-    <?php echo $this->Paginator()->render(); ?>
+    <?= $this->Paginator()->render(); ?>
 
     <?php
     $viewFile = "/" . $this->controller . "/modules/index/post-list";
