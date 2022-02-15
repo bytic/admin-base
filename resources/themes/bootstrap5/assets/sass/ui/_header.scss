@@ -3,6 +3,7 @@
 #header {
   padding: 0;
 
+  border-bottom: 1px solid $gray-300;
   @include box-shadow(1px 2px 4px 0 rgba(0, 0, 0, .03));
 
   & .navbar-header {

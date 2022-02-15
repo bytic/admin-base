@@ -5,7 +5,7 @@ use ByTIC\AdminBase\Screen\Actions\Factories\ActionsCollectionsFactory;
 $actions = ActionsCollectionsFactory::from($actions ?? []);
 ?>
 
-<div class="my-4 d-gap gap-4">
+<div class="my-4 d-grid gap-4">
     <?= $this->loadIf(
         $this->existPath("/" . $this->controller . "/modules/filters"),
         '/abstract/modules/panels/filters'

@@ -6,8 +6,7 @@ use ByTIC\AdminBase\Screen\Actions\Factories\ActionsFactory;
 use ByTIC\Icons\Icons;
 use Nip\Records\AbstractModels\RecordManager;
 
-$tableClasses = $tableClasses ?? '';
-$tableClasses .= ' table-striped table-bordered table-hover';
+$tableClasses = $tableClasses ?? null;
 
 $add = $add ?? true;
 $addURLParams = $addURLParams ?? [];

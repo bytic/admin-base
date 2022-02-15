@@ -1,12 +1,7 @@
 .page-header {
-  border-top: 1px solid $gray-100;
-  border-bottom: 1px solid $gray-100;
-  color: $gray-600;
-  margin-bottom: $headings-margin-bottom;
+  border-bottom: 1px solid $gray-300;
   padding: 15px $content-padding-x 0;
   background-color: $white;
-
-  box-shadow: map-get($shadows, 'xs');
 
   .page-title {
     font-size: $font-size-base* 1.2;

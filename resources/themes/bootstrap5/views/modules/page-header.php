@@ -11,7 +11,7 @@ $viewFile = "/" . $this->controller . "/modules/header-buttons/" . $this->action
             <?php echo $this->title; ?>
         </h1>
 
-        <?php echo $this->controller == 'error' ? '' : $this->Breadcrumbs(); ?>
+        <?= $this->controller == 'error' ? '' : $this->Breadcrumbs(); ?>
     </div>
 
     <div class="page-actions">

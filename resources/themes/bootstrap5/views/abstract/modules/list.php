@@ -4,7 +4,11 @@
 
 use Nip\Records\RecordManager;
 
-$tableClasses = $tableClasses ?? 'table table-striped table-bordered';
+$tableClasses = $tableClasses ?? '';
+$tableClasses = explode(' ', $tableClasses);
+$tableClasses = array_merge($tableClasses, ['table', 'table-striped', 'table-bordered']);
+$tableClasses[] = $manager->getController();
+
 $idTable = $idTable ?? '';
 $controller = $controller ?? '';
 $items = $items ?? [];
@@ -15,8 +19,8 @@ $items = $items ?? [];
 <?php } ?>
 
 <table id="<?= $idTable; ?>"
-       class="<?= $tableClasses; ?> <?php echo $manager->getController(); ?>">
-    <?php echo $this->load("/" . $controller . "/modules/table-header"); ?>
+       class="<?= implode(' ', $tableClasses); ?>">
+    <?= $this->load("/" . $controller . "/modules/table-header"); ?>
     <tbody>
 
     <?php //$keys = array_keys($items); ?>
