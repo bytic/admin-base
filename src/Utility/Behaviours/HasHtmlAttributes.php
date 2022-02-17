@@ -12,6 +12,9 @@ trait HasHtmlAttributes
 {
     protected $htmlAttributesRootElement = 'root';
 
+    /**
+     * @var DomAttributes[]
+     */
     protected array $htmlAttributes = [];
 
     /**

@@ -5,7 +5,7 @@ namespace ByTIC\AdminBase\Screen\Actions\Dto;
 /**
  *
  */
-class MenuItem extends AbstractAction
+class MenuItem extends AbstractParentAction
 {
     public const TYPE = 'menuitem';
 }

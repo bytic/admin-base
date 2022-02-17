@@ -1,14 +1,14 @@
 <?php
 
-/** @var ActionToolbar $toolbar */
+/** @var ActionsGroup $actionsGroup */
 
 use ByTIC\AdminBase\Screen\Actions\Dto\DropdownAction;
-use ByTIC\AdminBase\Screen\ActionToolbars\Dto\ActionToolbar;
+use ByTIC\AdminBase\Screen\ActionsGroups\Dto\ActionsGroup;
 use ByTIC\Html\Html\HtmlBuilder;
 
-$attributes = $toolbar->getHtmlAttributes();
+$attributes = $actionsGroup->getHtmlAttributes();
 $attributes['class'] .= ' action-toolbar navbar-nav';
-$actions = $toolbar->actions();
+$actions = $actionsGroup->actions();
 if (count($actions) < 1) {
     return;
 }

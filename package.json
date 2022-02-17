@@ -14,10 +14,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9",
     "@popperjs/core": "^2.8",
-    "bytic-bootstrap-materialize": "git://github.com/bytic/bootstrap-materialize.git#develop",
     "bootstrap": "^4.0||^5.0",
     "bootstrap-colorpicker": "^3.4",
     "bootstrap-switch": "^3.3",
+    "bytic-bootstrap-materialize": "git://github.com/bytic/bootstrap-materialize.git#develop",
     "core-js": "^3.12",
     "font-awesome": "^4.7",
     "jgrowl": "^1.4",

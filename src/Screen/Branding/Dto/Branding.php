@@ -11,11 +11,14 @@ class Branding
 
     protected $logo = null;
 
+    protected $section;
+
     public function __construct()
     {
-        $this->name = config('app.name', 'Admin');
+        if (function_exists('config') && app()->has('config')) {
+            $this->name = config('app.name', 'Admin');
+        }
     }
-
 
     /**
      * @return string
@@ -56,5 +59,24 @@ class Branding
     public function hasLogo(): bool
     {
         return !empty($this->logo);
+    }
+
+    public function getSection()
+    {
+        if (!isset($this->section)) {
+            $this->section = $this->generateSection();
+        }
+        return $this->section;
+    }
+
+    protected function generateSection()
+    {
+        if (!function_exists('app')) {
+            return null;
+        }
+        if (false == app()->has('mvc.sections')) {
+            return null;
+        }
+        return app('mvc.sections')->getCurrent();
     }
 }

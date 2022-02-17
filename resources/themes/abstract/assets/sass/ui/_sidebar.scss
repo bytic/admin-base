@@ -24,8 +24,7 @@
       @include clearfix();
 
       & > a {
-        padding: rem(7px) rem(20px);
-        line-height: rem(20px);
+        padding: $nav-link-padding-y ($nav-link-padding-y * 2);
         color: rgba($white, .6);
         display: block;
         text-decoration: none;
@@ -608,14 +607,23 @@
 }
 
 .sidebar .nav .nav-header {
-  //line-height: rem(16px);
-  //font-size: 85%;
-  //color: rgba($white, .6);
+  text-transform: uppercase;
+  color: rgba($white, .6);
+
+  font-size: .8rem;
+  line-height: .8rem;
+  letter-spacing: .06rem;
+  font-weight: 600;
+
+  padding: $nav-link-padding-y ($nav-link-padding-y * 2);
+
+  &:not(:first-of-type) {
+    padding-top: ($nav-link-padding-y * 1.5);
+    padding-bottom: ($nav-link-padding-y * .5);
+  }
 
   > a {
     font-weight: 400;
-    text-transform: uppercase;
-    background-color: $gray-800;
     border-top: 1px solid #fff;
 
     &:hover,
@@ -624,24 +632,6 @@
     }
   }
 
-  //& a {
-  //	padding: 0;
-  //	margin: 0;
-  //	display: inline;
-  //	color: rgba($white, .6);
-  //
-  //	&:hover,
-  //	&:focus {
-  //		background: none;
-  //		color: $white;
-  //		text-decoration: none;
-  //	}
-  //
-  //	& i {
-  //		float: none;
-  //		margin: 0;
-  //	}
-  //}
   ul li a {
     font-size: $font-size-base * 0.8;
   }

@@ -34,6 +34,7 @@
   },
   "require-dev": {
     "bytic/translation": "^0.9|^1.0",
+    "bytic/mvc": "^0.9|^1.0",
     "bytic/codeception": "^4.0",
     "bytic/phpqatools": "^1.0"
   },

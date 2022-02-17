@@ -1,9 +1,13 @@
 <?php
 
+use ByTIC\AdminBase\Screen\Layouts\Dto\BaseLayout;
 use function Nip\Router\route;
 
-$currentSection = mvc_sections()->getCurrent();
-$branding = $this->_adminBaseLayout->branding();
+/** @var BaseLayout $layout */
+$layout = $this->get('_adminBaseLayout');
+$currentSection = $layout->branding()->getSection();
+$branding = $layout->branding();
+$baseUrl = function_exists('route') && function_exists('request') ? route(request()->getModuleName()) : '#';
 ?>
 <!-- begin #header -->
 <header id="header" class="navbar navbar-expand-lg navbar-light bg-white">
@@ -11,11 +15,13 @@ $branding = $this->_adminBaseLayout->branding();
     <div class="navbar-header">
         <?= $this->load('/modules/header/section'); ?>
 
-        <a class="navbar-brand" href="<?= route(request()->getModuleName()); ?>">
-            <span class="section-icon"
-                  style="<?php echo ($currentSection->color) ? 'background-color:' . $currentSection->color : ''; ?>">
-                <?php echo $currentSection->printIcon(); ?>
+        <a class="navbar-brand" href="<?= $baseUrl; ?>">
+            <?php if ($currentSection) : ?>
+                <span class="section-icon"
+                      style="<?= ($currentSection->color) ? 'background-color:' . $currentSection->color : ''; ?>">
+                <?= $currentSection->printIcon(); ?>
             </span>
+            <?php endif; ?>
             <?= $branding->getName(); ?>
         </a>
 

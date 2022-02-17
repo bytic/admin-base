@@ -1,6 +1,6 @@
 <?php
 
-use ByTIC\AdminBase\Screen\Header\Dto\HeaderNav;
+use ByTIC\AdminBase\Screen\Navigation\Dto\HeaderNav;
 
 ?>
 <?= $this->loadIfExists('/modules/header/menu'); ?>
@@ -15,9 +15,9 @@ use ByTIC\AdminBase\Screen\Header\Dto\HeaderNav;
     /** @var HeaderNav $headerNav */
     $headerNav = $this->_adminBaseHeaderNav;
 
-    $toolbars = $headerNav->toolbars();
-    foreach ($toolbars as $toolbar) {
-        echo $this->load('/admin-action-toolbars/navbar', ['toolbar' => $toolbar]);
+    $actionsGroups = $headerNav->actionsGroups();
+    foreach ($actionsGroups as $actionsGroup) {
+        echo $this->load('/admin-action-groups/navbar', ['actionsGroup' => $actionsGroup]);
     }
     ?>
 

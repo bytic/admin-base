@@ -3,6 +3,7 @@
 namespace ByTIC\AdminBase\Utility;
 
 use ByTIC\AdminBase\Library\View\Traits\HasAdminBaseFolderTrait;
+use ByTIC\AdminBase\Screen\Layouts\Dto\BaseLayout;
 use Nip\View\View;
 
 /**
@@ -12,6 +13,10 @@ use Nip\View\View;
 class ViewHelper
 {
     public const VIEW_NAMESPACE = 'AdminBase';
+
+    public const VIEW_VAR_LAYOUT = '_adminBaseLayout';
+    public const VIEW_VAR_HEADER = '_adminBaseHeaderNav';
+    public const VIEW_VAR_SIDEBAR = '_adminBaseSidebarNav';
 
     /**
      * @param View|HasAdminBaseFolderTrait $view
@@ -23,6 +28,21 @@ class ViewHelper
 
         $view->addPath(Paths::themePath('/views/', 'abstract'), self::VIEW_NAMESPACE);
         $view->addPath(Paths::themePath('/views/', 'abstract'));
+    }
+
+    /**
+     * @param View $view
+     * @param $layout
+     * @return void
+     */
+    public static function registerLayoutVariables(View $view, $layout = null)
+    {
+        $layout = $layout ?? new BaseLayout();
+        $view->with([
+            static::VIEW_VAR_LAYOUT => $layout,
+            static::VIEW_VAR_HEADER => $layout->headerNav(),
+            static::VIEW_VAR_SIDEBAR => $layout->sidebarNav(),
+        ]);
     }
 
     /**

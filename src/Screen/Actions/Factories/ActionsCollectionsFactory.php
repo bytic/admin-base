@@ -27,10 +27,9 @@ class ActionsCollectionsFactory
 
     public static function fromArray(array $actions): ActionsCollection
     {
-        array_map(function ($action) {
+        $actions = array_map(function ($action) {
             return ActionsFactory::from($action);
         }, $actions);
-        $actions = new ActionsCollection($actions);
-        return $actions;
+        return new ActionsCollection($actions);
     }
 }
