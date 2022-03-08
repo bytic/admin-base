@@ -18,6 +18,7 @@ if ($add && false === $actions->has(Action::NAME_CREATE)) {
         'name' => Action::NAME_CREATE,
         'label' => $this->modelManager->getLabel('add'),
         'icon' => Icons::plus(),
+        'class' => 'add-' . $this->modelManager->getController(),
         'url' => $this->modelManager->getAddURL($addURLParams),
     ]);
     $actions->add($action);

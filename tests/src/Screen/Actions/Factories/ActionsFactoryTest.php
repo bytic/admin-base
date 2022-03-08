@@ -22,6 +22,16 @@ class ActionsFactoryTest extends AbstractTest
         self::assertSame('<i class="fas fa-plus"></i>', $action->getIcon());
     }
 
+    public function test_create_with_class()
+    {
+        $action = ActionsFactory::fromArray([
+            'name' => 'test',
+            'class' => 'class-test',
+        ]);
+
+        self::assertSame('class-test', (string)$action->getHtmlClassList());
+    }
+
     public function test_create_with_submenu()
     {
         $action = ActionsFactory::fromArray([

@@ -88,6 +88,10 @@ class ActionsFactory
             $action->setLabel($data['label']);
         }
 
+        if (isset($data['class'])) {
+            $action->addHtmlClass($data['class']);
+        }
+
         if (isset($data['url'])) {
             $action->setUrl($data['url']);
         }
