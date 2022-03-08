@@ -32,12 +32,7 @@ trait HasAdminViewPathsTrait
 
     protected function registerAdminBaseLayout()
     {
-        $layout = $this->adminBaseLayout();
-
-        $this->payload()->with([
-            '_adminBaseLayout' => $layout,
-            '_adminBaseHeaderNav' => $layout->headerNav()
-        ]);
+        ViewHelper::registerLayoutVariables($this->payload(), $this->adminBaseLayout());
     }
 
     protected function adminBaseLayout(): ?AbstractLayout

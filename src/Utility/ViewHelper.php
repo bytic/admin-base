@@ -35,7 +35,7 @@ class ViewHelper
      * @param $layout
      * @return void
      */
-    public static function registerLayoutVariables(View $view, $layout = null)
+    public static function registerLayoutVariables($view, $layout = null)
     {
         $layout = $layout ?? new BaseLayout();
         $view->with([
