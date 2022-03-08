@@ -95,6 +95,9 @@ class ActionsFactory
         if (isset($data['url'])) {
             $action->setUrl($data['url']);
         }
+        if (isset($data['href'])) {
+            $action->setUrl($data['href']);
+        }
 
         $action->setIcon(Icons::for($data['icon'] ?? ''));
 
