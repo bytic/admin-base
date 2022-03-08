@@ -1,6 +1,7 @@
 <?php
 
 use ByTIC\AdminBase\Screen\Actions\Dto\Action;
+use ByTIC\AdminBase\Screen\Actions\Dto\ButtonAction;
 use ByTIC\AdminBase\Screen\Actions\Factories\ActionsCollectionsFactory;
 use ByTIC\AdminBase\Screen\Actions\Factories\ActionsFactory;
 use ByTIC\Icons\Icons;
@@ -15,6 +16,7 @@ $actions = ActionsCollectionsFactory::from($actions ?? []);
 
 if ($add && false === $actions->has(Action::NAME_CREATE)) {
     $action = ActionsFactory::fromArray([
+        'type' => ButtonAction::TYPE,
         'name' => Action::NAME_CREATE,
         'label' => $this->modelManager->getLabel('add'),
         'icon' => Icons::plus(),
