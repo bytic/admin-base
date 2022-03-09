@@ -2,6 +2,9 @@
 
 namespace ByTIC\AdminBase\Tests\Helper;
 
+use Codeception\Exception\ModuleException;
+use Codeception\Module;
+
 /**
  * Trait AcceptanceBootstrap4Trait
  * @package ByTIC\AdminBase\Tests\Helper
@@ -33,8 +36,18 @@ trait AcceptanceBootstrap5Trait
     }
 
     /**
-     * @return \Codeception\Module|PhpBrowser
-     * @throws \Codeception\Exception\ModuleException
+     * @param $title
+     * @return void
+     * @throws ModuleException
+     */
+    public function clickSidebarSubmenuByTitle($title)
+    {
+        $this->getBrowserModule()->click($title,'#sidebar .sub-menu');
+    }
+
+    /**
+     * @return Module|PhpBrowser
+     * @throws ModuleException
      */
     abstract protected function getBrowserModule();
 }
