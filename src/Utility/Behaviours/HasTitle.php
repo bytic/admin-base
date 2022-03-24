@@ -28,6 +28,7 @@ trait HasTitle
         return $this->withTitle($name);
     }
 
+
     /**
      * @param string $name
      * @return self

@@ -17,7 +17,7 @@ if (count($actions) < 1) {
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <h6 class="nav-header">
-        TEST
+        <?= $actionsGroup->getTitle(); ?>
     </h6>
 
     <ul class="nav navbar-nav">
