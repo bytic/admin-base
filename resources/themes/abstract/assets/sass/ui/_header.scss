@@ -10,6 +10,12 @@
   }
 }
 
+#header .navbar-nav {
+  .navbar-brand {
+    font-size: 1.4rem;
+  }
+}
+
 .section-icon {
   width: 25px;
   height: 25px;
@@ -36,13 +42,19 @@
       content: "";
       border: 0;
     }
+
     &:hover {
       border-radius: 100%;
       background-color: lighten($primary, 40%);
     }
   }
+
   .dropdown-item {
     overflow: hidden;
     padding-left: 10px;
   }
+}
+
+#header-toolbars {
+  justify-content: end;
 }
