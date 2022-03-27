@@ -1,9 +1,6 @@
 /*
-Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.6.0
-Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin/admin/
-*/
+ * BASE THEME
+ **/
 
 var FONT_COLOR  = '#2d353c';
 var FONT_FAMILY = 'Open Sans, Helvetica Neue,Helvetica,Arial,sans-serif';
