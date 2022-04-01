@@ -35,14 +35,14 @@ $modelManager = $this->modelManager;
 <?= $this->Flash()->render($this->controller); ?>
 
 <?= $this->loadWithFallback(
-    $this->existPath("/" . $this->controller . "/modules/page-actions/" . $this->action),
+    "/" . $this->controller . "/modules/page-actions/" . $this->action,
     '/abstract/modules/page-actions',
     ["actions" => $actions]
 ); ?>
 
 <?php if ($this->fatalError) { ?>
     <div class="message-info message-error">
-        <?php echo $this->fatalError ?>
+        <?= $this->fatalError ?>
     </div>
 <?php } else { ?>
     <?= $this->loadIfExists("/" . $this->controller . "/modules/index/pre-list"); ?>
