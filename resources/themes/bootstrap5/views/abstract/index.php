@@ -45,6 +45,7 @@ $modelManager = $this->modelManager;
         <?php echo $this->fatalError ?>
     </div>
 <?php } else { ?>
+    <?= $this->loadIfExists("/" . $this->controller . "/modules/index/pre-list"); ?>
 
     <div class="bg-white">
         <?= $this->load('modules/list', [
@@ -58,12 +59,7 @@ $modelManager = $this->modelManager;
         ]); ?>
     </div>
 
-    <?= $this->Paginator()->render(); ?>
+    <?= $this->loadIfExists("/" . $this->controller . "/modules/index/post-list"); ?>
 
-    <?php
-    $viewFile = "/" . $this->controller . "/modules/index/post-list";
-    if ($this->existPath($viewFile)) {
-        $this->load($viewFile);
-    }
-    ?>
+    <?= $this->Paginator()->render(); ?>
 <?php } ?>

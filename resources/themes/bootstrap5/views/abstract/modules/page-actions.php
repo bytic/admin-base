@@ -22,12 +22,4 @@ $actions = ActionsCollectionsFactory::from($actions ?? []);
             <?= $action; ?>
         <?php } ?>
     </div>
-
-    <?php
-    $viewFile = "/" . $this->controller . "/modules/index/pre-list";
-    if ($this->existPath(($viewFile))) {
-        $this->load($viewFile);
-    }
-    ?>
-
 </div>
