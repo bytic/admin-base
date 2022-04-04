@@ -5,24 +5,31 @@
     padding: 0 10px;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: lighten(theme-color('primary'), 35%);
     }
   }
 }
 
 #header .navbar-header {
   .navbar-brand {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: bold;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .navbar-light .navbar-brand {
+    color: $dark;
   }
 }
 
 .section-icon {
-  width: 25px;
-  height: 25px;
+  width: 1.3em;
+  height: 1.3em;
   background-color: $primary;
-  display: block;
-  float: left;
-  margin-right: 10px;
+  display: inline-block;
+  margin-right: 1em;
   color: #fff;
   fill: #fff;
   @include border-radius(4px);
@@ -41,11 +48,6 @@
       display: none;
       content: "";
       border: 0;
-    }
-
-    &:hover {
-      border-radius: 100%;
-      background-color: lighten($primary, 40%);
     }
   }
 
