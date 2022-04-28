@@ -5,7 +5,7 @@
 use ByTIC\AdminBase\Screen\Navigation\Dto\SidebarNav;
 use ByTIC\AdminBase\Utility\ViewHelper;
 
-$sidebarNav = $this->get(ViewHelper::VIEW_VAR_LAYOUT);
+$sidebarNav = $this->get(ViewHelper::VIEW_VAR_LAYOUT)->sidebarNav();
 $actionsGroups = $sidebarNav->actionsGroups();
 ?>
 <?= $this->load(
