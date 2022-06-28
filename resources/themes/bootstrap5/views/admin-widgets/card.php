@@ -12,6 +12,7 @@ $headerTools = $headerTools ?? [];
 $theme = $theme ?? '';
 $themeMode = $themeMode ?? '';
 
+$cardId = $attributes['id'] ?? 'card-' . uniqid();
 $attributes['class'] = $attributes['class'] ?? [];
 $attributes['class'][] = 'card';
 
@@ -51,5 +52,7 @@ if ($wrapBody) {
             </div>
         <?php endif; ?>
     </div>
-    <?= $content; ?>
+    <div id="<?= $cardId . '-content'; ?>" class="collapse">
+        <?= $content; ?>
+    </div>
 </div>

@@ -9,7 +9,6 @@ use ByTIC\AdminBase\Utility\Behaviours\HasTheme;
 use ByTIC\AdminBase\Utility\Behaviours\HasTitle;
 use ByTIC\AdminBase\Utility\ViewHelper;
 use ByTIC\AdminBase\Widgets\AbstractWidget;
-use Stringable;
 
 /**
  * @method static Card make()
@@ -21,21 +20,12 @@ class Card extends AbstractWidget
     use HasContent;
     use HasHtmlAttributes;
     use HasTheme;
-
-    /**
-     * @var array
-     */
-    protected $headerTools = [];
+    use Behaviours\HasHeaderTools;
 
     protected $wrapBody = true;
 
     public const VIEW = ViewHelper::VIEW_NAMESPACE . '::/admin-widgets/card';
 
-    public function addHeaderTool(Stringable $tool): self
-    {
-        $this->headerTools[] = $tool;
-        return $this;
-    }
 
     /**
      * @param bool $wrap

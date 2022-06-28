@@ -18,6 +18,28 @@ trait HasHtmlAttributes
     protected array $htmlAttributes = [];
 
     /**
+     * @param $id
+     * @return self
+     */
+    public function setId($id)
+    {
+        return $this->setHtmlAttribute('id', $id);
+    }
+
+    /**
+     * @return mixed|string|null
+     */
+    public function getId()
+    {
+        $id = $this->getHtmlAttribute('id');
+        if (empty($id)) {
+            $id = '_' . spl_object_hash($this);
+            $this->setId($id);
+        }
+        return $id;
+    }
+
+    /**
      * @param string|callable $class
      * @return  static
      */
