@@ -21,6 +21,7 @@ class Card extends AbstractWidget
     use HasHtmlAttributes;
     use HasTheme;
     use Behaviours\HasHeaderTools;
+    use Behaviours\Collapsable;
 
     protected $wrapBody = true;
 

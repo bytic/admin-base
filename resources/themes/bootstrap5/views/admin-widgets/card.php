@@ -31,11 +31,9 @@ if ($themeMode == 'outline') {
 }
 
 $attributes_body = isset($attributes_body) ? $attributes_body->toArray() : [];
-$attributes_body['class'][] = 'card-body';
-
 $wrapBody = $wrapBody ?? true;
 if ($wrapBody) {
-    $content = '<div ' . HtmlBuilder::buildAttributes($attributes_body) . '>' . $content . '</div>';
+    $attributes_body['class'][] = 'card-body';
 }
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
@@ -52,7 +50,7 @@ if ($wrapBody) {
             </div>
         <?php endif; ?>
     </div>
-    <div id="<?= $cardId . '-content'; ?>" class="collapse">
+    <div id="<?= $cardId . '-content'; ?>" <?= HtmlBuilder::buildAttributes($attributes_body) ?>>
         <?= $content; ?>
     </div>
 </div>
