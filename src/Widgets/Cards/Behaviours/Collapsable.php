@@ -10,6 +10,9 @@ use ByTIC\Icons\Icons;
  */
 trait Collapsable
 {
+    /**
+     * @return self
+     */
     public function collapsable(): self
     {
         $this->addHtmlClass('collapse show', 'body');
@@ -28,8 +31,11 @@ trait Collapsable
         return $this->addHeaderTool($button);
     }
 
-    public function collapsed()
+    /**
+     * @return self
+     */
+    public function collapsed(): self
     {
-        $this->removeHtmlClass('show', 'body');
+        return $this->removeHtmlClass('show', 'body');
     }
 }
