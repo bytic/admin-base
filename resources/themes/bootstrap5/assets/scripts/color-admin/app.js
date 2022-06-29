@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
-import {Modal} from 'bootstrap';
 
 import 'jquery-slimscroll';
+import ModalForms from './ModalForm'
 
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -1643,121 +1643,6 @@ var handleSidebarSearch = function () {
     })
 };
 
-var handleModalForms = function () {
-    "use strict";
-    var htmlLoading = '' + '' +
-        '<div style="text-align:center">' +
-        '    <h3>Loading content</h3>' +
-        '        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">\n' +
-        '<g transform="rotate(0 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(30 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(60 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(90 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(120 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(150 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(180 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(210 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(240 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(270 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(300 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g><g transform="rotate(330 50 50)">\n' +
-        '  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#335eea">\n' +
-        '    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>\n' +
-        '  </rect>\n' +
-        '</g>\n' +
-        '</svg>' +
-        '</div>';
-
-    function showFormAjax(modalContainer, url, type, dataParams) {
-        type = typeof type !== 'undefined' ? type : 'GET';
-        dataParams = typeof dataParams !== 'undefined' ? dataParams : [];
-
-        url = new URL(url);
-        url.searchParams.set('_format', "modal");
-
-
-        $.ajax({
-            type: type,
-            url: url,
-            data: dataParams,
-            beforeSend: function () {
-                modalContainer.find(".modal-body").html(htmlLoading);
-            },
-            success: function (data) {
-                if (data == 'REFRESH') {
-                    modalContainer.find(".modal-body").html(htmlLoading);
-                    location.reload();
-                } else {
-                    modalContainer.find(".modal-body").html(data);
-                    var form = modalContainer.find(".modal-body form");
-                    form.submit(function () {
-                        var data = $(this).serializeArray();
-                        showFormAjax(modalContainer, $(this).attr('action'), 'POST', data);
-                        return false;
-                    });
-                }
-            },
-            error: function () {
-                alert("failure");
-            }
-        });
-    }
-
-    $("[data-bs-toggle=modalForm]").click(function (e) {
-        e.preventDefault();
-
-        var triggerElement = $(this);
-        var modalContainer = $(triggerElement.data('bs-target'));
-
-        var myModal = new Modal(modalContainer);
-        myModal.show();
-
-        modalContainer.on('hidden.bs.modal', function () {
-            location.reload();
-        });
-
-        var modalTitle = modalContainer.find('.modal-title')
-        if (triggerElement.data('modal-title')) {
-            modalTitle.textContent = triggerElement.data('modal-title');
-        }
-
-        showFormAjax(modalContainer, triggerElement.data('href'));
-    });
-};
-
 /* Application Controller
 ------------------------------------------------ */
 var App = function () {
@@ -1777,8 +1662,6 @@ var App = function () {
             this.initComponent();
             this.initThemePanel();
             this.initPageLoad();
-
-            handleModalForms();
 
             $(window).trigger('load');
 
@@ -1877,3 +1760,7 @@ var App = function () {
 $(document).ready(function () {
     App.init();
 });
+
+export {
+    ModalForms
+}
