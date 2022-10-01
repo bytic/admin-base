@@ -22,7 +22,7 @@ class ActionsCollection extends ClassCollection
     /**
      * @inheritDoc
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         $key = empty($key) ? $value->getName() : $key;
         parent::offsetSet($key, $value);

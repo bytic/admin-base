@@ -54,7 +54,7 @@ class ActionGroupsCollection extends ClassCollection
     /**
      * @inheritDoc
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         /** @var ActionsGroup $value */
         $key = empty($key) ? $value->getName() : $key;
