@@ -27,7 +27,7 @@
     "bytic/package-base": "^1.0",
     "bytic/contracts": "^1.0",
     "bytic/icons": "^1.0",
-    "bytic/view": "^0.9|^1.0",
+    "bytic/view": "^0.9|^1.0|^2.0",
     "bytic/orm": "^0.9|^1.0",
     "bytic/html-helpers": "^1.0.8",
     "bytic/seo-meta": "^1.0"
