@@ -10,18 +10,25 @@ use ByTIC\Icons\Icon;
 class Icons
 {
 
-    public static function for($icon)
+    public static function for($icon): Icon|string
     {
         if ($icon instanceof Icon) {
             return $icon;
         }
 
         if (is_string($icon) && !empty($icon)) {
+            if (strpos($icon, 'class="') !== false) {
+                return $icon;
+            }
             return static::byName($icon);
         }
         return static::generic();
     }
 
+    /**
+     * @param $icon
+     * @return string
+     */
     public static function byName($icon): string
     {
         $iconType = false;

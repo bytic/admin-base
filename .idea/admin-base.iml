@@ -159,6 +159,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/bytic/phpqatools" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bytic/mvc" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/masterminds/html5" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/plates" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

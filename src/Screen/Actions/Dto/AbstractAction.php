@@ -102,4 +102,9 @@ abstract class AbstractAction implements Action, Renderable
     {
         $this->htmlElement = $htmlElement;
     }
+
+    protected function renderVariables(): array
+    {
+        return ['item' => $this];
+    }
 }

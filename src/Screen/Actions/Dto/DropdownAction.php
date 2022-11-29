@@ -13,7 +13,12 @@ class DropdownAction extends AbstractParentAction
     public const VIEW = ViewHelper::VIEW_NAMESPACE . '::/admin-actions/dropdown';
     public const TYPE = 'dropdown';
 
+    public const TYPE_NAVIGATION = 'navigation';
+    public const TYPE_BUTTON = 'button';
+
     protected $searchable = false;
+
+    protected string $dropdown_type = self::TYPE_NAVIGATION;
 
     /**
      * @param AbstractAction $menuItem
@@ -35,6 +40,19 @@ class DropdownAction extends AbstractParentAction
             $this->searchable = $searchable;
         }
         return $this->searchable;
+    }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    public function isButton($value = null): bool
+    {
+        if ($value === true) {
+            $this->dropdown_type = self::TYPE_BUTTON;
+            return true;
+        }
+        return $this->dropdown_type === self::TYPE_BUTTON;
     }
 
     /**

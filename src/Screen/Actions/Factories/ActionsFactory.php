@@ -79,6 +79,10 @@ class ActionsFactory
      */
     protected static function fillWithData(AbstractAction $action, array $data): AbstractAction
     {
+        if (isset($data['attributes'])) {
+            $action->setHtmlAttributes($data['attributes']);
+        }
+
         if (isset($data['name'])) {
             $action->setName($data['name']);
             $action->setLabel($data['name']);

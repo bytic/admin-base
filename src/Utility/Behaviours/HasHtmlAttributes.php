@@ -168,7 +168,7 @@ trait HasHtmlAttributes
      * Set all attributes.
      * @param array $htmlAttributes
      */
-    public function setHtmlAttributes(array $htmlAttributes, $element = null): self
+    public function setHtmlAttributes(array|DomAttributes  $htmlAttributes, $element = null): self
     {
         $this->htmlAttributesFor($element)->setAttributes($htmlAttributes);
         return $this;
