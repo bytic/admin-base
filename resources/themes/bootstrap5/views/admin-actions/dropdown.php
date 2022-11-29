@@ -34,7 +34,7 @@ if ($isButton) {
 }
 
 ?>
-<div class="<?= $isButton ? 'dropdown' : '' ?>">
+<div class="<?= $isButton ? 'btn-group' : '' ?>">
     <?= $toggle ?>
 
     <ul class="dropdown-menu">
