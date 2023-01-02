@@ -4,6 +4,7 @@ namespace ByTIC\AdminBase\Utility;
 
 use ByTIC\AdminBase\Library\View\Traits\HasAdminBaseFolderTrait;
 use ByTIC\AdminBase\Screen\Layouts\Dto\BaseLayout;
+use Nip\View\Template\Template;
 use Nip\View\View;
 
 /**
@@ -56,5 +57,16 @@ class ViewHelper
             ViewHelper::registerFrontendPaths($instance);
         }
         return $instance;
+    }
+
+    public static function detectView($view): View|null
+    {
+        if ($view instanceof View) {
+            return $view;
+        }
+        if ($view instanceof Template) {
+            return $view->getEngine();
+        }
+        return null;
     }
 }

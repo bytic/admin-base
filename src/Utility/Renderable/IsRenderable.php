@@ -47,7 +47,7 @@ trait IsRenderable
      */
     public function withView($view): self
     {
-        $this->viewEngine = $view;
+        $this->viewEngine = ViewHelper::detectView($view);
         return $this;
     }
 
