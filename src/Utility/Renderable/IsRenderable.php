@@ -3,6 +3,7 @@
 namespace ByTIC\AdminBase\Utility\Renderable;
 
 use ByTIC\AdminBase\Utility\ViewHelper;
+use Nip\View\Template\Template;
 use Nip\View\View;
 
 /**
@@ -47,7 +48,7 @@ trait IsRenderable
      */
     public function withView($view): self
     {
-        $this->viewEngine = ViewHelper::detectView($view);
+        $this->viewEngine = $view;
         return $this;
     }
 
@@ -76,7 +77,7 @@ trait IsRenderable
         return $this->renderEngine()->load($template, $variables, true);
     }
 
-    protected function renderEngine(): ?View
+    protected function renderEngine():  View|Template
     {
         if ($this->viewEngine === null) {
             $this->viewEngine = $this->renderEngineGenerate();
@@ -84,7 +85,7 @@ trait IsRenderable
         return $this->viewEngine;
     }
 
-    protected function renderEngineGenerate(): View
+    protected function renderEngineGenerate(): View|Template
     {
         return ViewHelper::view();
     }
