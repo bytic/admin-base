@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/functions";
+@import "~bytic-bootstrap-materialize/scss/functions";
 
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {

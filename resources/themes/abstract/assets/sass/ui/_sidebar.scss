@@ -661,7 +661,7 @@
   @include box-shadow(rgba(9, 30, 66, 0.08) 0px 0px 0px 1px, rgba(9, 30, 66, 0.08) 0px 2px 4px 1px);
   border: 0;
   padding: 2px;
-  z-index: $sidebar-zindex +10;
+  z-index: $sidebar-zindex + 10;
   opacity: 0;
 
   &:hover {
