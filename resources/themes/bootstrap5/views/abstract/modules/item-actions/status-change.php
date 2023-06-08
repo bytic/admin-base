@@ -1,16 +1,21 @@
+<?php
+$item = $item ?? $this->item;
+$statuses = $statuses ?? $this->statuses;
+$currentStatus = method_exists($item, 'getStatusObject') ? $item->getStatusObject() : $item->getStatus();
+?>
 <div class="dropdown">
-    <button type="button" class="btn btn-sm btn-<?php echo $item->getStatus()->getColorClass(); ?> dropdown-toggle"
+    <button type="button" class="btn btn-sm btn-<?= $currentStatus->getColorClass(); ?> dropdown-toggle"
             id="changeStatus<?= $item->id; ?>" data-bs-toggle="dropdown" aria-expanded="false"
-            style="<?php echo $item->getStatus()->getColorCSS(); ?>">
-        <?php echo $item->getStatus()->getLabel(); ?>
+            style="<?= $currentStatus->getColorCSS(); ?>">
+        <?= $currentStatus->getLabel(); ?>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <?php foreach ($statuses as $status) { ?>
-            <?php if ($status->getName() != $item->getStatus()->getName()) { ?>
+            <?php if ($status->getName() != $currentStatus->getName()) { ?>
                 <li>
-                    <a href="<?php echo $item->getChangeStatusURL(['status' => $status->getName()]); ?>"
+                    <a href="<?= $item->getChangeStatusURL(['status' => $status->getName()]); ?>"
                        class="dropdown-item">
-                        <?php echo $status->getLabel(); ?>
+                        <?= $status->getLabel(); ?>
                     </a>
                 </li>
             <?php } ?>
