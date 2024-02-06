@@ -9,7 +9,7 @@ if (!$this->existPath("/" . $this->controller . "/modules/filters")) {
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">
-            <?php echo translator()->trans('filters'); ?>
+            <?= translator()->trans('filters'); ?>
         </h4>
     </div>
 

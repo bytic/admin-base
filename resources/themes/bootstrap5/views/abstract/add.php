@@ -9,6 +9,6 @@ if (!$this->existPath($viewFile)) {
 
 <div class="row">
     <div class="col-xl-8 col-lg-10">
-        <?php echo $this->load($viewFile, ["action" => $this->modelManager->getAddURL()]); ?>
+        <?= $this->load($viewFile, ["action" => $this->modelManager->getAddURL()]); ?>
     </div>
 </div>

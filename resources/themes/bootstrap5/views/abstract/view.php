@@ -15,7 +15,7 @@ $delete = $delete ?? true;
         <h4 class="card-title">
             <?= $this->title; ?>
             <?php if ($this->existPath("/" . $this->controller . "/modules/item/title-after")) { ?>
-                <?php echo $this->load("/" . $this->controller . "/modules/item/title-after"); ?>
+                <?= $this->load("/" . $this->controller . "/modules/item/title-after"); ?>
             <?php } ?>
         </h4>
 
@@ -25,7 +25,7 @@ $delete = $delete ?? true;
                       onsubmit="return confirm('<?php echo translator()->trans('general.messages.confirm'); ?>');">
                     <button type="submit" class="pull-right btn btn-danger btn-xs">
                         <span class="glyphicon glyphicon-white glyphicon-remove"></span>
-                        <?php echo translator()->trans('delete'); ?>
+                        <?= translator()->trans('delete'); ?>
                     </button>
                 </form>
             </div>
@@ -33,17 +33,17 @@ $delete = $delete ?? true;
     </div>
 
     <div class="card-body">
-        <?php echo $this->Flash()->render($this->controller); ?>
+        <?= $this->Flash()->render($this->controller); ?>
 
         <?php if ($this->existPath("/" . $this->controller . "/modules/item/right-buttons")) { ?>
             <div class="pull-right delete">
                 <div class="buttons inline right">
-                    <?php echo $this->load("/" . $this->controller . "/modules/item/right-buttons"); ?>
+                    <?= $this->load("/" . $this->controller . "/modules/item/right-buttons"); ?>
                 </div>
             </div>
         <?php } ?>
 
-        <?php echo $this->renderTabControls(); ?>
-        <?php echo $this->renderTabContents(); ?>
+        <?= $this->renderTabControls(); ?>
+        <?= $this->renderTabContents(); ?>
     </div>
 </div>

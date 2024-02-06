@@ -14,7 +14,7 @@ $actions = ActionsCollectionsFactory::from($actions ?? []);
     <div>
         <?php if ($this->existPath("/" . $this->controller . "/modules/right-buttons")) { ?>
             <div class="right" style="margin-bottom:20px;">
-                <?php echo $this->load("/" . $this->controller . "/modules/right-buttons"); ?>
+                <?= $this->load("/" . $this->controller . "/modules/right-buttons"); ?>
             </div>
         <?php } ?>
 

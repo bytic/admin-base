@@ -22,7 +22,7 @@ $delete = !isset($delete) || $delete;
     </div>
 <?php } ?>
 
-<?php echo $this->Flash()->render($this->controller); ?>
+<?= $this->Flash()->render($this->controller); ?>
 
 <?php
 $viewFile = "/" . $this->controller . "/modules/item-form";
@@ -33,6 +33,6 @@ if (!$this->existPath($viewFile)) {
 
 <div class="row">
     <div class="col col-xl-8 col-lg-10">
-        <?php echo $this->load($viewFile); ?>
+        <?= $this->load($viewFile); ?>
     </div>
 </div>
