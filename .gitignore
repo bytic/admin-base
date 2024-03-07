@@ -3,6 +3,11 @@
 
 .phpunit.result.cache
 
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
+
 dist
 
 node_modules
