@@ -30,7 +30,7 @@
     "bytic/view": "^0.9|^1.0|^2.0",
     "bytic/orm": "^0.9|^1.0|^2.0",
     "bytic/html-helpers": "^1.0.8|^2.0",
-    "bytic/seo-meta": "^1.0|^2.0",
+    "bytic/seo-meta": "^1.0|^2.0"
   },
   "require-dev": {
     "bytic/translation": "^0.9|^1.0|^2.0",
