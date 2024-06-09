@@ -18,6 +18,8 @@ class CardStats extends Card
 {
     use HasData;
 
+    public const DATA_VARIATION = 'percentage';
+
     public const VIEW = ViewHelper::VIEW_NAMESPACE . '::/admin-widgets/card_stats';
 
     /**
@@ -36,6 +38,15 @@ class CardStats extends Card
     public function setUrl($url): self
     {
         return $this->setDataItem('url', $url);
+    }
+
+    /**
+     * @param $percentage
+     * @return self
+     */
+    public function setVariation($percentage): self
+    {
+        return $this->setDataItem(self::DATA_VARIATION, $percentage);
     }
 
     protected function renderVariables(): array
