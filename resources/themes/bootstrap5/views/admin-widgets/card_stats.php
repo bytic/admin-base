@@ -45,6 +45,8 @@ if ($wrapBody) {
 }
 $percentage = $data->get(CardStats::DATA_VARIATION, false);
 $percentage = is_float($percentage) ? round($percentage, 2) : $percentage;
+
+$valueHelp = $data->get(CardStats::DATA_VALUE_HELP, false);
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <div class="card-header">
@@ -61,16 +63,32 @@ $percentage = is_float($percentage) ? round($percentage, 2) : $percentage;
                 <?= $title ?>
             </a>
         </h6>
-        <h3 class="fw-bold py-1 m-0 fs-1">
-            <?= $data->get('value'); ?>
-
+        <div class="d-flex gap-2">
+            <h3 class="fw-bold py-1 m-0 fs-1">
+            <span class="value">
+                <?= $data->get('value'); ?>
+            </span>
+            </h3>
             <?php if ($percentage) { ?>
-                <span class="text-nowrap fs-6 text-<?= $percentage > 0 ? 'success' : 'danger'; ?>">
-                    <i class="fa fa-arrow-<?= $percentage > 0 ? 'up' : 'down'; ?>"></i>
-                    <?= $percentage; ?>%
-                </span>
+                <div style="">
+                    <span class="d-inline text-nowrap badge fs-6 bg-<?= $percentage > 0 ? 'success' : 'danger'; ?> "
+                          style="--bs-bg-opacity: .5;">
+                        <small>
+
+                        <i class="fa fa-arrow-<?= $percentage > 0 ? 'up' : 'down'; ?>"></i>
+                        <?= $percentage; ?>%
+                        </small>
+                    </span>
+                </div>
             <?php } ?>
-        </h3>
+        </div>
+        <?php if ($valueHelp) { ?>
+                <div>
+                    <small class="text-muted">
+                        <?= $valueHelp ?>
+                    </small>
+                </div>
+        <?php } ?>
         <?= $content; ?>
     </div>
 </div>
