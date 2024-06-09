@@ -5,6 +5,7 @@
 
 /** @var Stringable|string $icon */
 
+use ByTIC\AdminBase\Widgets\Cards\CardStats;
 use ByTIC\Html\Html\HtmlBuilder;
 use Nip\Collections\Collection;
 
@@ -42,6 +43,8 @@ $wrapBody = $wrapBody ?? true;
 if ($wrapBody) {
     $attributes_body['class'][] = 'card-body';
 }
+$percentage = $data->get(CardStats::DATA_VARIATION, false);
+$percentage = is_float($percentage) ? round($percentage, 2) : $percentage;
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <div class="card-header">
@@ -60,6 +63,13 @@ if ($wrapBody) {
         </h6>
         <h3 class="fw-bold py-1 m-0 fs-1">
             <?= $data->get('value'); ?>
+
+            <?php if ($percentage) { ?>
+                <span class="text-nowrap fs-6 text-<?= $percentage > 0 ? 'success' : 'danger'; ?>">
+                    <i class="fa fa-arrow-<?= $percentage > 0 ? 'up' : 'down'; ?>"></i>
+                    <?= $percentage; ?>%
+                </span>
+            <?php } ?>
         </h3>
         <?= $content; ?>
     </div>
