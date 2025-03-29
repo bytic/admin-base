@@ -2,7 +2,7 @@ import 'jquery-ui/ui/widgets/sortable.js';
 import 'jquery-ui/ui/widgets/datepicker';
 import 'jquery-ui/ui/widgets/autocomplete.js';
 
-!function ($) {
+document.addEventListener("DOMContentLoaded", function() {
     $.widget("custom.catcomplete", $.ui.autocomplete, {
         _create: function () {
             this._super();
@@ -24,4 +24,4 @@ import 'jquery-ui/ui/widgets/autocomplete.js';
             });
         }
     });
-}(window.jQuery);
+});

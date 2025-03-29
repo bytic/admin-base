@@ -15,7 +15,7 @@ $description = $description ?? null;
 <div class="card card-stats mb-4 mb-xl-0 <?= $cardClasses; ?>">
     <div class="card-header">
         <h5 class="card-title">
-            <?php echo $title; ?>
+            <?= $title; ?>
         </h5>
     </div>
     <div class="card-body">
