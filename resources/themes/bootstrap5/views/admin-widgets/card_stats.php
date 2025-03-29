@@ -49,9 +49,6 @@ $percentage = is_float($percentage) ? round($percentage, 2) : $percentage;
 $valueHelp = $data->get(CardStats::DATA_VALUE_HELP, false);
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
-    <div class="card-header">
-
-    </div>
     <div id="<?= $cardId . '-content'; ?>" <?= HtmlBuilder::buildAttributes($attributes_body) ?>>
         <?php if ($icon) { ?>
             <div class="float-end badge fs-6 p-3 text-bg-<?= $theme ?>" style="--bs-bg-opacity: .3;">
@@ -64,14 +61,12 @@ $valueHelp = $data->get(CardStats::DATA_VALUE_HELP, false);
             </a>
         </h6>
         <div class="d-flex gap-2">
-            <h3 class="fw-bold py-1 m-0 fs-1">
+            <h3 class="fw-bold py-1 m-0 fs-1 position-relative">
             <span class="value">
                 <?= $data->get('value'); ?>
             </span>
-            </h3>
-            <?php if ($percentage) { ?>
-                <div style="">
-                    <span class="d-inline text-nowrap badge fs-6 bg-<?= $percentage > 0 ? 'success' : 'danger'; ?> "
+                <?php if ($percentage) { ?>
+                    <span class="text-nowrap ms-2 badge position-absolute top-0 start-100 fs-6 bg-<?= $percentage > 0 ? 'success' : 'danger'; ?> "
                           style="--bs-bg-opacity: .5;">
                         <small>
 
@@ -79,15 +74,15 @@ $valueHelp = $data->get(CardStats::DATA_VALUE_HELP, false);
                         <?= $percentage; ?>%
                         </small>
                     </span>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </h3>
         </div>
         <?php if ($valueHelp) { ?>
-                <div>
-                    <small class="text-muted">
-                        <?= $valueHelp ?>
-                    </small>
-                </div>
+            <div>
+                <small class="text-muted">
+                    <?= $valueHelp ?>
+                </small>
+            </div>
         <?php } ?>
         <?= $content; ?>
     </div>
