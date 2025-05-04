@@ -2,7 +2,6 @@
 
 namespace ByTIC\AdminBase\Utility\Behaviours;
 
-use ByTIC\AdminBase\Widgets\Cards\CardStats;
 use Nip\Collections\Collection;
 
 /**
@@ -11,6 +10,13 @@ use Nip\Collections\Collection;
 trait HasData
 {
     protected Collection|null $data = null;
+
+    public function setDataFromArray(array $data): void
+    {
+        foreach ($data as $k => $v) {
+            $this->setDataItem($k, $v);
+        }
+    }
 
     /**
      * @param string $key

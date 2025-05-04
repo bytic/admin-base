@@ -81,29 +81,36 @@ class ActionsFactory
     {
         if (isset($data['attributes'])) {
             $action->setHtmlAttributes($data['attributes']);
+            unset($data['attributes']);
         }
 
         if (isset($data['name'])) {
             $action->setName($data['name']);
             $action->setLabel($data['name']);
+            unset($data['name']);
         }
 
         if (isset($data['label'])) {
             $action->setLabel($data['label']);
+            unset($data['label']);
         }
 
         if (isset($data['class'])) {
             $action->addHtmlClass($data['class']);
+            unset($data['class']);
         }
 
         if (isset($data['url'])) {
             $action->setUrl($data['url']);
+            unset($data['url']);
         }
         if (isset($data['href'])) {
             $action->setUrl($data['href']);
+            unset($data['href']);
         }
 
         $action->setIcon(Icons::for($data['icon'] ?? ''));
+        unset($data['icon']);
 
         if (isset($data['submenus']) && is_array($data['submenus'])) {
             if ($action instanceof AbstractParentAction) {
@@ -112,7 +119,11 @@ class ActionsFactory
                     $action->actions()->add($subAction);
                 }
             }
+        }
+        unset($data['submenus']);
 
+        if (is_array($data) && count($data)) {
+            $action->setDataFromArray($data);
         }
 
         return $action;

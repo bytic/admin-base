@@ -72,6 +72,7 @@ class CardTest extends AbstractTest
     protected function basicCard()
     {
         return Card::make()
+            ->setId('my-card')
             ->withTitle('My Title')
             ->withContent('My Content');
     }
