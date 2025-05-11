@@ -3,7 +3,7 @@
 use ByTIC\Icons\Icons;
 use function Nip\Router\route;
 
-$sections = $this->sections ?? false;
+$sections = $this->get('sections') ?? false;
 if (!$sections) {
     return;
 }
@@ -18,13 +18,13 @@ if (!$sections) {
         <div class="dropdown-menu dropdown-menu-md-end" aria-labelledby="admin-sections">
             <?php foreach ($sections as $section) { ?>
                 <a class="dropdown-item" target="_blank"
-                   href="<?php echo $section->getURL(route(request()->getModuleName())); ?>"
+                   href="<?= $section->getURL(route(request()->getModuleName())); ?>"
                 >
                     <span class="section-icon"
                           style="<?php echo ($section->color) ? 'background-color:' . $section->color : ''; ?>">
-                        <?php echo $section->printIcon(); ?>
+                        <?= $section->printIcon(); ?>
                     </span>
-                    <?php echo $section->getName(); ?>
+                    <?= $section->getName(); ?>
                 </a>
             <?php } ?>
         </div>
