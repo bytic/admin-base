@@ -50,7 +50,7 @@
   border-radius: $card-border-radius;
   box-shadow: $card-shadow;
   border: 1px solid $border-color;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
 
   &:hover {
     box-shadow: $card-shadow-hover;
