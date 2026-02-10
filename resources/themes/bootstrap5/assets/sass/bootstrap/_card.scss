@@ -44,3 +44,25 @@
     }
   }
 }
+
+// Modern card enhancements
+.card {
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  border: 1px solid $border-color;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: $card-shadow-hover;
+  }
+
+  .card-header {
+    border-bottom: 1px solid $border-color;
+    background-color: $white;
+  }
+
+  .card-footer {
+    border-top: 1px solid $border-color;
+    background-color: $gray-50;
+  }
+}
