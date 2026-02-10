@@ -1,0 +1,37 @@
+// Modern color palette for admin interface
+
+// Primary colors - Modern blue-purple gradient inspired palette
+$primary:       #4f46e5 !default; // Modern indigo
+$secondary:     #6b7280 !default; // Neutral gray
+$success:       #10b981 !default; // Modern emerald
+$info:          #3b82f6 !default; // Modern blue
+$warning:       #f59e0b !default; // Modern amber
+$danger:        #ef4444 !default; // Modern red
+$light:         #f9fafb !default; // Very light gray
+$dark:          #1f2937 !default; // Modern dark gray
+
+// Extended grays for modern UI
+$gray-50:       #f9fafb !default;
+$gray-100:      #f3f4f6 !default;
+$gray-200:      #e5e7eb !default;
+$gray-300:      #d1d5db !default;
+$gray-400:      #9ca3af !default;
+$gray-500:      #6b7280 !default;
+$gray-600:      #4b5563 !default;
+$gray-700:      #374151 !default;
+$gray-800:      #1f2937 !default;
+$gray-900:      #111827 !default;
+
+// Accent colors for modern design
+$purple:        #8b5cf6 !default;
+$pink:          #ec4899 !default;
+$teal:          #14b8a6 !default;
+$cyan:          #06b6d4 !default;
+
+// Border and shadow colors
+$border-color:  $gray-200 !default;
+$border-color-translucent: rgba(0, 0, 0, 0.075) !default;
+
+// Background colors
+$body-bg:       $gray-50 !default;
+$body-color:    $gray-900 !default;
