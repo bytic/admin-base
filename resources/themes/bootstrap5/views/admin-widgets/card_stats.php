@@ -20,6 +20,7 @@ $data = $data ?? [];
 $cardId = $attributes['id'] ?? 'card-' . uniqid();
 $attributes['class'] = $attributes['class'] ?? [];
 $attributes['class'][] = 'card';
+$attributes['class'][] = 'card-stats';
 if ($theme) {
     $attributes['class'][] = 'border-' . $theme;
 }
@@ -50,38 +51,32 @@ $valueHelp = $data->get(CardStats::DATA_VALUE_HELP, false);
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <div id="<?= $cardId . '-content'; ?>" <?= HtmlBuilder::buildAttributes($attributes_body) ?>>
-        <?php if ($icon) { ?>
-            <div class="float-end badge fs-6 p-3 text-bg-<?= $theme ?>" style="--bs-bg-opacity: .3;">
-                <?= $icon ?>
+        <div class="d-flex justify-content-between align-items-start">
+            <div class="flex-grow-1">
+                <p class="text-uppercase fw-semibold text-muted small mb-1">
+                    <a href="<?= $data->get('url', '#'); ?>" class="text-decoration-none link-secondary">
+                        <?= $title ?>
+                    </a>
+                </p>
+                <h3 class="fw-bold mb-0"><?= $data->get('value'); ?></h3>
             </div>
-        <?php } ?>
-        <h6 class="card-subtitle text-uppercase fw-bold">
-            <a href="<?= $data->get('url', '#'); ?>">
-                <?= $title ?>
-            </a>
-        </h6>
-        <div class="d-flex gap-2">
-            <h3 class="fw-bold py-1 m-0 fs-1 position-relative">
-            <span class="value">
-                <?= $data->get('value'); ?>
-            </span>
+            <?php if ($icon) { ?>
+                <div class="rounded-3 p-3 text-<?= $theme ?: 'primary' ?>" style="background-color: rgba(var(--bs-<?= $theme ?: 'primary' ?>-rgb), .1);">
+                    <?= $icon ?>
+                </div>
+            <?php } ?>
+        </div>
+        <?php if ($percentage || $valueHelp) { ?>
+            <div class="d-flex align-items-center gap-2 mt-3">
                 <?php if ($percentage) { ?>
-                    <span class="text-nowrap ms-2 badge position-absolute top-0 start-100 fs-6 bg-<?= $percentage > 0 ? 'success' : 'danger'; ?> "
-                          style="--bs-bg-opacity: .5;">
-                        <small>
-
+                    <span class="badge rounded-pill text-bg-<?= $percentage > 0 ? 'success' : 'danger'; ?>">
                         <i class="fa fa-arrow-<?= $percentage > 0 ? 'up' : 'down'; ?>"></i>
                         <?= $percentage; ?>%
-                        </small>
                     </span>
                 <?php } ?>
-            </h3>
-        </div>
-        <?php if ($valueHelp) { ?>
-            <div>
-                <small class="text-muted">
-                    <?= $valueHelp ?>
-                </small>
+                <?php if ($valueHelp) { ?>
+                    <small class="text-muted"><?= $valueHelp ?></small>
+                <?php } ?>
             </div>
         <?php } ?>
         <?= $content; ?>

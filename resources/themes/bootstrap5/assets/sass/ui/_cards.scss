@@ -7,8 +7,20 @@
   @include cards-variant($name, $color);
 }
 
-.card-stats .card-body {
-  padding: 1rem 1.5rem;
+.card-stats {
+  .card-body {
+    padding: 1rem 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+  }
 }
 
 // Card table
