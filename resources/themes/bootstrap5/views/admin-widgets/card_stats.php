@@ -20,6 +20,7 @@ $data = $data ?? [];
 $cardId = $attributes['id'] ?? 'card-' . uniqid();
 $attributes['class'] = $attributes['class'] ?? [];
 $attributes['class'][] = 'card';
+$attributes['class'][] = 'card-stats';
 if ($theme) {
     $attributes['class'][] = 'border-' . $theme;
 }
@@ -43,45 +44,43 @@ $wrapBody = $wrapBody ?? true;
 if ($wrapBody) {
     $attributes_body['class'][] = 'card-body';
 }
+$url = $data->get('url', false);
 $percentage = $data->get(CardStats::DATA_VARIATION, false);
 $percentage = is_float($percentage) ? round($percentage, 2) : $percentage;
 
 $valueHelp = $data->get(CardStats::DATA_VALUE_HELP, false);
+$iconTheme = $theme ?: 'primary';
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <div id="<?= $cardId . '-content'; ?>" <?= HtmlBuilder::buildAttributes($attributes_body) ?>>
-        <?php if ($icon) { ?>
-            <div class="float-end badge fs-6 p-3 text-bg-<?= $theme ?>" style="--bs-bg-opacity: .3;">
-                <?= $icon ?>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="flex-grow-1">
+                <p class="text-uppercase fw-semibold text-muted small mb-1">
+                    <?php if ($url) { ?>
+                        <a href="<?= $url ?>" class="text-decoration-none link-secondary"><?= $title ?></a>
+                    <?php } else { ?>
+                        <?= $title ?>
+                    <?php } ?>
+                </p>
+                <h3 class="fw-bold mb-0"><?= $data->get('value'); ?></h3>
             </div>
-        <?php } ?>
-        <h6 class="card-subtitle text-uppercase fw-bold">
-            <a href="<?= $data->get('url', '#'); ?>">
-                <?= $title ?>
-            </a>
-        </h6>
-        <div class="d-flex gap-2">
-            <h3 class="fw-bold py-1 m-0 fs-1 position-relative">
-            <span class="value">
-                <?= $data->get('value'); ?>
-            </span>
-                <?php if ($percentage) { ?>
-                    <span class="text-nowrap ms-2 badge position-absolute top-0 start-100 fs-6 bg-<?= $percentage > 0 ? 'success' : 'danger'; ?> "
-                          style="--bs-bg-opacity: .5;">
-                        <small>
-
-                        <i class="fa fa-arrow-<?= $percentage > 0 ? 'up' : 'down'; ?>"></i>
-                        <?= $percentage; ?>%
-                        </small>
+            <?php if ($icon) { ?>
+                <div class="card-stats-icon rounded-3 text-<?= $iconTheme ?>" style="background-color: rgba(var(--bs-<?= $iconTheme ?>-rgb), .1);">
+                    <?= $icon ?>
+                </div>
+            <?php } ?>
+        </div>
+        <?php if ($percentage !== false || $valueHelp) { ?>
+            <div class="d-flex align-items-center gap-2 mt-3 pt-3 border-top">
+                <?php if ($percentage !== false) { ?>
+                    <span class="badge rounded-pill text-bg-<?= $percentage > 0 ? 'success' : ($percentage < 0 ? 'danger' : 'secondary'); ?>">
+                        <?php if ($percentage > 0) { ?><i class="fa fa-arrow-up"></i><?php } elseif ($percentage < 0) { ?><i class="fa fa-arrow-down"></i><?php } ?>
+                        <?= abs($percentage); ?>%
                     </span>
                 <?php } ?>
-            </h3>
-        </div>
-        <?php if ($valueHelp) { ?>
-            <div>
-                <small class="text-muted">
-                    <?= $valueHelp ?>
-                </small>
+                <?php if ($valueHelp) { ?>
+                    <small class="text-muted"><?= $valueHelp ?></small>
+                <?php } ?>
             </div>
         <?php } ?>
         <?= $content; ?>
