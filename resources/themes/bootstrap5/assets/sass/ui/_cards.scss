@@ -9,7 +9,7 @@
 
 .card-stats {
   .card-body {
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
   }
 
   h3 {
@@ -36,6 +36,13 @@
   &:hover .card-stats-icon {
     transform: scale(1.1);
     opacity: 0.85;
+  }
+
+  // Themed border accent: show a prominent left border when a theme color is set
+  @each $name, $color in $theme-colors {
+    &.border-#{$name} {
+      border-left-width: 4px;
+    }
   }
 }
 
