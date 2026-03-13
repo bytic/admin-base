@@ -62,7 +62,7 @@ $iconTheme = $theme ?: 'primary';
                         <?= $title ?>
                     <?php } ?>
                 </p>
-                <h3 class="fw-bold mb-0"><?= $data->get('value'); ?></h3>
+                <h3 class="fw-bold mb-0<?= $theme ? ' text-' . $theme : '' ?>"><?= $data->get('value'); ?></h3>
             </div>
             <?php if ($icon) { ?>
                 <div class="card-stats-icon rounded-3 text-<?= $iconTheme ?>" style="background-color: rgba(var(--bs-<?= $iconTheme ?>-rgb), .1);">
