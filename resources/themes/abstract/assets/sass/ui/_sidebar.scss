@@ -9,10 +9,12 @@
   z-index: $sidebar-zindex;
 
   @include transform(translateZ(0));
+  @include transition(left .25s ease, width .25s ease);
 
   @include media-breakpoint-down(sm) {
     left: $sidebar-width * -1;
     z-index: $header-zindex + 1;
+    @include box-shadow(none);
   }
 
   & .nav {
@@ -24,27 +26,30 @@
       @include clearfix();
 
       & > a {
-        padding: $nav-link-padding-y ($nav-link-padding-y * 2);
-        color: rgba($white, .6);
+        padding: rem(10px) rem(20px);
+        color: rgba($white, .65);
         display: block;
         text-decoration: none;
-
-        @include clearfix();
+        min-height: rem(44px);
+        @include display-flex();
+        @include flex-align(center);
+        border-left: 3px solid transparent;
+        @include transition(background .15s ease, color .15s ease, border-color .15s ease);
 
         & i {
           float: left;
           margin-right: rem(10px);
-          width: rem(14px);
+          width: rem(18px);
           text-align: center;
           line-height: rem(20px);
           font-size: rem(14px);
+          flex-shrink: 0;
 
           &[class^="ion-"] {
             margin-right: rem(8px);
             width: rem(18px);
             font-size: rem(18px);
             margin-left: rem(-2px);
-
           }
         }
 
@@ -52,12 +57,13 @@
           float: left;
           margin-right: rem(10px);
           margin-top: rem(3px);
-          width: rem(14px);
-          height: rem(14px);
+          width: rem(18px);
+          height: rem(18px);
           overflow: hidden;
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
+          flex-shrink: 0;
 
           @include border-radius($border-radius);
           @include display-flex();
@@ -72,10 +78,12 @@
         }
 
         & .badge {
-          padding: rem(5px) rem(8px);
-          background: darken($sidebar-color, 30%);
+          padding: rem(3px) rem(7px);
+          background: rgba($white, .15);
           font-weight: 600;
           font-size: rem(10px);
+          margin-left: auto;
+          border-radius: rem(10px);
         }
 
         & .label {
@@ -91,15 +99,18 @@
         }
 
         & > span {
-          @include display-flex();
-          @include flex(1);
-          @include flex-wrap(wrap);
+          flex: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         &:hover,
         &:focus {
-          background: darken($sidebar-color, 10%);
+          background: rgba($white, .07);
           color: $white;
+          border-left-color: rgba($white, .3);
+          text-decoration: none;
         }
       }
 
@@ -108,36 +119,19 @@
           position: relative;
           z-index: 10;
           color: $white;
-          background: darken($dark, 4%);
+          background: rgba($primary, .25);
+          border-left-color: $primary;
 
           @include gradient-enabled {
-            @include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
+            background: rgba($primary, .2);
           }
 
           & i {
             color: $primary;
-
-            @include gradient-enabled {
-              color: rgba($black, .65);
-            }
-          }
-
-          & .caret {
-            @include gradient-enabled {
-              color: rgba($black, .5);
-            }
           }
 
           & .badge {
-            background: rgba($black, .65);
-          }
-
-          & .label {
-            &.label-theme {
-              @include gradient-enabled {
-                background: rgba($black, .65);
-              }
-            }
+            background: rgba($primary, .4);
           }
         }
       }
@@ -146,7 +140,7 @@
       &.nav-profile {
         padding: rem(20px);
         color: $white;
-        background: darken($sidebar-color, 30%);
+        background: rgba($black, .2);
         overflow: hidden;
 
         & a {
@@ -159,6 +153,7 @@
           display: block;
           color: $white;
           font-weight: 600;
+          border-left: none;
 
           &:hover {
             & .cover {
@@ -172,8 +167,8 @@
         }
 
         & .image {
-          width: rem(34px);
-          height: rem(34px);
+          width: rem(36px);
+          height: rem(36px);
           margin-bottom: rem(10px);
           overflow: hidden;
           position: relative;
@@ -224,9 +219,6 @@
           left: 0;
           right: 0;
           bottom: 0;
-          //background: url('images/cover-sidebar-user.jpg');
-          //background-repeat: no-repeat;
-          //background-size: cover;
 
           &.with-shadow {
             &:before {
@@ -240,31 +232,6 @@
 
               @include transition(all .2s linear);
             }
-          }
-        }
-      }
-
-      &.nav-search {
-        padding: rem(20px);
-
-        & + li {
-          padding-top: 0;
-        }
-
-        & .form-control {
-          background: none;
-          border: none;
-          padding-left: 0;
-          padding-right: 0;
-          border-bottom: 1px solid rgba($white, .2);
-          color: $white;
-
-          @include border-radius(0);
-
-          &:focus {
-            border-color: rgba($white, .5);
-
-            @include box-shadow(none);
           }
         }
       }
@@ -306,7 +273,7 @@
 
     &.nav-profile {
       padding: rem(5px) 0;
-      border-bottom: 1px solid darken($sidebar-color, 30%);
+      border-bottom: 1px solid rgba($white, .1);
       display: none;
 
       &.active {
@@ -319,13 +286,14 @@
     & > a {
       & .caret {
         display: block;
-        float: right;
+        flex-shrink: 0;
         width: rem(20px);
         height: rem(20px);
         line-height: rem(20px);
         text-align: center;
         font-size: rem(11px);
         border: none;
+        margin-left: auto;
 
 
         &:before {
@@ -348,7 +316,7 @@
     &.expanding,
     &.expand {
       & > a {
-        background: darken($sidebar-color, 10%);
+        background: rgba($white, .07);
 
         & .caret {
           &:before {
@@ -373,36 +341,42 @@
 
   & .sub-menu {
     list-style-type: none;
-    padding: rem(5px) 0 rem(10px) rem(39px);
+    padding: rem(4px) 0 rem(8px) rem(48px);
     margin: 0;
     position: relative;
     display: none;
 
-    background: darken($sidebar-color, 15%);
+    background: rgba($black, .15);
 
     & > li {
       position: relative;
 
       & > a {
-        padding: rem(3px) rem(20px) rem(3px) rem(15px);
+        padding: rem(6px) rem(20px) rem(6px) rem(15px);
         display: block;
         color: rgba($white, .6);
         text-decoration: none;
         position: relative;
+        min-height: rem(36px);
+        @include display-flex();
+        @include flex-align(center);
+        @include transition(color .15s ease);
 
         &:hover,
         &:focus {
           color: $white;
+          text-decoration: none;
         }
 
         &:after {
           content: '';
           position: absolute;
           left: rem(-11px);
-          top: rem(11px);
+          top: 50%;
+          transform: translateY(-50%);
           width: rem(11px);
           height: rem(2px);
-          background: darken($dark, 4%);
+          background: rgba($white, .2);
         }
       }
 
@@ -413,7 +387,7 @@
         top: 0;
         bottom: 0;
         width: rem(2px);
-        background: darken($dark, 4%);
+        background: rgba($white, .15);
       }
 
       &:after {
@@ -422,13 +396,13 @@
         left: 0;
         width: rem(6px);
         height: rem(6px);
-        border: 1px solid rgba($white, .6);
-        top: rem(11px);
-        margin-top: rem(-2px);
+        border: 1px solid rgba($white, .4);
+        top: 50%;
+        margin-top: rem(-3px);
         z-index: 10;
-        background: $dark;
+        background: darken($sidebar-color, 5%);
 
-        @include border-radius(4px);
+        @include border-radius(50%);
       }
 
       &:first-child {
@@ -451,7 +425,7 @@
       &.has-sub {
         & > a {
           &:before {
-            background: darken($dark, 4%);
+            background: rgba($white, .15);
           }
         }
       }
@@ -463,6 +437,7 @@
 
         &:after {
           border-color: $primary;
+          background: $primary;
         }
       }
     }
@@ -477,7 +452,7 @@
     margin: rem(10px) 0;
     float: right;
     padding: rem(5px) rem(20px) rem(5px) rem(10px) !important;
-    background: darken($dark, 4%);
+    background: rgba($white, .1);
     color: $white;
 
     @include border-radius($border-radius * 5 0 0 $border-radius * 5);
@@ -489,14 +464,14 @@
 
     &:hover,
     &:focus {
-      background: darken($dark, 8%) !important;
+      background: rgba($white, .15) !important;
     }
   }
 
   & .slimScrollDiv {
     & .slimScrollBar {
       &:before {
-        background: rgba($white, .5) !important;
+        background: rgba($white, .3) !important;
       }
     }
   }
@@ -509,8 +484,8 @@
         }
 
         & > a {
-          border-top: 1px solid lighten($dark, 7.5%);
-          border-bottom: 1px solid lighten($dark, 7.5%);
+          border-top: 1px solid rgba($white, .06);
+          border-bottom: 1px solid rgba($white, .06);
         }
 
         &.expanding,
@@ -522,7 +497,7 @@
 
         &.active {
           & > a {
-            border-color: $dark;
+            border-color: transparent;
           }
         }
       }
@@ -607,32 +582,95 @@
 
 .sidebar .nav .nav-header {
   text-transform: uppercase;
-  color: rgba($white, .6);
+  color: rgba($white, .4);
 
-  font-size: .8rem;
-  line-height: .8rem;
-  letter-spacing: .06rem;
-  font-weight: 600;
+  font-size: .7rem;
+  line-height: .7rem;
+  letter-spacing: .08rem;
+  font-weight: 700;
 
-  padding: $nav-link-padding-y ($nav-link-padding-y * 2);
+  padding: rem(16px) rem(20px) rem(6px);
 
   &:not(:first-of-type) {
-    padding-top: ($nav-link-padding-y * 1.5);
-    padding-bottom: ($nav-link-padding-y * .5);
+    padding-top: rem(20px);
   }
 
   > a {
     font-weight: 400;
-    border-top: 1px solid #fff;
+    border-top: 1px solid rgba($white, .1);
 
     &:hover,
     &:focus {
-      background-color: $gray-800;
+      background-color: rgba($white, .07);
     }
   }
 
   ul li a {
     font-size: $font-size-base * 0.8;
+  }
+}
+
+.sidebar-search {
+  padding: rem(12px) rem(16px);
+  border-bottom: 1px solid rgba($white, .08);
+
+  & .sidebar-search-input {
+    position: relative;
+    @include display-flex();
+    @include flex-align(center);
+    background: rgba($white, .08);
+    border-radius: rem(8px);
+    @include transition(background .15s ease);
+
+    &:focus-within {
+      background: rgba($white, .14);
+      box-shadow: 0 0 0 2px rgba($primary, .4);
+    }
+
+    & .sidebar-search-icon {
+      position: absolute;
+      left: rem(10px);
+      color: rgba($white, .45);
+      font-size: rem(12px);
+      pointer-events: none;
+    }
+
+    & .form-control {
+      background: none;
+      border: none;
+      color: $white;
+      padding: rem(8px) rem(30px) rem(8px) rem(30px);
+      font-size: rem(13px);
+      width: 100%;
+      box-shadow: none;
+
+      @include border-radius(rem(8px));
+
+      &::placeholder {
+        color: rgba($white, .4);
+      }
+
+      &:focus {
+        background: none;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+
+    & .sidebar-search-clear {
+      position: absolute;
+      right: rem(8px);
+      background: none;
+      border: none;
+      color: rgba($white, .4);
+      padding: rem(4px);
+      cursor: pointer;
+      line-height: 1;
+
+      &:hover {
+        color: rgba($white, .8);
+      }
+    }
   }
 }
 
@@ -644,10 +682,31 @@
   bottom: 0;
   width: $sidebar-width;
   z-index: $sidebar-zindex - 10;
+  @include transition(left .25s ease, width .25s ease);
 
   @include media-breakpoint-down(sm) {
     left: $sidebar-width * -1;
     z-index: $header-zindex;
+  }
+}
+
+// Mobile overlay backdrop
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($black, .5);
+  z-index: $header-zindex;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  @include media-breakpoint-down(sm) {
+    .page-sidebar-toggled & {
+      display: block;
+    }
   }
 }
 
@@ -662,6 +721,7 @@
   padding: 2px;
   z-index: $sidebar-zindex + 10;
   opacity: 0;
+  @include transition(opacity .2s ease, background-color .15s ease);
 
   &:hover {
     background-color: $primary;

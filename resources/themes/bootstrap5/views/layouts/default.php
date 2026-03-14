@@ -7,6 +7,8 @@
 
     <?= $this->load('/modules/sidebar', ["selected" => $this->section]); ?>
 
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <div id="content" class="content">
         <?= $this->load('/modules/page-header'); ?>
 
