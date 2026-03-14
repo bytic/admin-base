@@ -27,8 +27,25 @@ $selected = $selected ?? null;
     <div data-scrollbar="true" data-height="100%">
         <ul class="nav">
             <?php echo $this->load('header'); ?>
-            <!--            --><?php ////echo $this->load('section'); ?>
         </ul>
+
+        <!-- begin sidebar search -->
+        <div class="sidebar-search">
+            <div class="sidebar-search-input">
+                <i class="fa fa-search sidebar-search-icon"></i>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Search menu..."
+                       data-sidebar-search="true"
+                       autocomplete="off"
+                       aria-label="Search menu">
+                <button type="button" class="sidebar-search-clear d-none" aria-label="Clear search">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <!-- end sidebar search -->
+
         <?php
         foreach ($actionsGroups as $actionsGroup) {
             echo $this->load('/admin-action-groups/sidebar', ['actionsGroup' => $actionsGroup]);

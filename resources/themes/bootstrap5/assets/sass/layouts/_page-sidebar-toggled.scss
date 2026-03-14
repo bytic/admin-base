@@ -22,7 +22,7 @@
     & .sidebar-bg {
 
       left: 0;
-      @include animation(sidebarSlideInLeft .2s);
+      @include box-shadow(rem(4px) 0 rem(24px) rgba($black, .25));
     }
 
     & .sidebar-bg {
@@ -34,8 +34,6 @@
       & .sidebar-bg {
         left: auto;
         right: 0;
-
-        @include animation(sidebarSlideInRight .2s);
       }
 
       &.page-sidebar-minified {
@@ -43,8 +41,6 @@
         & .sidebar-bg {
           left: auto;
           right: 0;
-
-          @include animation(sidebarSlideInRight .2s);
         }
       }
     }
@@ -63,8 +59,6 @@
       &.sidebar-bg {
         position: fixed;
         left: 0;
-
-        @include animation(sidebarSlideInLeft .2s);
       }
     }
   }
