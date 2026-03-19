@@ -6,7 +6,8 @@
     & .nav {
       & > li {
         & > a {
-          padding: rem(10px) rem(20px);
+          padding: rem(10px) 0;
+          justify-content: center;
 
           & span {
             display: none;
@@ -14,14 +15,37 @@
 
           & i {
             margin: 0;
+            float: none;
+            width: auto;
+            font-size: rem(16px);
+          }
+
+          & .badge {
+            display: none;
+          }
+
+          & .caret {
+            display: none;
+          }
+
+          & .icon-img {
+            margin: 0;
           }
         }
       }
 
       & li {
         &.has-sub {
-          & > .sub-menu {
-            display: none !important;
+          // Indicate this item has children with a small dot when icons-only
+          & > a::before {
+            content: '';
+            position: absolute;
+            top: rem(8px);
+            right: rem(8px);
+            width: rem(5px);
+            height: rem(5px);
+            background: rgba($white, .35);
+            border-radius: 50%;
           }
         }
       }
@@ -41,17 +65,6 @@
       display: none;
     }
 
-    & .caret {
-      position: absolute;
-      top: rem(10px);
-
-      right: rem(5px);
-
-      &:before {
-        @include transform(rotate(0deg) !important);
-      }
-    }
-
     & .slimScrollDiv {
       & .slimScrollBar,
       & .slimScrollRail {
@@ -69,6 +82,77 @@
         display: block !important;
       }
     }
+
+    // Hover drawer: expand sidebar to show full menu with labels
+    &.sidebar-drawer-active {
+      width: $sidebar-width;
+      @include box-shadow(4px 0 24px rgba(0, 0, 0, .35));
+
+      & .nav {
+        & > li {
+          & > a {
+            padding: rem(10px) rem(20px);
+            justify-content: flex-start;
+
+            & span {
+              display: block;
+            }
+
+            & i {
+              margin-right: rem(10px);
+              float: left;
+              font-size: rem(14px);
+              width: rem(18px);
+            }
+
+            & .badge {
+              display: inline-block;
+            }
+
+            & .caret {
+              display: block;
+            }
+
+            & .icon-img {
+              margin: 0 rem(10px) 0 0;
+            }
+          }
+        }
+
+        & li {
+          &.has-sub {
+            & > a::before {
+              display: none;
+            }
+          }
+        }
+      }
+
+      & .nav-profile {
+        display: block;
+
+        &.expand {
+          display: block !important;
+        }
+      }
+
+      & .nav-header,
+      & .sidebar-search {
+        display: block;
+      }
+
+      & .slimScrollDiv {
+        & .slimScrollBar,
+        & .slimScrollRail {
+          display: block !important;
+        }
+      }
+    }
+  }
+
+  // Sub-menus only force-hidden when drawer is NOT active (allows JS to control when drawer is open)
+  & .sidebar:not(.sidebar-drawer-active) .nav li.has-sub > .sub-menu {
+    display: none !important;
   }
 
   & .sidebar-bg {
@@ -78,7 +162,6 @@
   & .content {
     margin-left: $sidebar-minified-width;
     @include media-breakpoint-down(sm) {
-
       margin-left: 0;
     }
   }
@@ -86,16 +169,7 @@
   & .footer {
     margin-left: $sidebar-minified-width + $content-padding-x;
     @include media-breakpoint-down(sm) {
-
       margin-left: $content-padding-x-sm;
-    }
-  }
-
-  & .sidebar-minify-btn {
-    & i {
-      &:before {
-        content: '\f101';
-      }
     }
   }
 
@@ -129,41 +203,9 @@
     }
 
     & .sidebar {
-      & .nav {
-        & > li {
-          & > a {
-            & .icon-img,
-            & i {
-              float: none;
-              width: auto;
-
-              margin: 0 0 0 rem(5px);
-            }
-
-            & .caret {
-              position: absolute;
-
-              right: auto;
-              left: rem(3px);
-
-              &:before {
-                content: '\f053';
-              }
-            }
-          }
-
-          & > .sub-menu {
-            padding: rem(10px) rem(30px) rem(10px) 0;
-          }
-        }
-      }
-    }
-
-    & .sidebar-minify-btn {
-      & i {
-        &:before {
-          content: '\f100';
-        }
+      &.sidebar-drawer-active {
+        // Drawer opens to the left for right sidebar
+        @include box-shadow(-4px 0 24px rgba(0, 0, 0, .35));
       }
     }
   }

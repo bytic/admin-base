@@ -101,9 +101,9 @@ var handleSidebarMenu = function () {
 
         var target = $(this).next('.sub-menu');
         var otherMenu = $('.sidebar .nav > li.has-sub > .sub-menu').not(target);
+        var sidebarExpanded = !$('#page-container').hasClass('page-sidebar-minified') || $('#sidebar').hasClass('sidebar-drawer-active');
 
-        if ($('.page-sidebar-minified').length === 0) {
-            $(otherMenu).closest('li').addClass('closing');
+        if (sidebarExpanded) {
             $(otherMenu).slideUp(expandTime, function () {
                 $(otherMenu).closest('li').addClass('closed').removeClass('expand closing');
             });
@@ -129,7 +129,7 @@ var handleSidebarMenu = function () {
         e.stopPropagation();
         e.preventDefault();
 
-        if ($('.page-sidebar-minified').length === 0) {
+        if (!$('#page-container').hasClass('page-sidebar-minified') || $('#sidebar').hasClass('sidebar-drawer-active')) {
             var target = $(this).next('.sub-menu');
             if ($(target).is(':visible')) {
                 $(target).closest('li').addClass('closing').removeClass('expand');
@@ -169,9 +169,6 @@ var handleMobileSidebarToggle = function () {
     $(document).on('click touchstart', function (e) {
         if ($(e.target).closest('.sidebar').length === 0) {
             sidebarProgress = false;
-        }
-        if ($(e.target).closest('#float-sub-menu').length !== 0) {
-            sidebarProgress = true;
         }
 
         if (!e.isPropagationStopped() && sidebarProgress !== true) {
@@ -233,9 +230,11 @@ var handleSidebarMinify = function () {
         var sidebarClass = 'page-sidebar-minified';
         var targetContainer = '#page-container';
         var sidebarMinified = false;
+        var $btn = $(this);
 
         if ($(targetContainer).hasClass(sidebarClass)) {
             $(targetContainer).removeClass(sidebarClass);
+            $btn.attr('aria-expanded', 'true').attr('aria-label', 'Collapse sidebar');
         } else {
             $(targetContainer).addClass(sidebarClass);
 
@@ -244,6 +243,7 @@ var handleSidebarMinify = function () {
                 $('#sidebar [data-scrollbar="true"]').css('overflow-x', 'scroll');
             }
             sidebarMinified = true;
+            $btn.attr('aria-expanded', 'false').attr('aria-label', 'Expand sidebar');
         }
         $(window).trigger('resize');
 
@@ -256,6 +256,7 @@ var handleSidebarMinify = function () {
 
         if (sidebarMinified == 'true') {
             $('#page-container').addClass('page-sidebar-minified');
+            $('[data-click="sidebar-minify"]').attr('aria-expanded', 'false').attr('aria-label', 'Expand sidebar');
         }
     }
 };
@@ -1217,143 +1218,36 @@ var handleSidebarScrollMemory = function () {
 };
 
 
-/* 27. Handle Sidebar Minify Sub Menu - added in V4.0
+/* 27. Handle Sidebar Minify - Hover Drawer - added in V4.0, modernized
 ------------------------------------------------ */
-var floatSubMenuTimeout;
-var targetFloatMenu;
-var handleMouseoverFloatSubMenu = function (elm) {
-    clearTimeout(floatSubMenuTimeout);
-};
-var handleMouseoutFloatSubMenu = function (elm) {
-    floatSubMenuTimeout = setTimeout(function () {
-        $('#float-sub-menu').remove();
-    }, 150);
-};
 var handleSidebarMinifyFloatMenu = function () {
-    $(document).on('click', '#float-sub-menu li.has-sub > a', function (e) {
-        var target = $(this).next('.sub-menu');
-        var targetLi = $(target).closest('li');
-        var close = false;
-        var expand = false;
-        if ($(target).is(':visible')) {
-            $(targetLi).addClass('closing');
-            close = true;
-        } else {
-            $(targetLi).addClass('expanding');
-            expand = true;
+    var drawerTimeout = null;
+
+    function openDrawer() {
+        clearTimeout(drawerTimeout);
+        $('#sidebar').addClass('sidebar-drawer-active');
+    }
+
+    function scheduleCloseDrawer() {
+        clearTimeout(drawerTimeout);
+        drawerTimeout = setTimeout(function () {
+            $('#sidebar').removeClass('sidebar-drawer-active');
+        }, 150);
+    }
+
+    $(document).on('mouseenter', '#sidebar', function () {
+        if (!$('#page-container').hasClass('page-sidebar-minified')) {
+            return;
         }
-        $(target).slideToggle({
-            duration: 250,
-            progress: function () {
-                var targetMenu = $('#float-sub-menu');
-                var targetHeight = $(targetMenu).height();
-                var targetOffset = $(targetMenu).offset();
-                var targetOriTop = $(targetMenu).attr('data-offset-top');
-                var targetMenuTop = $(targetMenu).attr('data-menu-offset-top');
-                var targetTop = targetOffset.top - $(window).scrollTop();
-                var windowHeight = $(window).height();
-                if (close) {
-                    if (targetTop > targetOriTop) {
-                        targetTop = (targetTop > targetOriTop) ? targetOriTop : targetTop;
-                        $('#float-sub-menu').css({'top': targetTop + 'px', 'bottom': 'auto'});
-                        $('#float-sub-menu-arrow').css({'top': '20px', 'bottom': 'auto'});
-                        $('#float-sub-menu-line').css({'top': '20px', 'bottom': 'auto'});
-                    }
-                }
-                if (expand) {
-                    if ((windowHeight - targetTop) < targetHeight) {
-                        var arrowBottom = (windowHeight - targetMenuTop) - 22;
-                        $('#float-sub-menu').css({'top': 'auto', 'bottom': 0});
-                        $('#float-sub-menu-arrow').css({'top': 'auto', 'bottom': arrowBottom + 'px'});
-                        $('#float-sub-menu-line').css({'top': '20px', 'bottom': arrowBottom + 'px'});
-                    }
-                }
-            },
-            complete: function () {
-                if ($(target).is(':visible')) {
-                    $(targetLi).addClass('expand');
-                    $(targetLi).removeClass('closed');
-                } else {
-                    $(targetLi).addClass('closed');
-                    $(targetLi).removeClass('expand');
-                }
-                $(targetLi).removeClass('closing expanding');
-            }
-        });
+        openDrawer();
     });
-    $(document).on({
-        mouseenter: function () {
-            if ($('#page-container').hasClass('page-sidebar-minified')) {
-                clearTimeout(floatSubMenuTimeout);
 
-                var targetMenu = $(this).closest('li').find('.sub-menu').first();
-                if (targetFloatMenu == this && $('#float-sub-menu').length !== 0) {
-                    return;
-                } else {
-                    targetFloatMenu = this;
-                }
-                var targetMenuHtml = $(targetMenu).html();
-                if (targetMenuHtml) {
-                    var sidebarOffset = $('#sidebar').offset();
-                    var sidebarWidth = parseInt($('#sidebar').width());
-                    var sidebarX = (!$('#page-container').hasClass('page-with-right-sidebar') && $('body').css('direction') != 'rtl') ? (sidebarOffset.left + sidebarWidth) : ($(window).width() - sidebarOffset.left);
-                    var targetHeight = $(targetMenu).height();
-                    var targetOffset = $(this).offset();
-                    var targetTop = targetOffset.top - $(window).scrollTop();
-                    var targetLeft = (!$('#page-container').hasClass('page-with-right-sidebar') && $('body').css('direction') != 'rtl') ? sidebarX : 'auto';
-                    var targetRight = (!$('#page-container').hasClass('page-with-right-sidebar') && $('body').css('direction') != 'rtl') ? 'auto' : sidebarX;
-                    var windowHeight = $(window).height();
-
-                    if ($('#float-sub-menu').length === 0) {
-                        targetMenuHtml = '' +
-                            '<div class="float-sub-menu-container" id="float-sub-menu" data-offset-top="' + targetTop + '" data-menu-offset-top="' + targetTop + '" onmouseover="handleMouseoverFloatSubMenu(this)" onmouseout="handleMouseoutFloatSubMenu(this)">' +
-                            '	<div class="float-sub-menu-arrow" id="float-sub-menu-arrow"></div>' +
-                            '	<div class="float-sub-menu-line" id="float-sub-menu-line"></div>' +
-                            '	<ul class="float-sub-menu">' + targetMenuHtml + '</ul>' +
-                            '</div>';
-                        $('#page-container').append(targetMenuHtml);
-                    } else {
-                        $('#float-sub-menu').attr('data-offset-top', targetTop);
-                        $('#float-sub-menu').attr('data-menu-offset-top', targetTop);
-                        $('.float-sub-menu').html(targetMenuHtml);
-                    }
-
-                    var targetHeight = $('#float-sub-menu').height();
-                    if ((windowHeight - targetTop) > targetHeight) {
-                        $('#float-sub-menu').css({
-                            'top': targetTop,
-                            'left': targetLeft,
-                            'bottom': 'auto',
-                            'right': targetRight
-                        });
-                        $('#float-sub-menu-arrow').css({'top': '20px', 'bottom': 'auto'});
-                        $('#float-sub-menu-line').css({'top': '20px', 'bottom': 'auto'});
-                    } else {
-                        $('#float-sub-menu').css({
-                            'bottom': 0,
-                            'top': 'auto',
-                            'left': targetLeft,
-                            'right': targetRight
-                        });
-                        var arrowBottom = (windowHeight - targetTop) - 21;
-                        $('#float-sub-menu-arrow').css({'top': 'auto', 'bottom': arrowBottom + 'px'});
-                        $('#float-sub-menu-line').css({'top': '20px', 'bottom': arrowBottom + 'px'});
-                    }
-                } else {
-                    $('#float-sub-menu').remove();
-                    targetFloatMenu = '';
-                }
-            }
-        },
-        mouseleave: function () {
-            if ($('#page-container').hasClass('page-sidebar-minified')) {
-                floatSubMenuTimeout = setTimeout(function () {
-                    $('#float-sub-menu').remove();
-                    targetFloatMenu = '';
-                }, 250);
-            }
+    $(document).on('mouseleave', '#sidebar', function () {
+        if (!$('#page-container').hasClass('page-sidebar-minified')) {
+            return;
         }
-    }, '.sidebar .nav > li.has-sub > a');
+        scheduleCloseDrawer();
+    });
 };
 
 
@@ -1372,7 +1266,7 @@ var handleAjaxMode = function (setting) {
     }
 
     function clearElement() {
-        $('.jvectormap-label, .jvector-label, .AutoFill_border ,#gritter-notice-wrapper, .ui-autocomplete, .colorpicker, .FixedHeader_Header, .FixedHeader_Cloned .lightboxOverlay, .lightbox, .introjs-hints, .nvtooltip, #float-sub-menu').remove();
+        $('.jvectormap-label, .jvector-label, .AutoFill_border ,#gritter-notice-wrapper, .ui-autocomplete, .colorpicker, .FixedHeader_Header, .FixedHeader_Cloned .lightboxOverlay, .lightbox, .introjs-hints, .nvtooltip').remove();
         if ($.fn.DataTable) {
             $('.dataTable').DataTable().destroy();
         }
