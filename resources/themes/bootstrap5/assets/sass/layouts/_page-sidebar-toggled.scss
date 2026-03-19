@@ -22,7 +22,7 @@
     & .sidebar-bg {
 
       left: 0;
-      @include box-shadow(rem(4px) 0 rem(24px) rgba($black, .25));
+      @include box-shadow(rem(4px) 0 rem(24px) rgba($sidebar-color, .25));
     }
 
     & .sidebar-bg {

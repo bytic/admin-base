@@ -140,7 +140,7 @@
       &.nav-profile {
         padding: rem(20px);
         color: $white;
-        background: rgba($black, .2);
+        background: darken($sidebar-color, 10%);
         overflow: hidden;
 
         & a {
@@ -316,7 +316,7 @@
     &.expanding,
     &.expand {
       & > a {
-        background: rgba($white, .07);
+        background: darken($sidebar-color, 8%);
 
         & .caret {
           &:before {
@@ -346,7 +346,7 @@
     position: relative;
     display: none;
 
-    background: rgba($black, .15);
+    background: darken($sidebar-color, 8%);
 
     & > li {
       position: relative;
@@ -698,7 +698,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba($black, .5);
+  background: rgba($sidebar-color, .5);
   z-index: $header-zindex;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
@@ -716,7 +716,7 @@
   right: -20px;
   transform: translate(-50%);
   @include border-radius(50%);
-  @include box-shadow(rgba(9, 30, 66, 0.08) 0px 0px 0px 1px, rgba(9, 30, 66, 0.08) 0px 2px 4px 1px);
+  @include box-shadow(rgba($sidebar-color, 0.08) 0px 0px 0px 1px, rgba($sidebar-color, 0.08) 0px 2px 4px 1px);
   border: 0;
   padding: 2px;
   z-index: $sidebar-zindex + 10;
