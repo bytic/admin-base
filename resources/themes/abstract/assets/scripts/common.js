@@ -1,12 +1,12 @@
 !function ($) {
-    $('a.jsConfirm').click(function (event) {
+    $(document).on('click', 'a.jsConfirm', function (event) {
         event.preventDefault();
         if (confirm($(this).data('message'))) {
             window.location.href = $(this).data('href');
         }
     });
 
-    $('.dropdown-menu .form-control').keyup(function () {
+    $(document).on('keyup', '.dropdown-menu .form-control', function () {
         const container = $(this).closest('.dropdown-menu');
         const noResults = container.find('.searchable-no-results');
         const items = container.find('.menu-item');

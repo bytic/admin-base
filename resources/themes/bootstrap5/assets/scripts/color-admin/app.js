@@ -454,7 +454,7 @@ var handleScrollToTopButton = function () {
         }
     });
 
-    $('[data-click=scroll-top]').click(function (e) {
+    $(document).on('click', '[data-click=scroll-top]', function (e) {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $("body").offset().top
@@ -1664,6 +1664,7 @@ var App = function () {
     "use strict";
 
     var setting;
+    var _initialized = false;
 
     return {
         //main function
@@ -1672,17 +1673,19 @@ var App = function () {
                 setting = option;
             }
             this.initLocalStorage();
-            this.initSidebar();
-            this.initTopMenu();
+            if (!_initialized) {
+                this.initSidebar();
+                this.initTopMenu();
+                this.initThemePanel();
+                this.initPageLoad();
+                if (setting && setting.ajaxMode) {
+                    this.initAjax();
+                }
+                _initialized = true;
+            }
             this.initComponent();
-            this.initThemePanel();
-            this.initPageLoad();
 
             $(window).trigger('load');
-
-            if (setting && setting.ajaxMode) {
-                this.initAjax();
-            }
         },
         settings: function (option) {
             if (option) {
@@ -1772,7 +1775,7 @@ var App = function () {
     };
 }();
 
-$(document).ready(function () {
+document.addEventListener('turbo:load', function () {
     App.init();
 });
 
