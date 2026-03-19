@@ -6,13 +6,29 @@
     & .nav {
       & > li {
         & > a {
-          padding: rem(10px) rem(20px);
+          padding: rem(10px) 0;
+          justify-content: center;
 
           & span {
             display: none;
           }
 
           & i {
+            margin: 0;
+            float: none;
+            width: auto;
+            font-size: rem(16px);
+          }
+
+          & .badge {
+            display: none;
+          }
+
+          & .caret {
+            display: none;
+          }
+
+          & .icon-img {
             margin: 0;
           }
         }
@@ -22,6 +38,18 @@
         &.has-sub {
           & > .sub-menu {
             display: none !important;
+          }
+
+          // Indicate this item has children with a small dot
+          & > a::before {
+            content: '';
+            position: absolute;
+            top: rem(8px);
+            right: rem(8px);
+            width: rem(5px);
+            height: rem(5px);
+            background: rgba($white, .35);
+            border-radius: 50%;
           }
         }
       }
@@ -39,17 +67,6 @@
     & .nav-search,
     & .sidebar-search {
       display: none;
-    }
-
-    & .caret {
-      position: absolute;
-      top: rem(10px);
-
-      right: rem(5px);
-
-      &:before {
-        @include transform(rotate(0deg) !important);
-      }
     }
 
     & .slimScrollDiv {
@@ -78,7 +95,6 @@
   & .content {
     margin-left: $sidebar-minified-width;
     @include media-breakpoint-down(sm) {
-
       margin-left: 0;
     }
   }
@@ -86,16 +102,7 @@
   & .footer {
     margin-left: $sidebar-minified-width + $content-padding-x;
     @include media-breakpoint-down(sm) {
-
       margin-left: $content-padding-x-sm;
-    }
-  }
-
-  & .sidebar-minify-btn {
-    & i {
-      &:before {
-        content: '\f101';
-      }
     }
   }
 
@@ -128,43 +135,11 @@
       }
     }
 
-    & .sidebar {
-      & .nav {
-        & > li {
-          & > a {
-            & .icon-img,
-            & i {
-              float: none;
-              width: auto;
-
-              margin: 0 0 0 rem(5px);
-            }
-
-            & .caret {
-              position: absolute;
-
-              right: auto;
-              left: rem(3px);
-
-              &:before {
-                content: '\f053';
-              }
-            }
-          }
-
-          & > .sub-menu {
-            padding: rem(10px) rem(30px) rem(10px) 0;
-          }
-        }
-      }
-    }
-
-    & .sidebar-minify-btn {
-      & i {
-        &:before {
-          content: '\f100';
-        }
-      }
+    // Overlay opens to the left for right sidebar
+    & .sidebar-minified-overlay {
+      left: auto;
+      right: $sidebar-minified-width;
+      border-radius: $border-radius-lg 0 0 $border-radius-lg;
     }
   }
 
