@@ -1668,7 +1668,9 @@ var App = function () {
         }
     };
 }();
-
+ document.addEventListener("DOMContentLoaded", function() {
+     App.init();
+ });
 document.addEventListener('turbo:load', function () {
     App.init();
 });
