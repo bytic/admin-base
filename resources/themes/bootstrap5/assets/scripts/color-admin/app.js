@@ -101,9 +101,9 @@ var handleSidebarMenu = function () {
 
         var target = $(this).next('.sub-menu');
         var otherMenu = $('.sidebar .nav > li.has-sub > .sub-menu').not(target);
+        var sidebarExpanded = !$('#page-container').hasClass('page-sidebar-minified') || $('#sidebar').hasClass('sidebar-drawer-active');
 
-        if ($('.page-sidebar-minified').length === 0) {
-            $(otherMenu).closest('li').addClass('closing');
+        if (sidebarExpanded) {
             $(otherMenu).slideUp(expandTime, function () {
                 $(otherMenu).closest('li').addClass('closed').removeClass('expand closing');
             });
@@ -129,7 +129,7 @@ var handleSidebarMenu = function () {
         e.stopPropagation();
         e.preventDefault();
 
-        if ($('.page-sidebar-minified').length === 0) {
+        if (!$('#page-container').hasClass('page-sidebar-minified') || $('#sidebar').hasClass('sidebar-drawer-active')) {
             var target = $(this).next('.sub-menu');
             if ($(target).is(':visible')) {
                 $(target).closest('li').addClass('closing').removeClass('expand');
@@ -169,9 +169,6 @@ var handleMobileSidebarToggle = function () {
     $(document).on('click touchstart', function (e) {
         if ($(e.target).closest('.sidebar').length === 0) {
             sidebarProgress = false;
-        }
-        if ($(e.target).closest('.sidebar-minified-overlay').length !== 0) {
-            sidebarProgress = true;
         }
 
         if (!e.isPropagationStopped() && sidebarProgress !== true) {
@@ -1221,138 +1218,35 @@ var handleSidebarScrollMemory = function () {
 };
 
 
-/* 27. Handle Sidebar Minify Sub Menu - added in V4.0, modernized
+/* 27. Handle Sidebar Minify - Hover Drawer - added in V4.0, modernized
 ------------------------------------------------ */
 var handleSidebarMinifyFloatMenu = function () {
-    var overlayEl = null;
-    var overlayTimeout = null;
-    var activeMenuEl = null;
+    var drawerTimeout = null;
 
-    function getSidebarOverlayLeft() {
-        var isRightSidebar = $('#page-container').hasClass('page-with-right-sidebar');
-        var isRtl = $('body').css('direction') === 'rtl';
-        if (isRightSidebar || isRtl) {
-            return 'auto';
-        }
-        var sidebarRect = document.getElementById('sidebar').getBoundingClientRect();
-        return (sidebarRect.right) + 'px';
+    function openDrawer() {
+        clearTimeout(drawerTimeout);
+        $('#sidebar').addClass('sidebar-drawer-active');
     }
 
-    function getSidebarOverlayRight() {
-        var isRightSidebar = $('#page-container').hasClass('page-with-right-sidebar');
-        var isRtl = $('body').css('direction') === 'rtl';
-        if (isRightSidebar || isRtl) {
-            var sidebarRect = document.getElementById('sidebar').getBoundingClientRect();
-            return (window.innerWidth - sidebarRect.left) + 'px';
-        }
-        return 'auto';
+    function scheduleCloseDrawer() {
+        clearTimeout(drawerTimeout);
+        drawerTimeout = setTimeout(function () {
+            $('#sidebar').removeClass('sidebar-drawer-active');
+        }, 150);
     }
 
-    function buildOverlayContent(targetItem) {
-        var $li = $(targetItem).closest('li');
-        var subMenuHtml = $li.find('> .sub-menu').html();
-        var label = $(targetItem).find('> span').text().trim();
-        var titleHtml = label
-            ? '<div class="sidebar-minified-overlay-title">' + $('<div>').text(label).html() + '</div>'
-            : '';
-        return titleHtml + '<ul>' + (subMenuHtml || '') + '</ul>';
-    }
-
-    function showOverlay(targetItem) {
-        var $li = $(targetItem).closest('li');
-        var hasSubMenu = $li.find('> .sub-menu').length > 0 && $li.find('> .sub-menu').html().trim() !== '';
-
-        if (!hasSubMenu) {
-            removeOverlay();
-            return;
-        }
-
-        var itemRect = targetItem.getBoundingClientRect();
-        var windowHeight = window.innerHeight;
-        var overlayLeft = getSidebarOverlayLeft();
-        var overlayRight = getSidebarOverlayRight();
-
-        if (!overlayEl) {
-            overlayEl = document.createElement('div');
-            overlayEl.className = 'sidebar-minified-overlay';
-            overlayEl.setAttribute('role', 'menu');
-            document.getElementById('page-container').appendChild(overlayEl);
-
-            overlayEl.addEventListener('mouseenter', function () {
-                clearTimeout(overlayTimeout);
-            });
-            overlayEl.addEventListener('mouseleave', function () {
-                scheduleRemove();
-            });
-        }
-
-        overlayEl.innerHTML = buildOverlayContent(targetItem);
-        overlayEl.style.left = overlayLeft;
-        overlayEl.style.right = overlayRight;
-
-        // Position vertically: align to item top, clamp to viewport
-        var overlayHeight = overlayEl.offsetHeight;
-        var topPos = itemRect.top;
-        if (topPos + overlayHeight > windowHeight) {
-            topPos = Math.max(0, windowHeight - overlayHeight);
-        }
-        overlayEl.style.top = topPos + 'px';
-        overlayEl.style.bottom = 'auto';
-
-        // Handle nested submenus in overlay via click toggle
-        $(overlayEl).off('click.submenu').on('click.submenu', 'li.has-sub > a', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var $subMenu = $(this).siblings('.sub-menu');
-            $subMenu.toggleClass('show');
-        });
-
-        // Force reflow before adding .show for CSS transition
-        void overlayEl.offsetHeight;
-        overlayEl.classList.add('show');
-        activeMenuEl = targetItem;
-    }
-
-    function scheduleRemove() {
-        clearTimeout(overlayTimeout);
-        overlayTimeout = setTimeout(removeOverlay, 200);
-    }
-
-    function removeOverlay() {
-        if (overlayEl) {
-            overlayEl.classList.remove('show');
-            var el = overlayEl;
-            overlayEl = null;
-            activeMenuEl = null;
-            setTimeout(function () {
-                if (el && el.parentNode) {
-                    el.parentNode.removeChild(el);
-                }
-            }, 200);
-        }
-    }
-
-    $(document).on('mouseenter', '.sidebar .nav > li > a', function () {
+    $(document).on('mouseenter', '#sidebar', function () {
         if (!$('#page-container').hasClass('page-sidebar-minified')) {
             return;
         }
-        clearTimeout(overlayTimeout);
-
-        var $li = $(this).closest('li');
-        if ($li.hasClass('has-sub')) {
-            if (activeMenuEl !== this) {
-                showOverlay(this);
-            }
-        } else {
-            removeOverlay();
-        }
+        openDrawer();
     });
 
-    $(document).on('mouseleave', '.sidebar .nav > li > a', function () {
+    $(document).on('mouseleave', '#sidebar', function () {
         if (!$('#page-container').hasClass('page-sidebar-minified')) {
             return;
         }
-        scheduleRemove();
+        scheduleCloseDrawer();
     });
 };
 
@@ -1372,7 +1266,7 @@ var handleAjaxMode = function (setting) {
     }
 
     function clearElement() {
-        $('.jvectormap-label, .jvector-label, .AutoFill_border ,#gritter-notice-wrapper, .ui-autocomplete, .colorpicker, .FixedHeader_Header, .FixedHeader_Cloned .lightboxOverlay, .lightbox, .introjs-hints, .nvtooltip, .sidebar-minified-overlay').remove();
+        $('.jvectormap-label, .jvector-label, .AutoFill_border ,#gritter-notice-wrapper, .ui-autocomplete, .colorpicker, .FixedHeader_Header, .FixedHeader_Cloned .lightboxOverlay, .lightbox, .introjs-hints, .nvtooltip').remove();
         if ($.fn.DataTable) {
             $('.dataTable').DataTable().destroy();
         }

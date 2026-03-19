@@ -36,11 +36,7 @@
 
       & li {
         &.has-sub {
-          & > .sub-menu {
-            display: none !important;
-          }
-
-          // Indicate this item has children with a small dot
+          // Indicate this item has children with a small dot when icons-only
           & > a::before {
             content: '';
             position: absolute;
@@ -86,6 +82,77 @@
         display: block !important;
       }
     }
+
+    // Hover drawer: expand sidebar to show full menu with labels
+    &.sidebar-drawer-active {
+      width: $sidebar-width;
+      @include box-shadow(4px 0 24px rgba(0, 0, 0, .35));
+
+      & .nav {
+        & > li {
+          & > a {
+            padding: rem(10px) rem(20px);
+            justify-content: flex-start;
+
+            & span {
+              display: block;
+            }
+
+            & i {
+              margin-right: rem(10px);
+              float: left;
+              font-size: rem(14px);
+              width: rem(18px);
+            }
+
+            & .badge {
+              display: inline-block;
+            }
+
+            & .caret {
+              display: block;
+            }
+
+            & .icon-img {
+              margin: 0 rem(10px) 0 0;
+            }
+          }
+        }
+
+        & li {
+          &.has-sub {
+            & > a::before {
+              display: none;
+            }
+          }
+        }
+      }
+
+      & .nav-profile {
+        display: block;
+
+        &.expand {
+          display: block !important;
+        }
+      }
+
+      & .nav-header,
+      & .sidebar-search {
+        display: block;
+      }
+
+      & .slimScrollDiv {
+        & .slimScrollBar,
+        & .slimScrollRail {
+          display: block !important;
+        }
+      }
+    }
+  }
+
+  // Sub-menus only force-hidden when drawer is NOT active (allows JS to control when drawer is open)
+  & .sidebar:not(.sidebar-drawer-active) .nav li.has-sub > .sub-menu {
+    display: none !important;
   }
 
   & .sidebar-bg {
@@ -135,11 +202,11 @@
       }
     }
 
-    // Overlay opens to the left for right sidebar
-    & .sidebar-minified-overlay {
-      left: auto;
-      right: $sidebar-minified-width;
-      border-radius: $border-radius-lg 0 0 $border-radius-lg;
+    & .sidebar {
+      &.sidebar-drawer-active {
+        // Drawer opens to the left for right sidebar
+        @include box-shadow(-4px 0 24px rgba(0, 0, 0, .35));
+      }
     }
   }
 
