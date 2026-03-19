@@ -11,6 +11,7 @@ $favicon = $this->get('favicon');
 
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="turbo-prefetch" content="false">
 
     <?= $this->FacebookMeta(); ?>
 

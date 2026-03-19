@@ -33,7 +33,7 @@ if (count($actions) < 1) {
             }
             if ($hasSubMenu) {
                 $class[] = 'has-sub';
-                $action->setIcon('<b class="caret pull-right"></b>' . $action->getIcon());
+                $action->setIcon('<b class="caret"></b>' . $action->getIcon());
             }
             if ($action instanceof DropdownAction) {
                 $class[] = 'dropdown';
