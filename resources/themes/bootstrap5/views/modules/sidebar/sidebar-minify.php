@@ -1,4 +1,9 @@
-<button type="button" class="sidebar-minify" data-click="sidebar-minify">
-    <i class="fas fa-fw fa-chevron-left"></i>
-    <i class="fas fa-fw fa-chevron-right"></i>
+<button type="button"
+        class="sidebar-minify btn"
+        data-click="sidebar-minify"
+        aria-label="Collapse sidebar"
+        aria-expanded="true"
+        aria-controls="sidebar">
+    <i class="fas fa-fw fa-chevron-left sidebar-minify-icon-collapse" aria-hidden="true"></i>
+    <i class="fas fa-fw fa-chevron-right sidebar-minify-icon-expand" aria-hidden="true"></i>
 </button>
