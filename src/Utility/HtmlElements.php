@@ -31,7 +31,7 @@ class HtmlElements
         $content = [];
         $content[] = $action->getIcon();
         if ($action->labelIsShown()) {
-            $content[] = $action->getLabel();
+            $content[] = '<span>' . htmlspecialchars((string)$action->getLabel(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</span>';
         }
         return implode(' ', $content);
     }
