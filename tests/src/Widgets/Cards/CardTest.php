@@ -53,6 +53,17 @@ class CardTest extends AbstractTest
         );
     }
 
+    public function test_basic_footer()
+    {
+        $card = $this->basicCard();
+        $card->withFooter('My Footer');
+
+        self::assertEqualHtmlFile(
+            TEST_FIXTURE_PATH . '/Widgets/Cards/basic_footer.html',
+            (string)$card
+        );
+    }
+
     public function test_success_outline()
     {
         $card = $this->basicCard();

@@ -21,6 +21,7 @@ class Card extends AbstractWidget
     use HasHtmlAttributes;
     use HasTheme;
     use Behaviours\HasHeaderTools;
+    use Behaviours\HasFooter;
     use Behaviours\Collapsable;
 
     protected $wrapBody = true;
@@ -38,6 +39,7 @@ class Card extends AbstractWidget
         return $this;
     }
 
+
     protected function renderVariables(): array
     {
         return array_merge(
@@ -46,8 +48,10 @@ class Card extends AbstractWidget
                 'title' => $this->title,
                 'icon' => $this->getIcon(),
                 'content' => $this->getContent(),
+                'footer' => $this->getFooter(),
                 'attributes' => $this->htmlAttributesFor(),
                 'attributes_body' => $this->htmlAttributesFor('body'),
+                'attributes_footer' => $this->htmlAttributesFor('footer'),
                 'headerTools' => $this->headerTools,
                 'wrapBody' => $this->wrapBody,
                 'theme' => $this->theme,

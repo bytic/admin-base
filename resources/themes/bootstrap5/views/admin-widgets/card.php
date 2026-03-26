@@ -2,6 +2,7 @@
 
 /** @var Stringable|string $content */
 /** @var Stringable|string $title */
+/** @var Stringable|string|null $footer */
 
 /** @var Stringable|string $icon */
 
@@ -35,6 +36,14 @@ $wrapBody = $wrapBody ?? true;
 if ($wrapBody) {
     $attributes_body['class'][] = 'card-body';
 }
+
+$footer = $footer ?? null;
+$hasFooter = !empty($footer) || $footer === '0';
+$attributes_footer = isset($attributes_footer) ? $attributes_footer->toArray() : [];
+if ($hasFooter) {
+    $attributes_footer['class'] = $attributes_footer['class'] ?? [];
+    $attributes_footer['class'][] = 'card-footer';
+}
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <div class="card-header">
@@ -53,4 +62,9 @@ if ($wrapBody) {
     <div id="<?= $cardId . '-content'; ?>" <?= HtmlBuilder::buildAttributes($attributes_body) ?>>
         <?= $content; ?>
     </div>
+    <?php if ($hasFooter) : ?>
+        <div <?= HtmlBuilder::buildAttributes($attributes_footer) ?>>
+            <?= $footer; ?>
+        </div>
+    <?php endif; ?>
 </div>
