@@ -9,55 +9,63 @@ import { ThemeComponent } from './components/theme';
 import { AjaxComponent, applyPageOption } from './components/ajax';
 
 /**
- * App
- * ───
- * Central orchestrator. Registers feature components in its constructor and
- * dispatches lifecycle events to each of them.
+ * ByticAdminApp
+ * ─────────────
+ * Central orchestrator. Components are injected through register() — the
+ * constructor holds no named component references of its own.
  *
- * Public lifecycle events dispatched to components:
- *   onSetup(app)       – once on first init
+ * Lifecycle events dispatched to every registered component:
+ *   onSetup(app)       – once on first App.init()
  *   onInit(app)        – every App.init() / page navigation
  *   onBeforeCache(app) – before Turbo/Turbolinks snapshots the page
- *
- * Backward-compatible public API is preserved so existing call-sites
- * (App.init, App.setPageOption, App.restartGlobalFunction, …) keep working.
  */
-class AppClass {
+class ByticAdminApp {
     constructor() {
         this._setting     = null;
         this._initialized = false;
+        this._components  = [];
 
-        // Named component references (used by backward-compat delegation below)
-        this._layout   = new LayoutComponent();
-        this._sidebar  = new SidebarComponent();
-        this._topMenu  = new TopMenuComponent();
-        this._panel    = new PanelComponent();
-        this._theme    = new ThemeComponent();
-        this._ajax     = new AjaxComponent();
-
-        /** @type {import('./base-component').BaseComponent[]} */
-        this._components = [
-            this._layout,
-            this._sidebar,
-            this._topMenu,
-            this._panel,
-            this._theme,
-            this._ajax,
-        ];
+        // Inject built-in components through the public register() API.
+        // Order matters: layout first so the page fade-in fires before sidebar
+        // and panel DOM work runs.
+        this
+            .register(new LayoutComponent())
+            .register(new SidebarComponent())
+            .register(new TopMenuComponent())
+            .register(new PanelComponent())
+            .register(new ThemeComponent())
+            .register(new AjaxComponent());
     }
 
     // ── component registry ────────────────────────────────────────────────────
 
     /**
-     * Register an additional component at runtime.
-     * onSetup will be called immediately if the app is already initialized.
-     * @param {import('./base-component').BaseComponent} component
+     * Add a component to the registry.
+     * If the app is already initialised onSetup is called immediately.
+     * Returns `this` for fluent chaining.
+     * @param {import('./components/base-component').BaseComponent} component
+     * @returns {ByticAdminApp}
      */
     register(component) {
         this._components.push(component);
         if (this._initialized && typeof component.onSetup === 'function') {
             component.onSetup(this);
         }
+        return this;
+    }
+
+    /**
+     * Find the first registered component that is an instance of the given
+     * class. Used internally so backward-compat methods can reach specific
+     * component APIs without storing named properties.
+     * @template T
+     * @param {new (...args: any[]) => T} ComponentClass
+     * @returns {T|undefined}
+     */
+    _find(ComponentClass) {
+        return this._components.find(function (c) {
+            return c instanceof ComponentClass;
+        });
     }
 
     // ── lifecycle dispatch ────────────────────────────────────────────────────
@@ -75,7 +83,7 @@ class AppClass {
 
     /**
      * Boot or re-boot the app (called on every page navigation).
-     * @param {object} [option]  Optional settings object (see App.settings()).
+     * @param {object} [option]
      */
     init(option) {
         if (option) this._setting = option;
@@ -96,9 +104,7 @@ class AppClass {
         if (option) this._setting = option;
     }
 
-    /**
-     * Called before Turbo/Turbolinks caches the current page.
-     */
+    /** Called before Turbo/Turbolinks caches the current page. */
     beforeCache() {
         this._dispatch('onBeforeCache');
     }
@@ -107,65 +113,65 @@ class AppClass {
 
     get setting() { return this._setting; }
 
-    /** Re-init all "per-navigation" DOM tasks. */
+    /** Re-run all per-navigation DOM tasks. */
     initComponent() {
         this._dispatch('onInit');
     }
 
-    /** Re-run sidebar setup (idempotent via off/on namespacing). */
+    /** Re-run sidebar setup (idempotent via namespaced off/on). */
     initSidebar() {
-        this._sidebar.onSetup(this);
+        this._find(SidebarComponent).onSetup(this);
     }
 
     /** Clear active/expand classes on the sidebar. */
     initSidebarSelection() {
-        this._sidebar.clearSelection();
+        this._find(SidebarComponent).clearSelection();
     }
 
     /** Remove the mobile-toggled class from the page container. */
     initSidebarMobileSelection() {
-        this._sidebar.clearMobileSelection();
+        this._find(SidebarComponent).clearMobileSelection();
     }
 
-    /** Re-run top-menu setup and re-focus active item. */
+    /** Re-run top-menu setup and re-focus the active item. */
     initTopMenu() {
-        this._topMenu.setup(this);
+        this._find(TopMenuComponent).setup(this);
     }
 
     /** Trigger the page-load fade-in sequence. */
     initPageLoad() {
-        this._layout.onSetup(this);
+        this._find(LayoutComponent).onSetup(this);
     }
 
     /** Force re-init of theme-panel handlers. */
     initThemePanel() {
-        this._theme.onSetup(this);
+        this._find(ThemeComponent).onSetup(this);
     }
 
-    /** Bootstrap ajax mode (requires app.setting.ajaxMode to be truthy). */
+    /** Bootstrap ajax-mode navigation (requires setting.ajaxMode). */
     initAjax() {
-        this._ajax.onSetup(this);
+        this._find(AjaxComponent).onSetup(this);
     }
 
     /**
-     * Re-run localStorage, top-menu and all "per-navigation" tasks.
+     * Re-run localStorage restore, top-menu render and all per-navigation tasks.
      * Mirrors the legacy restartGlobalFunction() call-site.
      */
     restartGlobalFunction() {
-        this._panel.onInit(this);   // localStorage + draggable
-        this._topMenu.setup(this);
+        this._find(PanelComponent).onInit(this);
+        this._find(TopMenuComponent).setup(this);
         this._dispatch('onInit');
     }
 
     /**
-     * Apply a set of page-structure CSS classes and optionally schedule
-     * their removal before the next ajax navigation.
+     * Apply page-structure CSS classes; schedule their removal on the next
+     * ajax navigation when option.clearOptionOnLeave is set.
      * @param {object} option
      */
     setPageOption(option) {
         applyPageOption(option, true);
         if (option.clearOptionOnLeave) {
-            this._ajax.scheduleOptionClear(option);
+            this._find(AjaxComponent).scheduleOptionClear(option);
         }
     }
 
@@ -186,5 +192,5 @@ class AppClass {
     }
 }
 
-export const App = new AppClass();
+export const App = new ByticAdminApp();
 export { ModalForms };
