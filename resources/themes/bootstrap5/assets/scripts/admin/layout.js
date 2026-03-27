@@ -1,5 +1,8 @@
 import $ from 'jquery';
+import { BaseComponent } from './base-component';
 import { canUseTooltip, convertNumberWithCommas, countDecimals, hasJqueryPlugin, isMobileUserAgent } from './shared';
+
+// ── private handlers ─────────────────────────────────────────────────────────
 
 export function generateSlimScroll(element) {
     if ($(element).attr('data-init')) {
@@ -9,9 +12,7 @@ export function generateSlimScroll(element) {
     var dataHeight = $(element).attr('data-height');
     dataHeight = !dataHeight ? $(element).height() : dataHeight;
 
-    var scrollBarOption = {
-        height: dataHeight,
-    };
+    var scrollBarOption = { height: dataHeight };
 
     if (isMobileUserAgent()) {
         $(element).css('height', dataHeight);
@@ -27,7 +28,7 @@ export function generateSlimScroll(element) {
     $('.slimScrollBar').hide();
 }
 
-export function handleSlimScroll() {
+function handleSlimScroll() {
     $.when(
         $('[data-scrollbar=true]').each(function () {
             generateSlimScroll($(this));
@@ -37,7 +38,7 @@ export function handleSlimScroll() {
     });
 }
 
-export function handlePageContentView() {
+function handlePageContentView() {
     var hideClass = 'd-none';
     var showClass = 'show';
 
@@ -55,25 +56,22 @@ export function handlePageContentView() {
     $(window).off('load.colorAdminPage').on('load.colorAdminPage', showPage);
 }
 
-export function handleTooltipPopoverActivation() {
+function handleTooltipPopoverActivation() {
     if (hasJqueryPlugin('tooltip') && $('[data-toggle="tooltip"]').length !== 0) {
         $('[data-toggle=tooltip]').tooltip();
     }
-
     if (hasJqueryPlugin('popover') && $('[data-toggle="popover"]').length !== 0) {
         $('[data-toggle=popover]').popover();
     }
 }
 
-export function handleScrollToTopButton() {
+function handleScrollToTopButton() {
     var showClass = 'show';
 
     $(document)
         .off('scroll.colorAdminScrollTop')
         .on('scroll.colorAdminScrollTop', function () {
-            var totalScroll = $(document).scrollTop();
-
-            if (totalScroll >= 200) {
+            if ($(document).scrollTop() >= 200) {
                 $('[data-click=scroll-top]').addClass(showClass);
             } else {
                 $('[data-click=scroll-top]').removeClass(showClass);
@@ -84,45 +82,34 @@ export function handleScrollToTopButton() {
         .off('click.colorAdminScrollTop', '[data-click=scroll-top]')
         .on('click.colorAdminScrollTop', '[data-click=scroll-top]', function (e) {
             e.preventDefault();
-            $('html, body').animate(
-                {
-                    scrollTop: $('body').offset().top,
-                },
-                500
-            );
+            $('html, body').animate({ scrollTop: $('body').offset().top }, 500);
         });
 }
 
-export function handleAfterPageLoadAddClass() {
+function handleAfterPageLoadAddClass() {
     if ($('[data-pageload-addclass]').length === 0) {
         return;
     }
-
     $(window).off('load.colorAdminAddClass').on('load.colorAdminAddClass', function () {
         $('[data-pageload-addclass]').each(function () {
-            var targetClass = $(this).attr('data-pageload-addclass');
-            $(this).addClass(targetClass);
+            $(this).addClass($(this).attr('data-pageload-addclass'));
         });
     });
 }
 
-export function handleIEFullHeightContent() {
-    var userAgent = window.navigator.userAgent;
-    var msie = userAgent.indexOf('MSIE ');
-
+function handleIEFullHeightContent() {
+    var msie = window.navigator.userAgent.indexOf('MSIE ');
     if (msie > 0) {
         $('.vertical-box-row [data-scrollbar="true"][data-height="100%"]').each(function () {
             var targetRow = $(this).closest('.vertical-box-row');
-            var targetHeight = $(targetRow).height();
-            $(targetRow).find('.vertical-box-cell').height(targetHeight);
+            $(targetRow).find('.vertical-box-cell').height($(targetRow).height());
         });
     }
 }
 
-export function handleUnlimitedTabsRender() {
+function handleUnlimitedTabsRender() {
     function handleTabOverflowScrollWidth(obj, animationSpeed) {
         var targetElm = 'li.active';
-
         if ($(obj).find('li').first().hasClass('nav-item')) {
             targetElm = $(obj).find('.nav-item .active').closest('li');
         }
@@ -133,25 +120,11 @@ export function handleUnlimitedTabsRender() {
         var speed = animationSpeed > -1 ? animationSpeed : 150;
         var fullWidth = 0;
 
-        $(obj)
-            .find(targetElm)
-            .prevAll()
-            .each(function () {
-                prevWidth += $(this).width();
-            });
-
-        $(obj)
-            .find('li')
-            .each(function () {
-                fullWidth += $(this).width();
-            });
+        $(obj).find(targetElm).prevAll().each(function () { prevWidth += $(this).width(); });
+        $(obj).find('li').each(function () { fullWidth += $(this).width(); });
 
         if (prevWidth >= viewWidth) {
-            var finalScrollWidth = prevWidth - viewWidth;
-            if (fullWidth !== prevWidth) {
-                finalScrollWidth += 40;
-            }
-
+            var finalScrollWidth = prevWidth - viewWidth + (fullWidth !== prevWidth ? 40 : 0);
             if ($('body').css('direction') === 'rtl') {
                 $(obj).find('.nav.nav-tabs').animate({ marginRight: '-' + finalScrollWidth + 'px' }, speed);
             } else {
@@ -159,17 +132,8 @@ export function handleUnlimitedTabsRender() {
             }
         }
 
-        if (prevWidth !== fullWidth && fullWidth >= viewWidth) {
-            $(obj).addClass('overflow-right');
-        } else {
-            $(obj).removeClass('overflow-right');
-        }
-
-        if (prevWidth >= viewWidth && fullWidth >= viewWidth) {
-            $(obj).addClass('overflow-left');
-        } else {
-            $(obj).removeClass('overflow-left');
-        }
+        $(obj).toggleClass('overflow-right', prevWidth !== fullWidth && fullWidth >= viewWidth);
+        $(obj).toggleClass('overflow-left', prevWidth >= viewWidth && fullWidth >= viewWidth);
     }
 
     function handleTabButtonAction(element, direction) {
@@ -180,77 +144,37 @@ export function handleUnlimitedTabsRender() {
         var totalWidth = 0;
         var finalScrollWidth = 0;
 
-        $(obj)
-            .find('li')
-            .each(function () {
-                if (!$(this).hasClass('next-button') && !$(this).hasClass('prev-button')) {
-                    totalWidth += $(this).width();
-                }
-            });
-
-        switch (direction) {
-            case 'next': {
-                var widthLeft = totalWidth + marginLeft - containerWidth;
-                if (widthLeft <= containerWidth) {
-                    finalScrollWidth = widthLeft - marginLeft;
-                    setTimeout(function () {
-                        $(obj).removeClass('overflow-right');
-                    }, 150);
-                } else {
-                    finalScrollWidth = containerWidth - marginLeft - 80;
-                }
-
-                if (finalScrollWidth !== 0) {
-                    if ($('body').css('direction') !== 'rtl') {
-                        $(obj)
-                            .find('.nav.nav-tabs')
-                            .animate({ marginLeft: '-' + finalScrollWidth + 'px' }, 150, function () {
-                                $(obj).addClass('overflow-left');
-                            });
-                    } else {
-                        $(obj)
-                            .find('.nav.nav-tabs')
-                            .animate({ marginRight: '-' + finalScrollWidth + 'px' }, 150, function () {
-                                $(obj).addClass('overflow-left');
-                            });
-                    }
-                }
-                break;
+        $(obj).find('li').each(function () {
+            if (!$(this).hasClass('next-button') && !$(this).hasClass('prev-button')) {
+                totalWidth += $(this).width();
             }
-            case 'prev': {
-                var widthRight = -marginLeft;
+        });
 
-                if (widthRight <= containerWidth) {
-                    $(obj).removeClass('overflow-left');
-                    finalScrollWidth = 0;
-                } else {
-                    finalScrollWidth = widthRight - containerWidth + 80;
-                }
+        if (direction === 'next') {
+            var widthLeft = totalWidth + marginLeft - containerWidth;
+            finalScrollWidth = widthLeft <= containerWidth
+                ? (setTimeout(function () { $(obj).removeClass('overflow-right'); }, 150), widthLeft - marginLeft)
+                : containerWidth - marginLeft - 80;
 
-                if ($('body').css('direction') !== 'rtl') {
-                    $(obj)
-                        .find('.nav.nav-tabs')
-                        .animate({ marginLeft: '-' + finalScrollWidth + 'px' }, 150, function () {
-                            $(obj).addClass('overflow-right');
-                        });
-                } else {
-                    $(obj)
-                        .find('.nav.nav-tabs')
-                        .animate({ marginRight: '-' + finalScrollWidth + 'px' }, 150, function () {
-                            $(obj).addClass('overflow-right');
-                        });
-                }
-                break;
+            if (finalScrollWidth !== 0) {
+                var prop = $('body').css('direction') !== 'rtl' ? { marginLeft: '-' + finalScrollWidth + 'px' } : { marginRight: '-' + finalScrollWidth + 'px' };
+                $(obj).find('.nav.nav-tabs').animate(prop, 150, function () { $(obj).addClass('overflow-left'); });
             }
-            default:
-                break;
+        } else if (direction === 'prev') {
+            var widthRight = -marginLeft;
+            if (widthRight <= containerWidth) {
+                $(obj).removeClass('overflow-left');
+                finalScrollWidth = 0;
+            } else {
+                finalScrollWidth = widthRight - containerWidth + 80;
+            }
+            var propPrev = $('body').css('direction') !== 'rtl' ? { marginLeft: '-' + finalScrollWidth + 'px' } : { marginRight: '-' + finalScrollWidth + 'px' };
+            $(obj).find('.nav.nav-tabs').animate(propPrev, 150, function () { $(obj).addClass('overflow-right'); });
         }
     }
 
     function handlePageLoadTabFocus() {
-        $('.tab-overflow').each(function () {
-            handleTabOverflowScrollWidth(this, 0);
-        });
+        $('.tab-overflow').each(function () { handleTabOverflowScrollWidth(this, 0); });
     }
 
     $(document)
@@ -267,31 +191,25 @@ export function handleUnlimitedTabsRender() {
             handleTabButtonAction(this, 'prev');
         });
 
-    $(window).off('resize.colorAdminTabs').on('resize.colorAdminTabs', function () {
-        $('.tab-overflow .nav.nav-tabs').removeAttr('style');
-        handlePageLoadTabFocus();
-    });
+    $(window)
+        .off('resize.colorAdminTabs')
+        .on('resize.colorAdminTabs', function () {
+            $('.tab-overflow .nav.nav-tabs').removeAttr('style');
+            handlePageLoadTabFocus();
+        });
 
     handlePageLoadTabFocus();
 }
 
-export function handleCheckScrollClass() {
-    if ($(window).scrollTop() > 0) {
-        $('#page-container').addClass('has-scroll');
-    } else {
-        $('#page-container').removeClass('has-scroll');
+function handlePageScrollClass() {
+    function check() {
+        $('#page-container').toggleClass('has-scroll', $(window).scrollTop() > 0);
     }
+    $(window).off('scroll.colorAdminPageClass').on('scroll.colorAdminPageClass', check);
+    check();
 }
 
-export function handlePageScrollClass() {
-    $(window).off('scroll.colorAdminPageClass').on('scroll.colorAdminPageClass', function () {
-        handleCheckScrollClass();
-    });
-
-    handleCheckScrollClass();
-}
-
-export function handleAnimation() {
+function handleAnimation() {
     $('[data-animation]').each(function () {
         var targetAnimate = $(this).attr('data-animation');
         var targetValue = $(this).attr('data-value');
@@ -306,28 +224,17 @@ export function handleAnimation() {
             case 'number': {
                 var targetElm = this;
                 var decimal = countDecimals(targetValue);
-                var divide = 1;
-                var x = decimal;
-                while (x > 0) {
-                    divide *= 10;
-                    x--;
-                }
-
-                $({ animateNumber: 0 }).animate(
-                    { animateNumber: targetValue },
-                    {
-                        duration: 1000,
-                        easing: 'swing',
-                        step: function () {
-                            var number = (Math.ceil(this.animateNumber * divide) / divide).toFixed(decimal);
-                            number = convertNumberWithCommas(number);
-                            $(targetElm).text(number);
-                        },
-                        done: function () {
-                            $(targetElm).text(convertNumberWithCommas(targetValue));
-                        },
-                    }
-                );
+                var divide = Math.pow(10, decimal);
+                $({ animateNumber: 0 }).animate({ animateNumber: targetValue }, {
+                    duration: 1000,
+                    easing: 'swing',
+                    step: function () {
+                        $(targetElm).text(convertNumberWithCommas((Math.ceil(this.animateNumber * divide) / divide).toFixed(decimal)));
+                    },
+                    done: function () {
+                        $(targetElm).text(convertNumberWithCommas(targetValue));
+                    },
+                });
                 break;
             }
             case 'class':
@@ -339,3 +246,31 @@ export function handleAnimation() {
     });
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
+export class LayoutComponent extends BaseComponent {
+    /**
+     * Called once: bind the page-load fade-in (window 'load' listener must be
+     * registered before the event fires, so it goes in onSetup).
+     */
+    onSetup(/* app */) {
+        handlePageContentView();
+    }
+
+    /**
+     * Called every navigation: re-process DOM widgets.
+     */
+    onInit(/* app */) {
+        handleIEFullHeightContent();
+        handleSlimScroll();
+        handleUnlimitedTabsRender();
+        handleScrollToTopButton();
+        handleAfterPageLoadAddClass();
+        handlePageScrollClass();
+        handleAnimation();
+
+        if ($(window).width() > 767) {
+            handleTooltipPopoverActivation();
+        }
+    }
+}

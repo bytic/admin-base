@@ -1,186 +1,159 @@
 import $ from 'jquery';
+import { BaseComponent } from './base-component';
 
-var clearOption = '';
+// ── page-option helpers (standalone, used by App public API) ──────────────────
 
-export function handleAjaxMode(setting, appApi) {
-    var emptyHtml = setting.emptyHtml
-        ? setting.emptyHtml
-        : '<div class="p-t-40 p-b-40 text-center f-s-20 content"><i class="fa fa-warning fa-lg text-muted m-r-5"></i> <span class="f-w-600 text-inverse">Error 404! Page not found.</span></div>';
-    var defaultUrl = setting.ajaxDefaultUrl ? setting.ajaxDefaultUrl : '';
-    defaultUrl = window.location.hash ? window.location.hash : defaultUrl;
+export function applyPageOption(option, add) {
+    var method = add ? 'addClass' : 'removeClass';
+    var map = {
+        pageContentFullHeight:  ['#page-container', 'page-content-full-height'],
+        pageSidebarLight:       ['#page-container', 'page-with-light-sidebar'],
+        pageSidebarRight:       ['#page-container', 'page-with-right-sidebar'],
+        pageSidebarWide:        ['#page-container', 'page-with-wide-sidebar'],
+        pageSidebarMinified:    ['#page-container', 'page-sidebar-minified'],
+        pageSidebarTransparent: ['#sidebar',        'sidebar-transparent'],
+        pageContentFullWidth:   ['#content',        'content-full-width'],
+        pageContentInverseMode: ['#content',        'content-inverse-mode'],
+        pageBoxedLayout:        ['body',            'boxed-layout'],
+    };
 
-    if (defaultUrl === '') {
-        $('#content').html(emptyHtml);
-    } else {
-        renderAjax(defaultUrl, '', true);
+    Object.keys(map).forEach(function (key) {
+        if (option[key]) {
+            var target = map[key][0];
+            var cls    = map[key][1];
+            $(target)[method](cls);
+        }
+    });
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
+export class AjaxComponent extends BaseComponent {
+    constructor() {
+        super();
+        this._clearOption = null;
     }
 
-    function clearElement() {
-        $('.jvectormap-label, .jvector-label, .AutoFill_border ,#gritter-notice-wrapper, .ui-autocomplete, .colorpicker, .FixedHeader_Header, .FixedHeader_Cloned .lightboxOverlay, .lightbox, .introjs-hints, .nvtooltip').remove();
-        if ($.fn.DataTable) {
-            $('.dataTable').DataTable().destroy();
+    /**
+     * Set up ajax-mode navigation if app.setting.ajaxMode is truthy.
+     */
+    onSetup(app) {
+        if (!app.setting || !app.setting.ajaxMode) return;
+
+        this._initAjaxMode(app);
+        $.ajaxSetup({ cache: true });
+    }
+
+    /** Track a page-option that should be cleared on next ajax navigation. */
+    scheduleOptionClear(option) {
+        this._clearOption = option;
+    }
+
+    // ── private ───────────────────────────────────────────────────────────────
+
+    _initAjaxMode(app) {
+        var self = this;
+        var setting = app.setting;
+        var emptyHtml = setting.emptyHtml ||
+            '<div class="p-t-40 p-b-40 text-center f-s-20 content">' +
+            '<i class="fa fa-warning fa-lg text-muted m-r-5"></i> ' +
+            '<span class="f-w-600 text-inverse">Error 404! Page not found.</span></div>';
+
+        var defaultUrl = setting.ajaxDefaultUrl || '';
+        defaultUrl = window.location.hash || defaultUrl;
+
+        if (!defaultUrl) {
+            $('#content').html(emptyHtml);
+        } else {
+            renderAjax(defaultUrl, null, true);
         }
-        if ($('#page-container').hasClass('page-sidebar-toggled')) {
+
+        function clearElement() {
+            $('.jvectormap-label, .jvector-label, .AutoFill_border, #gritter-notice-wrapper, ' +
+              '.ui-autocomplete, .colorpicker, .FixedHeader_Header, .FixedHeader_Cloned, ' +
+              '.lightboxOverlay, .lightbox, .introjs-hints, .nvtooltip').remove();
+            if ($.fn.DataTable) $('.dataTable').DataTable().destroy();
             $('#page-container').removeClass('page-sidebar-toggled');
         }
-    }
 
-    function checkSidebarActive(url) {
-        var targetElm = '#sidebar [data-toggle="ajax"][href="' + url + '"]';
-        if ($(targetElm).length !== 0) {
-            $('#sidebar li').removeClass('active');
-            $(targetElm).closest('li').addClass('active');
-            $(targetElm).parents().addClass('active');
-        }
-    }
-
-    function checkPushState(url) {
-        var targetUrl = url.replace('#', '');
-        var targetUserAgent = window.navigator.userAgent;
-        var isIE = targetUserAgent.indexOf('MSIE ');
-
-        if (isIE && isIE > 0 && isIE < 9) {
-            window.location.href = targetUrl;
-        } else {
-            history.pushState('', '', '#' + targetUrl);
-        }
-    }
-
-    function checkClearOption() {
-        if (clearOption) {
-            appApi.clearPageOption(clearOption);
-            clearOption = '';
-        }
-    }
-
-    function checkLoading(load) {
-        if (!load) {
-            if ($('#page-content-loader').length === 0) {
-                $('body').addClass('page-content-loading');
-                $('#content').append('<div id="page-content-loader"><span class="spinner"></span></div>');
+        function checkSidebarActive(url) {
+            var $el = $('#sidebar [data-toggle="ajax"][href="' + url + '"]');
+            if ($el.length) {
+                $('#sidebar li').removeClass('active');
+                $el.closest('li').addClass('active');
+                $el.parents().addClass('active');
             }
-            return;
         }
 
+        function checkPushState(url) {
+            var targetUrl = url.replace('#', '');
+            if (window.navigator.userAgent.indexOf('MSIE ') > 0) {
+                window.location.href = targetUrl;
+            } else {
+                history.pushState('', '', '#' + targetUrl);
+            }
+        }
+
+        function checkLoading(done) {
+            if (!done) {
+                if (!$('#page-content-loader').length) {
+                    $('body').addClass('page-content-loading');
+                    $('#content').append('<div id="page-content-loader"><span class="spinner"></span></div>');
+                }
+            } else {
+                $('#page-content-loader').remove();
+                $('body').removeClass('page-content-loading');
+            }
+        }
+
+        function renderAjax(url, elm, disablePushState) {
+            if (typeof window.Pace !== 'undefined' && typeof window.Pace.restart === 'function') {
+                window.Pace.restart();
+            }
+
+            checkLoading(false);
+            clearElement();
+            checkSidebarActive(url);
+
+            // clear any deferred page-option
+            if (self._clearOption) {
+                app.clearPageOption(self._clearOption);
+                self._clearOption = null;
+            }
+
+            if (!disablePushState) checkPushState(url);
+
+            var targetUrl = url.replace('#', '');
+            var type      = setting.ajaxType     || 'GET';
+            var dataType  = setting.ajaxDataType || 'html';
+            if (elm) dataType = $(elm).attr('data-type') || dataType;
+
+            $.ajax({ url: targetUrl, type: type, dataType: dataType,
+                success: function (data) { $('#content').html(data); },
+                error:   function ()     { $('#content').html(emptyHtml); },
+            }).done(function () {
+                checkLoading(true);
+                $('html, body').animate({ scrollTop: 0 }, 0);
+                app.initComponent();
+            });
+        }
+
+        $(window)
+            .off('hashchange.colorAdminAjax')
+            .on('hashchange.colorAdminAjax', function () {
+                if (window.location.hash) renderAjax(window.location.hash, null, true);
+            });
+
+        $(document)
+            .off('click.colorAdminAjax', '[data-toggle="ajax"]')
+            .on('click.colorAdminAjax', '[data-toggle="ajax"]', function (e) {
+                e.preventDefault();
+                renderAjax($(this).attr('href'), this);
+            });
+    }
+
+    onBeforeCache(/* app */) {
         $('#page-content-loader').remove();
         $('body').removeClass('page-content-loading');
     }
-
-    function renderAjax(url, elm, disablePushState) {
-        if (typeof window.Pace !== 'undefined' && typeof window.Pace.restart === 'function') {
-            window.Pace.restart();
-        }
-
-        checkLoading(false);
-        clearElement();
-        checkSidebarActive(url);
-        checkClearOption();
-        if (!disablePushState) {
-            checkPushState(url);
-        }
-
-        var targetContainer = '#content';
-        var targetUrl = url.replace('#', '');
-        var targetType = setting.ajaxType ? setting.ajaxType : 'GET';
-        var targetDataType = setting.ajaxDataType ? setting.ajaxDataType : 'html';
-
-        if (elm) {
-            targetDataType = $(elm).attr('data-type') ? $(elm).attr('data-type') : targetDataType;
-        }
-
-        $.ajax({
-            url: targetUrl,
-            type: targetType,
-            dataType: targetDataType,
-            success: function (data) {
-                $(targetContainer).html(data);
-            },
-            error: function () {
-                $(targetContainer).html(emptyHtml);
-            },
-        }).done(function () {
-            checkLoading(true);
-            $('html, body').animate({ scrollTop: 0 }, 0);
-            appApi.initComponent();
-        });
-    }
-
-    $(window)
-        .off('hashchange.colorAdminAjax')
-        .on('hashchange.colorAdminAjax', function () {
-            if (window.location.hash) {
-                renderAjax(window.location.hash, '', true);
-            }
-        });
-
-    $(document)
-        .off('click.colorAdminAjax', '[data-toggle="ajax"]')
-        .on('click.colorAdminAjax', '[data-toggle="ajax"]', function (e) {
-            e.preventDefault();
-            renderAjax($(this).attr('href'), this);
-        });
 }
-
-export function handleSetPageOption(option) {
-    if (option.pageContentFullHeight) {
-        $('#page-container').addClass('page-content-full-height');
-    }
-    if (option.pageSidebarLight) {
-        $('#page-container').addClass('page-with-light-sidebar');
-    }
-    if (option.pageSidebarRight) {
-        $('#page-container').addClass('page-with-right-sidebar');
-    }
-    if (option.pageSidebarWide) {
-        $('#page-container').addClass('page-with-wide-sidebar');
-    }
-    if (option.pageSidebarMinified) {
-        $('#page-container').addClass('page-sidebar-minified');
-    }
-    if (option.pageSidebarTransparent) {
-        $('#sidebar').addClass('sidebar-transparent');
-    }
-    if (option.pageContentFullWidth) {
-        $('#content').addClass('content-full-width');
-    }
-    if (option.pageContentInverseMode) {
-        $('#content').addClass('content-inverse-mode');
-    }
-    if (option.pageBoxedLayout) {
-        $('body').addClass('boxed-layout');
-    }
-    if (option.clearOptionOnLeave) {
-        clearOption = option;
-    }
-}
-
-export function handleClearPageOption(option) {
-    if (option.pageContentFullHeight) {
-        $('#page-container').removeClass('page-content-full-height');
-    }
-    if (option.pageSidebarLight) {
-        $('#page-container').removeClass('page-with-light-sidebar');
-    }
-    if (option.pageSidebarRight) {
-        $('#page-container').removeClass('page-with-right-sidebar');
-    }
-    if (option.pageSidebarWide) {
-        $('#page-container').removeClass('page-with-wide-sidebar');
-    }
-    if (option.pageSidebarMinified) {
-        $('#page-container').removeClass('page-sidebar-minified');
-    }
-    if (option.pageSidebarTransparent) {
-        $('#sidebar').removeClass('sidebar-transparent');
-    }
-    if (option.pageContentFullWidth) {
-        $('#content').removeClass('content-full-width');
-    }
-    if (option.pageContentInverseMode) {
-        $('#content').removeClass('content-inverse-mode');
-    }
-    if (option.pageBoxedLayout) {
-        $('body').removeClass('boxed-layout');
-    }
-}
-

@@ -1,6 +1,9 @@
 import $ from 'jquery';
+import { BaseComponent } from './base-component';
 
-export function handleUnlimitedTopMenuRender() {
+// ── private handlers ─────────────────────────────────────────────────────────
+
+function handleUnlimitedTopMenuRender() {
     function handleMenuButtonAction(element, direction) {
         var obj = $(element).closest('.nav');
         var targetCss = $('body').css('direction') === 'rtl' ? 'margin-right' : 'margin-left';
@@ -9,62 +12,36 @@ export function handleUnlimitedTopMenuRender() {
         var totalWidth = 0;
         var finalScrollWidth = 0;
 
-        $(obj)
-            .find('li')
-            .each(function () {
-                if (!$(this).hasClass('menu-control')) {
-                    totalWidth += $(this).width();
-                }
-            });
+        $(obj).find('li').each(function () {
+            if (!$(this).hasClass('menu-control')) totalWidth += $(this).width();
+        });
 
-        switch (direction) {
-            case 'next': {
-                var widthLeft = totalWidth + marginLeft - containerWidth;
-                if (widthLeft <= containerWidth) {
-                    finalScrollWidth = widthLeft - marginLeft + 128;
-                    setTimeout(function () {
-                        $(obj).find('.menu-control.menu-control-right').removeClass('show');
-                    }, 150);
-                } else {
-                    finalScrollWidth = containerWidth - marginLeft - 128;
-                }
-
-                if (finalScrollWidth !== 0) {
-                    if ($('body').css('direction') !== 'rtl') {
-                        $(obj).animate({ marginLeft: '-' + finalScrollWidth + 'px' }, 150, function () {
-                            $(obj).find('.menu-control.menu-control-left').addClass('show');
-                        });
-                    } else {
-                        $(obj).animate({ marginRight: '-' + finalScrollWidth + 'px' }, 150, function () {
-                            $(obj).find('.menu-control.menu-control-left').addClass('show');
-                        });
-                    }
-                }
-                break;
+        if (direction === 'next') {
+            var widthLeft = totalWidth + marginLeft - containerWidth;
+            if (widthLeft <= containerWidth) {
+                finalScrollWidth = widthLeft - marginLeft + 128;
+                setTimeout(function () { $(obj).find('.menu-control.menu-control-right').removeClass('show'); }, 150);
+            } else {
+                finalScrollWidth = containerWidth - marginLeft - 128;
             }
-            case 'prev': {
-                var widthRight = -marginLeft;
-
-                if (widthRight <= containerWidth) {
-                    $(obj).find('.menu-control.menu-control-left').removeClass('show');
-                    finalScrollWidth = 0;
-                } else {
-                    finalScrollWidth = widthRight - containerWidth + 88;
-                }
-
-                if ($('body').css('direction') !== 'rtl') {
-                    $(obj).animate({ marginLeft: '-' + finalScrollWidth + 'px' }, 150, function () {
-                        $(obj).find('.menu-control.menu-control-right').addClass('show');
-                    });
-                } else {
-                    $(obj).animate({ marginRight: '-' + finalScrollWidth + 'px' }, 150, function () {
-                        $(obj).find('.menu-control.menu-control-right').addClass('show');
-                    });
-                }
-                break;
+            if (finalScrollWidth !== 0) {
+                var prop = $('body').css('direction') !== 'rtl'
+                    ? { marginLeft: '-' + finalScrollWidth + 'px' }
+                    : { marginRight: '-' + finalScrollWidth + 'px' };
+                $(obj).animate(prop, 150, function () { $(obj).find('.menu-control.menu-control-left').addClass('show'); });
             }
-            default:
-                break;
+        } else if (direction === 'prev') {
+            var widthRight = -marginLeft;
+            if (widthRight <= containerWidth) {
+                $(obj).find('.menu-control.menu-control-left').removeClass('show');
+                finalScrollWidth = 0;
+            } else {
+                finalScrollWidth = widthRight - containerWidth + 88;
+            }
+            var propPrev = $('body').css('direction') !== 'rtl'
+                ? { marginLeft: '-' + finalScrollWidth + 'px' }
+                : { marginRight: '-' + finalScrollWidth + 'px' };
+            $(obj).animate(propPrev, 150, function () { $(obj).find('.menu-control.menu-control-right').addClass('show'); });
         }
     }
 
@@ -74,17 +51,12 @@ export function handleUnlimitedTopMenuRender() {
         var targetActiveList = $('.top-menu .nav > li.active');
         var targetContainer = $('.top-menu');
         var viewWidth = $(targetContainer).width() - 128;
-        var prevWidth = $('.top-menu .nav > li.active').width();
+        var prevWidth = targetActiveList.width() || 0;
         var fullWidth = 0;
 
-        $(targetActiveList).prevAll().each(function () {
-            prevWidth += $(this).width();
-        });
-
-        $(targetList).each(function () {
-            if (!$(this).hasClass('menu-control')) {
-                fullWidth += $(this).width();
-            }
+        targetActiveList.prevAll().each(function () { prevWidth += $(this).width(); });
+        targetList.each(function () {
+            if (!$(this).hasClass('menu-control')) fullWidth += $(this).width();
         });
 
         if (prevWidth >= viewWidth) {
@@ -96,17 +68,8 @@ export function handleUnlimitedTopMenuRender() {
             }
         }
 
-        if (prevWidth !== fullWidth && fullWidth >= viewWidth) {
-            $(targetMenu).find('.menu-control.menu-control-right').addClass('show');
-        } else {
-            $(targetMenu).find('.menu-control.menu-control-right').removeClass('show');
-        }
-
-        if (prevWidth >= viewWidth && fullWidth >= viewWidth) {
-            $(targetMenu).find('.menu-control.menu-control-left').addClass('show');
-        } else {
-            $(targetMenu).find('.menu-control.menu-control-left').removeClass('show');
-        }
+        $(targetMenu).find('.menu-control.menu-control-right').toggleClass('show', prevWidth !== fullWidth && fullWidth >= viewWidth);
+        $(targetMenu).find('.menu-control.menu-control-left').toggleClass('show', prevWidth >= viewWidth && fullWidth >= viewWidth);
     }
 
     $(document)
@@ -123,59 +86,66 @@ export function handleUnlimitedTopMenuRender() {
             handleMenuButtonAction(this, 'prev');
         });
 
-    $(window).off('resize.colorAdminTopMenu').on('resize.colorAdminTopMenu', function () {
-        $('.top-menu .nav').removeAttr('style');
-        handlePageLoadMenuFocus();
-    });
+    $(window)
+        .off('resize.colorAdminTopMenu')
+        .on('resize.colorAdminTopMenu', function () {
+            $('.top-menu .nav').removeAttr('style');
+            handlePageLoadMenuFocus();
+        });
 
     handlePageLoadMenuFocus();
 }
 
-export function handleTopMenuSubMenu() {
+function handleTopMenuSubMenu() {
     $(document).on('click', '.top-menu .sub-menu .has-sub > a', function () {
         var target = $(this).closest('li').find('.sub-menu').first();
         var otherMenu = $(this).closest('ul').find('.sub-menu').not(target);
-        $(otherMenu)
-            .not(target)
-            .slideUp(250, function () {
-                $(this).closest('li').removeClass('expand');
-            });
+        $(otherMenu).not(target).slideUp(250, function () { $(this).closest('li').removeClass('expand'); });
         $(target).slideToggle(250, function () {
-            var targetLi = $(this).closest('li');
-            if ($(targetLi).hasClass('expand')) {
-                $(targetLi).removeClass('expand');
-            } else {
-                $(targetLi).addClass('expand');
-            }
+            $(this).closest('li').toggleClass('expand', $(target).is(':visible'));
         });
     });
 }
 
-export function handleMobileTopMenuSubMenu() {
+function handleMobileTopMenuSubMenu() {
     $(document).on('click', '.top-menu .nav > li.has-sub > a', function () {
-        if ($(window).width() <= 767) {
-            var target = $(this).closest('li').find('.sub-menu').first();
-            var otherMenu = $(this).closest('ul').find('.sub-menu').not(target);
-            $(otherMenu)
-                .not(target)
-                .slideUp(250, function () {
-                    $(this).closest('li').removeClass('expand');
-                });
-            $(target).slideToggle(250, function () {
-                var targetLi = $(this).closest('li');
-                if ($(targetLi).hasClass('expand')) {
-                    $(targetLi).removeClass('expand');
-                } else {
-                    $(targetLi).addClass('expand');
-                }
-            });
-        }
+        if ($(window).width() > 767) return;
+        var target = $(this).closest('li').find('.sub-menu').first();
+        var otherMenu = $(this).closest('ul').find('.sub-menu').not(target);
+        $(otherMenu).not(target).slideUp(250, function () { $(this).closest('li').removeClass('expand'); });
+        $(target).slideToggle(250, function () {
+            $(this).closest('li').toggleClass('expand', $(target).is(':visible'));
+        });
     });
 }
 
-export function handleTopMenuMobileToggle() {
+function handleTopMenuMobileToggle() {
     $(document).on('click', '[data-click="top-menu-toggled"]', function () {
         $('.top-menu').slideToggle(250);
     });
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
+export class TopMenuComponent extends BaseComponent {
+    /**
+     * Register all top-menu handlers once.
+     * handleUnlimitedTopMenuRender() already uses off/on so it is safe to
+     * re-call via the public setup() method when restartGlobalFunction() runs.
+     */
+    onSetup(/* app */) {
+        this._mount();
+    }
+
+    /** Called by App.restartGlobalFunction() for explicit top-menu refresh. */
+    setup(/* app */) {
+        this._mount();
+    }
+
+    _mount() {
+        handleUnlimitedTopMenuRender();
+        handleTopMenuSubMenu();
+        handleMobileTopMenuSubMenu();
+        handleTopMenuMobileToggle();
+    }
+}
