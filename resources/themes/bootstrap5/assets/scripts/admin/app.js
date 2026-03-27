@@ -118,48 +118,11 @@ class ByticAdminApp {
         this._dispatch('onInit');
     }
 
-    /** Re-run sidebar setup (idempotent via namespaced off/on). */
-    initSidebar() {
-        this._find(SidebarComponent).onSetup(this);
-    }
-
-    /** Clear active/expand classes on the sidebar. */
-    initSidebarSelection() {
-        this._find(SidebarComponent).clearSelection();
-    }
-
-    /** Remove the mobile-toggled class from the page container. */
-    initSidebarMobileSelection() {
-        this._find(SidebarComponent).clearMobileSelection();
-    }
-
-    /** Re-run top-menu setup and re-focus the active item. */
-    initTopMenu() {
-        this._find(TopMenuComponent).setup(this);
-    }
-
-    /** Trigger the page-load fade-in sequence. */
-    initPageLoad() {
-        this._find(LayoutComponent).onSetup(this);
-    }
-
-    /** Force re-init of theme-panel handlers. */
-    initThemePanel() {
-        this._find(ThemeComponent).onSetup(this);
-    }
-
-    /** Bootstrap ajax-mode navigation (requires setting.ajaxMode). */
-    initAjax() {
-        this._find(AjaxComponent).onSetup(this);
-    }
-
     /**
      * Re-run localStorage restore, top-menu render and all per-navigation tasks.
      * Mirrors the legacy restartGlobalFunction() call-site.
      */
     restartGlobalFunction() {
-        this._find(PanelComponent).onInit(this);
-        this._find(TopMenuComponent).setup(this);
         this._dispatch('onInit');
     }
 

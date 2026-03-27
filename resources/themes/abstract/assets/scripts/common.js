@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 !function ($) {
     $(document).on('click', 'a.jsConfirm', function (event) {
         event.preventDefault();
@@ -28,4 +30,4 @@
             }
         });
     });
-}(window.jQuery);
+}($);

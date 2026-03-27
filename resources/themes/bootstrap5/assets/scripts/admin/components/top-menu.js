@@ -136,7 +136,9 @@ export class TopMenuComponent extends BaseComponent {
     onSetup(/* app */) {
         this._mount();
     }
-
+    onInit(app) {
+        this._mount();
+    }
     /** Called by App.restartGlobalFunction() for explicit top-menu refresh. */
     setup(/* app */) {
         this._mount();
