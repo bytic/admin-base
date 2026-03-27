@@ -2,6 +2,7 @@
 
 namespace ByTIC\AdminBase\Screen\Actions\Dto;
 
+use ByTIC\AdminBase\Utility\Behaviours\HasContentSlots;
 use ByTIC\AdminBase\Utility\Behaviours\HasData;
 use ByTIC\AdminBase\Utility\Behaviours\HasHtmlAttributes;
 use ByTIC\AdminBase\Utility\Behaviours\HasIcon;
@@ -22,6 +23,7 @@ abstract class AbstractAction implements Action, Renderable
     use HasIcon;
     use HasLabel;
     use HasData;
+    use HasContentSlots;
     use HasHtmlAttributes;
     use HasUrl;
     use IsRenderable;

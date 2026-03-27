@@ -17,6 +17,16 @@ trait HasLabel
     }
 
     /**
+     * @param $label
+     * @return $this
+     */
+    public function appendLabel($label)
+    {
+        $this->label .= $label;
+        return $this;
+    }
+
+    /**
      * @param string $label
      * @return self
      */
