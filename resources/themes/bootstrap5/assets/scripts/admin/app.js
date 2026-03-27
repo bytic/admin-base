@@ -1,12 +1,12 @@
 import $ from 'jquery';
-import ModalForms from './ModalForm';
+import ModalForms from './components/ModalForm';
 
-import { LayoutComponent } from './layout';
-import { SidebarComponent } from './sidebar';
-import { TopMenuComponent } from './top-menu';
-import { PanelComponent } from './panel';
-import { ThemeComponent } from './theme';
-import { AjaxComponent, applyPageOption } from './ajax';
+import { LayoutComponent } from './components/layout';
+import { SidebarComponent } from './components/sidebar';
+import { TopMenuComponent } from './components/top-menu';
+import { PanelComponent } from './components/panel';
+import { ThemeComponent } from './components/theme';
+import { AjaxComponent, applyPageOption } from './components/ajax';
 
 /**
  * App
