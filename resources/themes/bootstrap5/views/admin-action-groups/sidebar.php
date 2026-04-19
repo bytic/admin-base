@@ -7,7 +7,6 @@ use ByTIC\AdminBase\Screen\Actions\Dto\DropdownAction;
 use ByTIC\AdminBase\Screen\Actions\Dto\MenuItem;
 use ByTIC\AdminBase\Screen\ActionsGroups\Dto\ActionsGroup;
 use ByTIC\Html\Html\HtmlBuilder;
-use ByTIC\Icons\Icons;
 
 $attributes = $actionsGroup->getHtmlAttributes();
 $attributes['class'] .= ' action-toolbar nav';
@@ -15,6 +14,19 @@ $actions = $actionsGroup->actions();
 if (count($actions) < 1) {
     return;
 }
+
+$sidebarFallbackIcon = '<i class="fa fa-circle sidebar-fallback-icon" aria-hidden="true"></i>';
+$ensureSidebarFallbackIcon = static function ($menuAction) use ($sidebarFallbackIcon): void {
+    if (!is_object($menuAction) || !method_exists($menuAction, 'setIcon')) {
+        return;
+    }
+
+    if (method_exists($menuAction, 'hasIcon') && $menuAction->hasIcon()) {
+        return;
+    }
+
+    $menuAction->setIcon($sidebarFallbackIcon);
+};
 ?>
 <div <?= HtmlBuilder::buildAttributes($attributes) ?>>
     <h6 class="nav-header">
@@ -28,9 +40,7 @@ if (count($actions) < 1) {
             $hasSubMenu = $action instanceof AbstractParentAction && $action->hasChildren();
             $sectionSelected = $action->isSelected();
             $class = ['nav-item'];
-            if (false == $action->hasIcon()) {
-                $action->setIcon(Icons::bookmark());
-            }
+            $ensureSidebarFallbackIcon($action);
             if ($hasSubMenu) {
                 $class[] = 'has-sub';
                 $action->addContentSuffix('<b class="caret"></b>');
@@ -49,6 +59,7 @@ if (count($actions) < 1) {
                         <?php foreach ($action->actions() as $sub) : ?>
                             <?php
                             $class = [];
+                            $ensureSidebarFallbackIcon($sub);
                             if (method_exists($sub, 'isSelected') && $sub->isSelected()) {
                                 $class[] = 'active';
                             }
