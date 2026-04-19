@@ -16,13 +16,9 @@ if (count($actions) < 1) {
     return;
 }
 
-$sidebarFallbackIcon = str_replace('<i class="', '<i class="sidebar-fallback-icon ', (string) AdminIcons::generic());
-$applyFallbackIcon = static function ($menuAction) use ($sidebarFallbackIcon): void {
-    if (!is_object($menuAction) || !method_exists($menuAction, 'setIcon')) {
-        return;
-    }
-
-    if (method_exists($menuAction, 'hasIcon') && $menuAction->hasIcon()) {
+$sidebarFallbackIcon = (string) AdminIcons::for('fa-circle');
+$applyFallbackIcon = static function (MenuItem $menuAction) use ($sidebarFallbackIcon): void {
+    if ($menuAction->hasIcon()) {
         return;
     }
 
@@ -60,7 +56,9 @@ $applyFallbackIcon = static function ($menuAction) use ($sidebarFallbackIcon): v
                         <?php foreach ($action->actions() as $sub) : ?>
                             <?php
                             $class = [];
-                            $applyFallbackIcon($sub);
+                            if ($sub instanceof MenuItem) {
+                                $applyFallbackIcon($sub);
+                            }
                             if (method_exists($sub, 'isSelected') && $sub->isSelected()) {
                                 $class[] = 'active';
                             }
