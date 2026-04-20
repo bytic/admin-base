@@ -1,3 +1,4 @@
+@use 'sass:color';
 .irs {
 	font-family: inherit !important;
 	
@@ -9,7 +10,7 @@
 			& .irs-line-left,
 			& .irs-line-mid,
 			& .irs-line-right {
-				background: lighten($dark, 70%);
+				background: color.adjust($dark, $lightness: 70%);
 				height: rem(4px);
 			}
 			& .irs-line-left {
@@ -26,7 +27,7 @@
 		}
 	}
 	& .irs-bar-edge {
-		background: lighten($dark, 70%);
+		background: color.adjust($dark, $lightness: 70%);
 		border-right: 1px solid $white;
 		top: rem(27px);
 		height: rem(4px);
@@ -41,8 +42,8 @@
 	& .irs-min,
 	& .irs-max {
 		font-size: $font-size-base;
-		background: lighten($dark, 75%);
-		color: lighten($dark, 15%);
+		background: color.adjust($dark, $lightness: 75%);
+		color: color.adjust($dark, $lightness: 15%);
 		font-weight: 600;
 	}
 	& .irs-slider {
@@ -73,7 +74,7 @@
 			&.state_hover {
 				& > i {
 					&:first-child {
-						background: mix($black, $form-component-active-bg, 50%);
+						background: color.mix($black, $form-component-active-bg, 50%);
 					}
 				}
 			}
@@ -84,7 +85,7 @@
 		
 		& .irs {
 			& .irs-line {
-				background: lighten($dark, 70%);
+				background: color.adjust($dark, $lightness: 70%);
 				border: none;
 			}
 		}
@@ -118,7 +119,7 @@
 		
 		& .irs {
 			& .irs-line {
-				background: lighten($dark, 70%);
+				background: color.adjust($dark, $lightness: 70%);
 				border: none;
 			}
 		}
@@ -158,7 +159,7 @@
 					left: rem(4px);
 					width: rem(4px);
 					height: rem(8px);
-					border-color: mix($white, $silver, 75%);
+					border-color: color.mix($white, $silver, 75%);
 				}
 			}
 			&:hover,
@@ -175,7 +176,7 @@
 						background: $silver;
 					}
 					&:nth-child(3) {
-						border-color: mix($black, $silver, 50%);
+						border-color: color.mix($black, $silver, 50%);
 					}
 				}
 			}
@@ -186,7 +187,7 @@
 		
 		& .irs {
 			& .irs-line {
-				background: lighten($dark, 70%);
+				background: color.adjust($dark, $lightness: 70%);
 				border: none;
 			}
 		}
@@ -199,11 +200,11 @@
 		}
 		& .irs-handle {
 			top: rem(23px);
-			background: mix($white, $form-component-active-bg, 25%);
+			background: color.mix($white, $form-component-active-bg, 25%);
 			
 			& > i {
 				&:first-child {
-					border-top-color: mix($white, $form-component-active-bg, 25%);
+					border-top-color: color.mix($white, $form-component-active-bg, 25%);
 				}
 			}
 			&:hover,
@@ -278,7 +279,7 @@
 			color: $dark;
 			font-size: rem(11px);
 			font-weight: 600;
-			background: mix($white, $silver, 50%);
+			background: color.mix($white, $silver, 50%);
 		}
 	}
 }

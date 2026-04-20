@@ -1,3 +1,4 @@
+@use 'sass:color';
 body {
 	& .daterangepicker {
 		z-index: 1020;
@@ -94,8 +95,8 @@ body {
 										background: $light;
 									}
 									&.in-range {
-										background: lighten($form-component-active-bg, 40%);
-										color: darken($form-component-active-color, 30%);
+										background: color.adjust($form-component-active-bg, $lightness: 40%);
+										color: color.adjust($form-component-active-color, $lightness: -30%);
 										
 										@include border-radius(0);
 									}
@@ -112,7 +113,7 @@ body {
 								}
 								&.off {
 									background: none;
-									color: lighten($dark, 60%);
+									color: color.adjust($dark, $lightness: 60%);
 								}
 							}
 						}
@@ -148,7 +149,7 @@ body {
 			}
 			& .drp-selected {
 				font-weight: 600;
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 			}
 		}
 		& .ranges {
@@ -193,7 +194,7 @@ body {
 					
 					& li {
 						font-weight: 600;
-						color: lighten($dark, 30%);
+						color: color.adjust($dark, $lightness: 30%);
 						
 						@include media-breakpoint-down(md) {
 							margin-right: rem(10px) !important;

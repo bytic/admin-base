@@ -1,3 +1,4 @@
+@use 'sass:color';
 .register {
 	&.register-with-news-feed {
 		width: 100%;
@@ -119,7 +120,7 @@
 					padding-top: rem(15px);
 				}
 				& small {
-					color: lighten($dark, 30%);
+					color: color.adjust($dark, $lightness: 30%);
 					display: block;
 					font-size: rem(14px);
 					margin-top: rem(10px);

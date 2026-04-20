@@ -1,3 +1,4 @@
+@use 'sass:color';
 @include keyframes(topMenuControlSlideInLeft) {
 	from { left: rem(-50px); }
 	to { left: 0; }
@@ -157,7 +158,7 @@
 					}
 					&:hover,
 					&:focus {
-						background: darken($dark, 4%);
+						background: color.adjust($dark, $lightness: -4%);
 					}
 				}
 				&.menu-control-left {

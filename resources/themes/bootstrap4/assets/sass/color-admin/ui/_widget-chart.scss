@@ -1,3 +1,4 @@
+@use 'sass:color';
 .widget-chart {
 	position: relative;
 	overflow: hidden;
@@ -20,7 +21,7 @@
 			margin-top: rem(3px);
 			font-size: rem(12px);
 			line-height: rem(16px);
-			color: lighten($dark, 45%);
+			color: color.adjust($dark, $lightness: 45%);
 			font-weight: normal;
 		}
 	}
@@ -64,7 +65,7 @@
 				font-size: rem(12px);
 				line-height: rem(16px);
 				margin-top: rem(3px);
-				color: lighten($dark, 45%);
+				color: color.adjust($dark, $lightness: 45%);
 				display: block;
 				font-weight: normal;
 			}
@@ -80,7 +81,7 @@
 				color: $white;
 				
 				& span {
-					color: lighten($dark, 45%);
+					color: color.adjust($dark, $lightness: 45%);
 					margin-left: rem(5px);
 					font-weight: normal;
 				}
@@ -100,7 +101,7 @@
 	}
 	& .widget-chart-info-desc {
 		font-size: rem(11px);
-		color: lighten($dark, 15%);
+		color: color.adjust($dark, $lightness: 15%);
 		margin-bottom: rem(20px);
 	}
 	& .widget-chart-info-progress {
@@ -118,13 +119,13 @@
 }
 .inverse-mode {
 	& .widget-chart-content {
-		background: darken($dark, 7.5%);
+		background: color.adjust($dark, $lightness: -7.5%);
 	}
 	& .widget-chart-info {
-		color: lighten($dark, 60%);
+		color: color.adjust($dark, $lightness: 60%);
 		
 		& .widget-chart-info-desc {
-			color: lighten($dark, 45%);
+			color: color.adjust($dark, $lightness: 45%);
 		}
 	}
 	& .nvd3 {

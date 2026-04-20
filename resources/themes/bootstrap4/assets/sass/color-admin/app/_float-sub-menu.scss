@@ -1,8 +1,9 @@
+@use 'sass:color';
 .float-sub-menu-container {
 	position: fixed;
 	width: $sidebar-width;
 	margin: 0;
-	background: darken($dark, 4%);
+	background: color.adjust($dark, $lightness: -4%);
 	z-index: $float-submenu-zindex;
 	
 	& .float-sub-menu {
@@ -106,7 +107,7 @@
 				top: rem(11px);
 				margin-top: rem(-2px);
 				z-index: 10;
-				background: darken($dark, 4%);
+				background: color.adjust($dark, $lightness: -4%);
 				
 				@include border-radius($border-radius);
 				@if $enable-rtl {

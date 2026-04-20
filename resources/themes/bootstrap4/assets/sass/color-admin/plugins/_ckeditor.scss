@@ -1,3 +1,4 @@
+@use 'sass:color';
 .cke {
 	border: none !important;
 	
@@ -13,7 +14,7 @@
 	}
 	& .cke_top {
 		border-color: $border-color;
-		background: lighten($dark, 75%);
+		background: color.adjust($dark, $lightness: 75%);
 		
 		& .cke_button_off,
 		& .cke_combo_button {
@@ -35,10 +36,10 @@
 	}
 	& .cke_bottom {
 		border-color: $border-color;
-		background: lighten($dark, 75%);
+		background: color.adjust($dark, $lightness: 75%);
 		
 		& .cke_resizer {
-			border-right-color: lighten($dark, 45%);
+			border-right-color: color.adjust($dark, $lightness: 45%);
 		}
 	}
 }

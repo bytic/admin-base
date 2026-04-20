@@ -1,3 +1,4 @@
+@use 'sass:color';
 .bootstrap-timepicker-widget {
 	& table {
 		& tbody {
@@ -40,14 +41,14 @@
 					}
 					& a {
 						border: none;
-						color: lighten($dark, 30%);
+						color: color.adjust($dark, $lightness: 30%);
 						padding: rem(5px);
 						
 						@include border-radius($border-radius !important);
 						
 						&:hover,
 						&:focus {
-							background: lighten($dark, 70%);
+							background: color.adjust($dark, $lightness: 70%);
 							color: $dark;
 						}
 					}

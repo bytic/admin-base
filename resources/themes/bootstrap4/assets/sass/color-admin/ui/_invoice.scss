@@ -1,3 +1,4 @@
+@use 'sass:color';
 .invoice {
 	background: $white;
 	padding: rem(20px);
@@ -21,7 +22,7 @@
 			
 			& > div {
 				& + div {
-					border-top: 1px solid mix($black, $light, 5%);
+					border-top: 1px solid color.mix($black, $light, 5%);
 				}
 			}
 		}
@@ -139,10 +140,10 @@
 		border-top: 1px solid $border-color;
 		padding-top: rem(15px);
 		font-size: rem(11px);
-		color: lighten($dark, 15%);
+		color: color.adjust($dark, $lightness: 15%);
 	}
 	& .invoice-note {
-		color: lighten($dark, 15%);
+		color: color.adjust($dark, $lightness: 15%);
 		margin-top: rem(80px);
 		font-size: rem(11px);
 		line-height: 1.75;

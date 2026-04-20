@@ -1,3 +1,4 @@
+@use 'sass:color';
 .widget-table {
 	&.table {
 		background: $white;
@@ -22,7 +23,7 @@
 			margin: 0;
 			font-size: rem(11px);
 			line-height: rem(16px);
-			color: lighten($dark, 15%);
+			color: color.adjust($dark, $lightness: 15%);
 		}
 		
 		&.table-bordered {
@@ -70,10 +71,10 @@
 		}
 		&.inverse-mode {
 			background: $dark;
-			color: lighten($dark, 60%);
+			color: color.adjust($dark, $lightness: 60%);
 			
 			& .widget-table-desc {
-				color: lighten($dark, 45%);
+				color: color.adjust($dark, $lightness: 45%);
 			}
 			& thead {
 				& th {
@@ -83,7 +84,7 @@
 			& thead {
 				& > tr {
 					& > th {
-						border-bottom-color: lighten($dark, 15%) !important;
+						border-bottom-color: color.adjust($dark, $lightness: 15%) !important;
 					}
 				}
 			}
@@ -93,7 +94,7 @@
 				& tr {
 					& td,
 					& th {
-						border-color: lighten($dark, 7.5%);
+						border-color: color.adjust($dark, $lightness: 7.5%);
 					}
 				}
 			}

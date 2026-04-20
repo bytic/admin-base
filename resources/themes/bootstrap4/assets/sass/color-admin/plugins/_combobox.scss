@@ -1,3 +1,4 @@
+@use 'sass:color';
 .combobox {
 	& + .input-group-addon,
 	& + .typeahead + .input-group-addon {
@@ -62,14 +63,14 @@
 				& > a {
 					padding: rem(5px) rem(15px);
 					font-weight: 600;
-					color: lighten($dark, 15%);
+					color: color.adjust($dark, $lightness: 15%);
 					text-decoration: none;
 					display: block;
 					
 					&:hover,
 					&:focus {
 						color: $dark;
-						background: lighten($dark, 75%);
+						background: color.adjust($dark, $lightness: 75%);
 					}
 				}
 			}

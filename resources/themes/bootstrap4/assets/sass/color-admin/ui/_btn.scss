@@ -1,3 +1,4 @@
+@use 'sass:color';
 .btn {
 	font-weight: 600;
 	
@@ -51,19 +52,19 @@
 			&:not(.active) {
 				&:hover,
 				&:focus {
-					border-color: lighten($dark, 75%) !important;
-					background: lighten($dark, 75%) !important;
+					border-color: color.adjust($dark, $lightness: 75%) !important;
+					background: color.adjust($dark, $lightness: 75%) !important;
 				}
 			}
 			&.active {
-				border-color: lighten($dark, 70%) !important;
+				border-color: color.adjust($dark, $lightness: 70%) !important;
 			}
 		}
 	}
 }
 
 .btn-default {
-	@include button-variant(lighten($silver, 20%), lighten($silver, 20%), lighten($silver, 10%), lighten($silver, 10%), lighten($silver, 10%), lighten($silver, 10%));
+	@include button-variant(color.adjust($silver, $lightness: 20%), color.adjust($silver, $lightness: 20%), color.adjust($silver, $lightness: 10%), color.adjust($silver, $lightness: 10%), color.adjust($silver, $lightness: 10%), color.adjust($silver, $lightness: 10%));
 }
 
 @each $color, $value in $theme-colors {
@@ -71,7 +72,7 @@
 		$value: $blue;
 	}
   .btn-#{$color} {
-    @include button-variant($value, $value, darken($value, 10%), darken($value, 10%), darken($value, 10%), darken($value, 10%));
+    @include button-variant($value, $value, color.adjust($value, $lightness: -10%), color.adjust($value, $lightness: -10%), color.adjust($value, $lightness: -10%), color.adjust($value, $lightness: -10%));
     
     @if $color == 'warning' or $color == 'info' or $color == 'grey' {
     	color: $white;
@@ -88,10 +89,10 @@
 @each $color, $value in $colors {
   .btn-#{$color} {
   	@if $color == 'white' {
-  		@include button-variant($value, $border-color, lighten($dark, 75%), $border-color, lighten($dark, 70%), $border-color);
+  		@include button-variant($value, $border-color, color.adjust($dark, $lightness: 75%), $border-color, color.adjust($dark, $lightness: 70%), $border-color);
   	}
   	@if $color != 'white' {
-    	@include button-variant($value, $value, darken($value, 10%), darken($value, 10%), darken($value, 10%), darken($value, 10%));
+    	@include button-variant($value, $value, color.adjust($value, $lightness: -10%), color.adjust($value, $lightness: -10%), color.adjust($value, $lightness: -10%), color.adjust($value, $lightness: -10%));
     }
     @if $color == 'orange' or $color == 'aqua' or $color == 'lime' {
     	color: $white;
@@ -110,10 +111,10 @@
 .input-group-append {
 	& .btn-default {
 		& + .btn-default {
-			border-left-color: lighten($silver, 10%);
+			border-left-color: color.adjust($silver, $lightness: 10%);
 			
 			@if $enable-rtl {
-				border-right: 1px solid lighten($silver, 10%);
+				border-right: 1px solid color.adjust($silver, $lightness: 10%);
 				
 				&:not(:last-child) {
 					border-left: none;
@@ -127,10 +128,10 @@
 		}
   	& .btn-#{$color} {
   		& + .btn-#{$color} {
-  			border-left-color: darken($value, 10%);
+  			border-left-color: color.adjust($value, $lightness: -10%);
   				
 				@if $enable-rtl {
-					border-right: 1px solid darken($value, 10%); 
+					border-right: 1px solid color.adjust($value, $lightness: -10%); 
 					
 					&:not(:last-child) {
 						border-left: none;
@@ -154,10 +155,10 @@
 					}
 				}
 				@if $color != 'white' {
-					border-left-color: darken($value, 10%);
+					border-left-color: color.adjust($value, $lightness: -10%);
 					
 					@if $enable-rtl {
-						border-right: 1px solid darken($value, 10%); 
+						border-right: 1px solid color.adjust($value, $lightness: -10%); 
 					
 						&:not(:last-child) {
 							border-left: none;

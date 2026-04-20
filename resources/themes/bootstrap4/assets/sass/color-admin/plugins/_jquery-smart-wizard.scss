@@ -1,3 +1,4 @@
+@use 'sass:color';
 .sw-main {
 	&.sw-theme-default {
 		@include box-shadow(none);
@@ -48,7 +49,7 @@
 						line-height: rem(24px);
 						text-align: center;
 						margin-right: rem(10px);
-						background: lighten($dark, 65%);
+						background: color.adjust($dark, $lightness: 65%);
 						color: $dark;
 						font-weight: bold;
 						position: relative;
@@ -64,7 +65,7 @@
 						font-size: rem(12px);
 						font-weight: 600;
 						line-height: rem(16px);
-						color: lighten($dark, 30%);
+						color: color.adjust($dark, $lightness: 30%);
 					}
 					&:after {
 						display: none !important;
@@ -81,11 +82,11 @@
 						color: $white !important;
 						
 						& .number {
-							background: mix($black, $form-component-active-bg, 25%);
+							background: color.mix($black, $form-component-active-bg, 25%);
 							color: $white;
 						}
 						& small {
-							color: mix($white, $form-component-active-bg, 50%);
+							color: color.mix($white, $form-component-active-bg, 50%);
 						}
 					}
 				}

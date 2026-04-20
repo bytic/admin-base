@@ -1,3 +1,4 @@
+@use 'sass:color';
 .jstree {
 	& .jstree-container-ul {
 		& .jstree-node {
@@ -10,13 +11,13 @@
 				left: rem(10px);
 				top: 0;
 				bottom: 1px;
-				border-left: 1px dotted lighten($dark, 60%);
+				border-left: 1px dotted color.adjust($dark, $lightness: 60%);
 				
 				@if $enable-rtl {
 					left: auto;
 					right: rem(10px);
 					border-left: 0;
-					border-right: 1px dotted lighten($dark, 60%);
+					border-right: 1px dotted color.adjust($dark, $lightness: 60%);
 				}
 			}
 			&:last-child {
@@ -35,7 +36,7 @@
 						left: 50%;
 						right: 1px;
 						top: 50%;
-						border-top: 1px dotted lighten($dark, 60%);
+						border-top: 1px dotted color.adjust($dark, $lightness: 60%);
 						
 						@if $enable-rtl {
 							right: 50%;
@@ -63,7 +64,7 @@
 			}
 			
 			& .jstree-anchor {
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				font-weight: 600;
 				
 				& .jstree-icon {
@@ -97,7 +98,7 @@
 						
 						&.jstree-undetermined {
 							&:after {
-								background: lighten($dark, 65%);
+								background: color.adjust($dark, $lightness: 65%);
 							}
 						}
 					}
@@ -122,7 +123,7 @@
 					}
 				}
 				&.jstree-disabled {
-					color: lighten($dark, 45%);
+					color: color.adjust($dark, $lightness: 45%);
 						
 					& > .jstree-icon {
 						opacity: 0.4;
@@ -150,7 +151,7 @@
 					& > .fa-folder {
 						&:before {
 							content: '\f07c';
-							color: lighten($dark, 45%);
+							color: color.adjust($dark, $lightness: 45%);
 						}
 					}
 					&.jstree-clicked {
@@ -164,12 +165,12 @@
 				
 				& > .jstree-ocl {
 					&:after {
-						border-left-color: lighten($dark, 45%);
+						border-left-color: color.adjust($dark, $lightness: 45%);
 						
 						@include transform(rotate(45deg));
 						@if $enable-rtl {
 							border-left-color: transparent;
-							border-right-color: lighten($dark, 45%);
+							border-right-color: color.adjust($dark, $lightness: 45%);
 							
 							@include transform(rotate(-45deg));
 						}
@@ -179,13 +180,13 @@
 			&.jstree-closed {
 				& > .jstree-ocl {
 					&:after {
-						border-left-color: lighten($dark, 45%);
+						border-left-color: color.adjust($dark, $lightness: 45%);
 						margin-top: rem(-5px);
 						
 						@include transform(rotate(0deg));
 						@if $enable-rtl {
 							border-left-color: transparent;
-							border-right-color: lighten($dark, 45%);
+							border-right-color: color.adjust($dark, $lightness: 45%);
 							
 							@include transform(rotate(0));
 						}

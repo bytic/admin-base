@@ -1,3 +1,4 @@
+@use 'sass:color';
 body {
 	& #gritter-notice-wrapper {
 		width: rem(420px);
@@ -88,7 +89,7 @@ body {
 					font-size: rem(11px);
 					line-height: rem(16px);
 					letter-spacing: 0.15px;
-					color: lighten($dark, 60%);
+					color: color.adjust($dark, $lightness: 60%);
 					
 					@include media-breakpoint-down(xs) {
 						font-size: rem(10px);
@@ -107,7 +108,7 @@ body {
 					display: block !important;
 					font-family: inherit;
 					border-left: 1px solid rgba($white, .1);
-					color: lighten($dark, 45%);
+					color: color.adjust($dark, $lightness: 45%);
 					
 					@if $enable-rtl {
 						right: auto;
@@ -149,7 +150,7 @@ body {
 				& .gritter-bottom,
 				& .gritter-top {
 					background: rgba($white, .95);
-					color: lighten($dark, 30%);
+					color: color.adjust($dark, $lightness: 30%);
 				}
 				& .gritter-item {
 					& .gritter-title {
@@ -157,12 +158,12 @@ body {
 						font-weight: 600;
 					}
 					& p {
-						color: lighten($dark, 15%);
+						color: color.adjust($dark, $lightness: 15%);
 					}
 				}
 				& .gritter-close {
 					border-color: $border-color;
-					color: lighten($dark, 30%);
+					color: color.adjust($dark, $lightness: 30%);
 					
 					&:hover,
 					&:focus {

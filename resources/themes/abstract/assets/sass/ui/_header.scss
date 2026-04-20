@@ -1,3 +1,4 @@
+@use 'sass:color';
 
 #header .navbar-nav {
   > li > a {
@@ -5,7 +6,7 @@
     padding: 0 10px;
 
     &:hover {
-      background-color: lighten(theme-color('primary'), 35%);
+      background-color: color.adjust(theme-color('primary'), $lightness: 35%);
     }
   }
 }

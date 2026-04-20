@@ -1,3 +1,4 @@
+@use 'sass:color';
 .btn-xs {
   font-size: rem(12px);
   line-height: rem(18px);
@@ -16,19 +17,19 @@
   }
 
   &.btn-primary {
-    background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+    background: linear-gradient(135deg, $primary 0%, color.adjust($primary, $lightness: -10%) 100%);
     border-color: $primary;
     color: $white;
   }
 
   &.btn-success {
-    background: linear-gradient(135deg, $success 0%, darken($success, 10%) 100%);
+    background: linear-gradient(135deg, $success 0%, color.adjust($success, $lightness: -10%) 100%);
     border-color: $success;
     color: $white;
   }
 
   &.btn-danger {
-    background: linear-gradient(135deg, $danger 0%, darken($danger, 10%) 100%);
+    background: linear-gradient(135deg, $danger 0%, color.adjust($danger, $lightness: -10%) 100%);
     border-color: $danger;
     color: $white;
   }

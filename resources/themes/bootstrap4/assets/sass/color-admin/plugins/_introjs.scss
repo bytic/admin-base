@@ -1,3 +1,4 @@
+@use 'sass:color';
 body {
 	& .introjs-hint {
 		& .introjs-hint-dot {
@@ -21,10 +22,10 @@ body {
 		& ul {
 			& li {
 				& a {
-					background: lighten($dark, 60%);
+					background: color.adjust($dark, $lightness: 60%);
 				
 					&.active {
-						background: lighten($dark, 30%);
+						background: color.adjust($dark, $lightness: 30%);
 					}
 				}
 			}
@@ -94,7 +95,7 @@ body {
 		&.introjs-disabled,
 		&.introjs-disabled:hover,
 		&.introjs-disabled:focus {
-			color: lighten($dark, 45%);
+			color: color.adjust($dark, $lightness: 45%);
 			background: $light;
 			border-color: $light;
 		}

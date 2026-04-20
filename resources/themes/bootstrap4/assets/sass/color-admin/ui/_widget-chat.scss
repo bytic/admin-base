@@ -1,3 +1,4 @@
+@use 'sass:color';
 .widget-chat {
 	background: $white;
 	
@@ -38,7 +39,7 @@
 	}
 	& .widget-chat-body {
 		padding: rem(15px);
-		background: lighten($dark, 70%);
+		background: color.adjust($dark, $lightness: 70%);
 	}
 	& .widget-chat-item {
 		color: $dark;
@@ -121,7 +122,7 @@
 		right: rem(12px);
 		bottom: rem(8px);
 		font-style: italic;
-		color: lighten($dark, 45%);
+		color: color.adjust($dark, $lightness: 45%);
 		font-weight: 600;
 		font-size: rem(10px);
 		
@@ -227,7 +228,7 @@
 			color: $white;
 		}
 		& .widget-chat-header-desc {
-			color: lighten($dark, 60%);
+			color: color.adjust($dark, $lightness: 60%);
 		}
 		& .widget-chat-body {
 			background: $dark-darker;

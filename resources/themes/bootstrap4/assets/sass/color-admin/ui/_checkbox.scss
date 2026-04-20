@@ -1,3 +1,4 @@
+@use 'sass:color';
 
 .has-success,
 .is-valid {
@@ -5,7 +6,7 @@
 	& .checkbox {
 		&.checkbox-css {
 			& label {
-				color: darken($success, 5%);
+				color: color.adjust($success, $lightness: -5%);
 				
 				&:before {
 					background: rgba($success, .5);
@@ -20,7 +21,7 @@
 	& .checkbox {
 		&.checkbox-css {
 			& label {
-				color: darken($danger, 5%);
+				color: color.adjust($danger, $lightness: -5%);
 				
 				&:before {
 					background: rgba($danger, .5);
@@ -51,7 +52,7 @@
 				top: 0;
 				width: rem(16px);
 				height: rem(16px);
-				background: lighten($dark, 65%);
+				background: color.adjust($dark, $lightness: 65%);
 				
 				@include border-radius(rem(4px));
 				@if $enable-rtl {

@@ -1,3 +1,4 @@
+@use 'sass:color';
 .widget {
 	overflow: hidden;
 	margin-bottom: rem(20px);
@@ -46,18 +47,18 @@
 		
 		& .vertical-box {
 			&.with-border-top {
-				border-color: lighten($dark, 15%);
+				border-color: color.adjust($dark, $lightness: 15%);
 			}
 			&.with-grid {
 				& > .vertical-box-column {
 					& + .vertical-box-column {
-						border-color: lighten($dark, 15%);
+						border-color: color.adjust($dark, $lightness: 15%);
 					}
 				}	
 			}
 		}
 		& hr {
-			background: lighten($dark, 15%);
+			background: color.adjust($dark, $lightness: 15%);
 		}
 	}
 }

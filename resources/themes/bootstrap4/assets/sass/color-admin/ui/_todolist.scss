@@ -1,10 +1,11 @@
+@use 'sass:color';
 .todolist {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	
 	& > li {
-		border-bottom: 1px solid lighten($border-color, 5%);
+		border-bottom: 1px solid color.adjust($border-color, $lightness: 5%);
 		
 		& > a {
 			display: block;
@@ -18,13 +19,13 @@
 				display: table-cell;
 				text-align: center;
 				font-size: rem(14px);
-				border-right: 1px solid lighten($border-color, 5%);
+				border-right: 1px solid color.adjust($border-color, $lightness: 5%);
 				padding: rem(10px);
-				color: lighten($dark, 70%);
+				color: color.adjust($dark, $lightness: 70%);
 				
 				@if $enable-rtl {
 					border-right: 0;
-					border-left: 1px solid lighten($border-color, 5%);
+					border-left: 1px solid color.adjust($border-color, $lightness: 5%);
 				}
 				
 				& i {

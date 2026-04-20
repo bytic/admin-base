@@ -1,3 +1,4 @@
+@use 'sass:color';
 
 .card .card-header {
   @include display-flex();
@@ -36,8 +37,8 @@
 
 .card-inverse {
   & > .card-header {
-    background: darken($dark, 7.5%);
-    color: transparentize($white, .3);
+    background: color.adjust($dark, $lightness: -7.5%);
+    color: color.adjust($white, $alpha: -.3);
 
     .card-title {
       color: $white;

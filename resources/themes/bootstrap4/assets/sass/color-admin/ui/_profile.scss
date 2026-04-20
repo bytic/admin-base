@@ -1,3 +1,4 @@
+@use 'sass:color';
 .profile-header {
 	position: relative;
 	overflow: hidden;
@@ -112,7 +113,7 @@
 			
 			& .nav-link {
 				display: block;
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				line-height: rem(20px);
 				padding: rem(10px) rem(20px);
 				text-decoration: none;
@@ -125,7 +126,7 @@
 				&:hover,
 				&:focus {
 					background: none;
-					color: lighten($dark, 15%);
+					color: color.adjust($dark, $lightness: 15%);
 				}
 				&.active {
 					color: $dark;
@@ -176,7 +177,7 @@
 						background: none;
 						
 						& .form-control {
-							border-color: mix($dark, $body-bg, 10%);
+							border-color: color.mix($dark, $body-bg, 10%);
 							
 							&:focus {
 								border-color: $input-focus-border-color;
@@ -198,8 +199,8 @@
 					}
 					&.highlight {
 						& > td {
-							border-top: 1px solid mix($dark, $body-bg, 10%);
-							border-bottom: 1px solid mix($dark, $body-bg, 10%);
+							border-top: 1px solid color.mix($dark, $body-bg, 10%);
+							border-bottom: 1px solid color.mix($dark, $body-bg, 10%);
 						}
 					}
 					&.divider {

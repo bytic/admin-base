@@ -1,3 +1,4 @@
+@use 'sass:color';
 
 .editable-container {
 	@include display-flex();
@@ -104,7 +105,7 @@
 										& .today {
 											&:hover,
 											&:focus {
-												background: lighten($dark, 75%);
+												background: color.adjust($dark, $lightness: 75%);
 											}
 										}
 									}
@@ -131,7 +132,7 @@
 								
 														&:hover,
 														&:focus {
-															background: lighten($dark, 75%);
+															background: color.adjust($dark, $lightness: 75%);
 									
 															&:before {
 																color: $dark;
@@ -146,7 +147,7 @@
 														@include fontawesome();
 								
 														&:before {
-															color: lighten($dark, 30%);
+															color: color.adjust($dark, $lightness: 30%);
 															position: absolute;
 															font-size: rem(14px);
 														}
@@ -185,17 +186,17 @@
 														&.month,
 														&.century {
 															font-weight: 600;
-															color: lighten($dark, 30%);
+															color: color.adjust($dark, $lightness: 30%);
 															text-shadow: none;
 									
 															@include border-radius($border-radius);
 									
 															&:hover,
 															&:focus {
-																background: lighten($dark, 75%);
+																background: color.adjust($dark, $lightness: 75%);
 															}
 															&.focused {
-																background: lighten($dark, 70%);
+																background: color.adjust($dark, $lightness: 70%);
 																color: $dark;
 															}
 															&.active {
@@ -206,17 +207,17 @@
 													}
 													&.day {
 														font-weight: 600;
-														color: lighten($dark, 15%);
+														color: color.adjust($dark, $lightness: 15%);
 														padding: rem(5px);
 									
 														@include border-radius($border-radius);
 								
 														&:hover,
 														&:focus {
-															background: lighten($dark, 75%);
+															background: color.adjust($dark, $lightness: 75%);
 														}
 														&.today {
-															background: lighten($dark, 70%) !important;
+															background: color.adjust($dark, $lightness: 70%) !important;
 															color: $dark;
 														}
 														&.active {
@@ -225,10 +226,10 @@
 															text-shadow: none !important;
 														}
 														&.old {
-															color: lighten($dark, 60%);
+															color: color.adjust($dark, $lightness: 60%);
 														}
 														&.new {
-															color: lighten($dark, 45%);
+															color: color.adjust($dark, $lightness: 45%);
 														}
 													}
 												}
@@ -324,13 +325,13 @@
 			}
 			&.has-error {
 				& .form-control {
-					border-color: mix($black, $danger, 7.5%);
-					background: mix($white, $danger, 90%);
+					border-color: color.mix($black, $danger, 7.5%);
+					background: color.mix($white, $danger, 90%);
 				}
 				& .editable-error-block {
 					margin: 0 0 0 rem(10px);
 					white-space: nowrap;
-					color: mix($black, $danger, 15%);
+					color: color.mix($black, $danger, 15%);
 					
 					@if $enable-rtl {
 						margin-left: 0;

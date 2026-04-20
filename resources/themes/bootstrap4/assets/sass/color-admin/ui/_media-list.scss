@@ -1,3 +1,4 @@
+@use 'sass:color';
 .media-list {
 	padding-left: 0;
 	padding-right: 0;
@@ -19,8 +20,8 @@
 		padding: 0;
 		
 		& .media {
-			border-top: 1px solid lighten($border-color, 5%);
-			border-bottom: 1px solid lighten($border-color, 5%);
+			border-top: 1px solid color.adjust($border-color, $lightness: 5%);
+			border-bottom: 1px solid color.adjust($border-color, $lightness: 5%);
 			margin-top: 0;
 			margin-bottom: -1px;
 			
@@ -81,7 +82,7 @@
 				margin-bottom: rem(5px);
 				line-height: rem(14px);
 				max-width: rem(270px);
-				color: lighten($dark, 15%);
+				color: color.adjust($dark, $lightness: 15%);
 				font-size: rem(11px);
 			}
 		}
