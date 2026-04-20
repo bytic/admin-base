@@ -1,9 +1,10 @@
+@use 'sass:color';
 .ui-sortable {
 	& .panel-heading {
 		cursor: move;
 	}
 	& .ui-sortable-placeholder {
-		border: 1px dashed lighten($dark, 45%) !important;
+		border: 1px dashed color.adjust($dark, $lightness: 45%) !important;
 		visibility: visible !important;
 		background: none !important;
 		margin: 0 !important;

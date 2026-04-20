@@ -1,3 +1,4 @@
+@use 'sass:color';
 .switcher {
 	display: inline-block;
 	
@@ -13,7 +14,7 @@
 			display: block;
 			width: rem(46px);
 			height: rem(28px);
-			background: lighten($dark, 65%);
+			background: color.adjust($dark, $lightness: 65%);
 			border: 1px solid $border-color;
 			
 			@include border-radius(rem(46px));

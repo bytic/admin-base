@@ -1,3 +1,4 @@
+@use 'sass:color';
 body {
 	& div {
 		&.dt-autofill-background {
@@ -20,7 +21,7 @@ body {
 						padding: rem(15px);
 						border-color: $border-color;
 						font-weight: 600;
-						color: lighten($dark, 15%);
+						color: color.adjust($dark, $lightness: 15%);
 						
 						@include flex(1);
 						@include display-flex();
@@ -41,8 +42,8 @@ body {
 							
 							&:hover,
 							&:focus {
-								background: darken($table-component-active-bg, 15%);
-								border-color: darken($table-component-active-bg, 15%);
+								background: color.adjust($table-component-active-bg, $lightness: -15%);
+								border-color: color.adjust($table-component-active-bg, $lightness: -15%);
 							}
 							&:before {
 								content: 'Fill This';
@@ -61,7 +62,7 @@ body {
 					}
 					&:hover,
 					&:focus {
-						background: lighten($dark, 75%);
+						background: color.adjust($dark, $lightness: 75%);
 					}
 				}
 			}
@@ -81,14 +82,14 @@ body {
 				font-weight: 600;
 				margin: 0;
 				font-size: rem(24px);
-				color: lighten($dark, 70%);
+				color: color.adjust($dark, $lightness: 70%);
 			}
 			& > div {
 				padding: 0;
 				margin-top: rem(5px);
 				font-size: rem(12px);
 				font-weight: 600;
-				color: lighten($dark, 45%);
+				color: color.adjust($dark, $lightness: 45%);
 			}
 		}
 		&.DTCR_pointer {
@@ -113,7 +114,7 @@ body {
 							}
 							&:after {
 								opacity: 1;
-								color: lighten($dark, 60%);
+								color: color.adjust($dark, $lightness: 60%);
 								bottom: rem(8px);
 								
 								@include fontawesome();
@@ -160,13 +161,13 @@ body {
 					
 					&.selected {
 						& td {
-							background: lighten($yellow, 40%);
-							color: darken($yellow, 30%);
+							background: color.adjust($yellow, $lightness: 40%);
+							color: color.adjust($yellow, $lightness: -30%);
 							font-weight: 600;
 						}
 					}
 					&.dt-rowReorder-moving {
-						outline: 2px solid lighten($dark, 45%);
+						outline: 2px solid color.adjust($dark, $lightness: 45%);
 					}
 				}
 			}
@@ -188,8 +189,8 @@ body {
 							}
 							&:first-child {
 								&:before {
-									background: lighten($dark, 65%) !important;
-									color: lighten($dark, 15%) !important;
+									background: color.adjust($dark, $lightness: 65%) !important;
+									color: color.adjust($dark, $lightness: 15%) !important;
 									border: none !important;
 									top: rem(10px) !important;
 									left: rem(8px) !important;
@@ -237,7 +238,7 @@ body {
 			}
 		}
 		& .dataTables_scroll {
-			border-bottom: 1px solid lighten($border-color, 5%);
+			border-bottom: 1px solid color.adjust($border-color, $lightness: 5%);
 		}
 	}
 }
@@ -263,7 +264,7 @@ body {
 			}
 			& label {
 				margin-left: auto;
-				color: lighten($dark, 15%);
+				color: color.adjust($dark, $lightness: 15%);
 				font-weight: 600;
 				margin: 0;
 				
@@ -291,7 +292,7 @@ body {
 			}
 			
 			& label {
-				color: lighten($dark, 15%);
+				color: color.adjust($dark, $lightness: 15%);
 				font-weight: 600;
 				margin: 0;
 				
@@ -320,7 +321,7 @@ body {
 		}
 		& .dataTables_info {
 			font-weight: 600;
-			color: lighten($dark, 30%);
+			color: color.adjust($dark, $lightness: 30%);
 			
 			@include media-breakpoint-down(xs) {
 				padding-bottom: rem(8px);
@@ -350,7 +351,7 @@ body {
 						padding: rem(8px) rem(12px);
 						margin-left: -1px;
 						line-height: 1.25;
-						color: lighten($dark, 30%);
+						color: color.adjust($dark, $lightness: 30%);
 						background-color: $white;
 						border: 1px solid $border-color;
 						font-weight: 600;
@@ -362,7 +363,7 @@ body {
 						&:hover,
 						&:focus {
 							color: $dark;
-							background: lighten($dark, 75%);
+							background: color.adjust($dark, $lightness: 75%);
 						}
 					}
 					
@@ -375,7 +376,7 @@ body {
 					}
 					&.disabled {
 						& a {
-							color: lighten($dark, 45%) !important;
+							color: color.adjust($dark, $lightness: 45%) !important;
 							pointer-events: none;
 							cursor: auto;
 							background-color: $white !important;
@@ -445,7 +446,7 @@ body {
 		&.DTS {
 			& .dataTables_scroll {
 				& .dataTables_scrollBody {
-					border-bottom: 1px solid lighten($border-color, 5%);
+					border-bottom: 1px solid color.adjust($border-color, $lightness: 5%);
 				}
 			}
 		}

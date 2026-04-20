@@ -1,3 +1,4 @@
+@use 'sass:color';
 @include keyframes(fadeIn) {
 	from { opacity: 0; }
 	to { opacity: 1; }
@@ -241,43 +242,43 @@
 	
 	&.panel-default {
 		& > .panel-heading {
-			background: lighten($dark, 75%);
-			color: lighten($dark, 15%);
+			background: color.adjust($dark, $lightness: 75%);
+			color: color.adjust($dark, $lightness: 15%);
 		}
 	}
 	&.panel-inverse {
 		& > .panel-heading {
-			background: darken($dark, 7.5%);
+			background: color.adjust($dark, $lightness: -7.5%);
 			color: $white;
 		}
 	}
 	&.panel-success {
 		& > .panel-heading {
-			background: darken($success, 7.5%);
+			background: color.adjust($success, $lightness: -7.5%);
 			color: $white;
 		}
 	}
 	&.panel-warning {
 		& > .panel-heading {
-			background: darken($warning, 7.5%);
+			background: color.adjust($warning, $lightness: -7.5%);
 			color: $white;
 		}
 	}
 	&.panel-danger {
 		& > .panel-heading {
-			background: darken($danger, 7.5%);
+			background: color.adjust($danger, $lightness: -7.5%);
 			color: $white;
 		}
 	}
 	&.panel-primary {
 		& > .panel-heading {
-			background: darken($blue, 7.5%);
+			background: color.adjust($blue, $lightness: -7.5%);
 			color: $white;
 		}
 	}
 	&.panel-info {
 		& > .panel-heading {
-			background: darken($info, 7.5%);
+			background: color.adjust($info, $lightness: -7.5%);
 			color: $white;
 		}
 	}

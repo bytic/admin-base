@@ -1,3 +1,4 @@
+@use 'sass:color';
 body {
 	& .select2-container {
 		& .select2-choice {
@@ -16,16 +17,16 @@ body {
 			
 			& .select2-chosen {
 				font-weight: 600;
-				color: lighten($dark, 45%);
+				color: color.adjust($dark, $lightness: 45%);
 			}
 			& .select2-search-choice-close {
-				background: lighten($dark, 70%) !important;
+				background: color.adjust($dark, $lightness: 70%) !important;
 				font-size: rem(9px);
 				text-align: center;
 				width: rem(16px);
 				height: rem(16px);
 				line-height: rem(16px);
-				color: lighten($dark, 45%);
+				color: color.adjust($dark, $lightness: 45%);
 				top: rem(1px);
 				right: rem(20px);
 				
@@ -41,8 +42,8 @@ body {
 				}
 				&:hover,
 				&:focus {
-					background: lighten($dark, 60%) !important;
-					color: lighten($dark, 30%);
+					background: color.adjust($dark, $lightness: 60%) !important;
+					color: color.adjust($dark, $lightness: 30%);
 				}
 			}
 			& .select2-arrow {
@@ -66,7 +67,7 @@ body {
 					
 					&:before {
 						content: '\f078';
-						color: lighten($dark, 60%);
+						color: color.adjust($dark, $lightness: 60%);
 					}
 				}
 			}
@@ -81,8 +82,8 @@ body {
 				
 				& .select2-search-choice {
 					margin: 0 rem(5px) rem(5px) 0;
-					background: lighten($dark, 70%);
-					color: lighten($dark, 30%);
+					background: color.adjust($dark, $lightness: 70%);
+					color: color.adjust($dark, $lightness: 30%);
 					font-weight: 600;
 					border: none;
 					padding: rem(3px) rem(3px) rem(3px) rem(6px);
@@ -98,7 +99,7 @@ body {
 						bottom: 0;
 						top: 0;
 						margin-left: rem(5px);
-						color: lighten($dark, 60%);
+						color: color.adjust($dark, $lightness: 60%);
 						background: none !important;
 						
 						@include fontawesome();
@@ -109,7 +110,7 @@ body {
 						}
 						&:hover,
 						&:focus {
-							color: lighten($dark, 30%);
+							color: color.adjust($dark, $lightness: 30%);
 							text-decoration: none;
 						}
 					}
@@ -164,7 +165,7 @@ body {
 				margin-top: rem(-5px);
 				font-size: rem(12px);
 				line-height: rem(14px);
-				color: lighten($dark, 60%);
+				color: color.adjust($dark, $lightness: 60%);
 				
 				@include fontawesome();
 			}
@@ -253,18 +254,18 @@ body {
 								margin-bottom: rem(5px);
 								font-weight: 600;
 								
-								@include placeholder(lighten($dark, 30%));
+								@include placeholder(color.adjust($dark, $lightness: 30%));
 							}
 						}
 					}
 					& .select2-selection__choice {
 						border: none;
-						background: lighten($dark, 70%);
+						background: color.adjust($dark, $lightness: 70%);
 						margin-right: rem(5px);
 						margin-bottom: rem(5px);
 						margin-top: 0;
 						padding: rem(4px) rem(8px);
-						color: lighten($dark, 15%);
+						color: color.adjust($dark, $lightness: 15%);
 						float: none;
 						
 						@include border-radius($border-radius);
@@ -274,7 +275,7 @@ body {
 						}
 						
 						& .select2-selection__choice__remove {
-							color: lighten($dark, 45%);
+							color: color.adjust($dark, $lightness: 45%);
 							font-size: rem(13px);
 							margin-right: 0;
 							margin-left: rem(5px);
@@ -335,7 +336,7 @@ body {
 			& .select2-results__options {
 				& .select2-results__option {
 					font-weight: 600;
-					color: lighten($dark, 15%);
+					color: color.adjust($dark, $lightness: 15%);
 					
 					& .select2-results__group {
 						padding: rem(15px) rem(6px) rem(6px);
@@ -352,7 +353,7 @@ body {
 					&.select2-results__message {
 						font-weight: 600;
 						font-size: rem(11px);
-						color: lighten($dark, 30%);
+						color: color.adjust($dark, $lightness: 30%);
 						padding: rem(6px);
 					}
 					&[aria-selected=true] {

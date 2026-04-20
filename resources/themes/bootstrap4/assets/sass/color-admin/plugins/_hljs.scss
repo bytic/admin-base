@@ -1,3 +1,4 @@
+@use 'sass:color';
 .hljs-wrapper {
 	background: $light;
 	position: relative;
@@ -29,7 +30,7 @@
 			& .hljs-selector-tag,
 			& .hljs-deletion,
 			& .hljs-subst {
-				color: darken($blue, 15%);
+				color: color.adjust($blue, $lightness: -15%);
 			}
 			& .hljs-attr,
 			& .hljs-variable,
@@ -39,17 +40,17 @@
 			& .hljs-selector-attr,
 			& .hljs-selector-pseudo,
 			& .hljs-number {
-				color: lighten($blue, 5%);
+				color: color.adjust($blue, $lightness: 5%);
 			}
 			& .hljs-string,
 			& .hljs-regexp,
 			& .hljs-addition,
 			& .hljs-attribute,
 			& .hljs-meta-string {
-				color: darken($red, 7.5%);
+				color: color.adjust($red, $lightness: -7.5%);
 			}
 			& .hljs-comment {
-				color: lighten($dark, 40%);
+				color: color.adjust($dark, $lightness: 40%);
 			}
 		}
 	}

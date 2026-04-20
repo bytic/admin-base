@@ -1,3 +1,4 @@
+@use 'sass:color';
 .login {
 	&.login-v1 {
 		height: 100vh;
@@ -64,11 +65,11 @@
 					& small {
 						font-size: rem(14px);
 						display: block;
-						color: lighten($dark, 15%);
+						color: color.adjust($dark, $lightness: 15%);
 						
 						@include media-breakpoint-down(xs) {
 							font-size: rem(12px);
-							color: mix($white, $dark, 50%);
+							color: color.mix($white, $dark, 50%);
 						}
 					}
 				}
@@ -99,7 +100,7 @@
 			
 				& .login-content {
 					padding: 0;
-					color: lighten($dark, 60%);
+					color: color.adjust($dark, $lightness: 60%);
 					width: rem(400px);
 					margin: 0 auto;
 			
@@ -221,7 +222,7 @@
 		}
 		& .login-content {
 			padding: rem(20px);
-			color: lighten($dark, 45%);
+			color: color.adjust($dark, $lightness: 45%);
 			
 			& .form-control {
 				border: 1px solid transparent;
@@ -384,7 +385,7 @@
 					& small {
 						font-size: rem(14px);
 						display: block;
-						color: lighten($dark-darker, 30%);
+						color: color.adjust($dark-darker, $lightness: 30%);
 					
 						@include media-breakpoint-down(lg) {
 							font-size: rem(12px);
@@ -397,7 +398,7 @@
 					right: 0;
 					top: 0;
 					bottom: 0;
-					color: lighten($dark-darker, 75%);
+					color: color.adjust($dark-darker, $lightness: 75%);
 				
 					@include display-flex();
 					@include flex-align(center);

@@ -1,3 +1,4 @@
+@use 'sass:color';
 .widget-list {
 	& .widget-list-item {
 		display: table;
@@ -27,7 +28,7 @@
 		& + .widget-list-item {
 			& .widget-list-content,
 			& .widget-list-action {
-				border-top: 1px solid lighten($border-color, 5%);
+				border-top: 1px solid color.adjust($border-color, $lightness: 5%);
 			}
 		}
 		& .widget-list-media {
@@ -111,7 +112,7 @@
 		& .widget-list-desc {
 			font-size: rem(11px);
 			margin: 0;
-			color: lighten($dark, 30%);
+			color: color.adjust($dark, $lightness: 30%);
 		}
 	}
 	
@@ -138,14 +139,14 @@
 		& + .widget-list-item {
 			& .widget-list-content,
 			& .widget-list-action {
-				border-color: lighten($dark, 7.5%);
+				border-color: color.adjust($dark, $lightness: 7.5%);
 			}
 		}
 		& .widget-list-title {
 			color: $white;
 		}
 		& .widget-list-desc {
-			color: lighten($dark, 60%);
+			color: color.adjust($dark, $lightness: 60%);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+@use 'sass:color';
 // Modern UI Enhancements
 
 // Smooth scrolling
@@ -112,7 +113,7 @@ html {
   }
 
   .page-item.active .page-link {
-    background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+    background: linear-gradient(135deg, $primary 0%, color.adjust($primary, $lightness: -10%) 100%);
     border-color: $primary;
   }
 }

@@ -1,3 +1,4 @@
+@use 'sass:color';
 .timeline {
 	list-style-type: none;
 	margin: 0;
@@ -160,7 +161,7 @@
 		}
 		& .views {
 			float: right;
-			color: lighten($dark, 30%);
+			color: color.adjust($dark, $lightness: 30%);
 			font-weight: 600;
 			
 			@if $enable-rtl {
@@ -272,7 +273,7 @@
 		
 		& a {
 			&:not(.btn) {
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				
 				&:hover,
 				&:focus {
@@ -282,7 +283,7 @@
 		}
 	}
 	& .timeline-likes {
-		color: lighten($dark, 30%);
+		color: color.adjust($dark, $lightness: 30%);
 		font-weight: 600;
 		font-size: rem(12px);
 		

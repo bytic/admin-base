@@ -1,3 +1,4 @@
+@use 'sass:color';
 .label {
 	display: inline;
 	padding: rem(3px) rem(6px) rem(4px);
@@ -37,7 +38,7 @@
 		@include border-radius(0);
 	}
 	&.label-default {
-		background: lighten($dark, 70%);
+		background: color.adjust($dark, $lightness: 70%);
 		color: $dark;
 	}
 }

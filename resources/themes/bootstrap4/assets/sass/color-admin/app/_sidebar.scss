@@ -1,3 +1,4 @@
+@use 'sass:color';
 .sidebar {
 	width: $sidebar-width;
 	position: absolute;
@@ -111,7 +112,7 @@
 					
 					&.label-theme {
 						@include gradient-enabled {
-							@include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
+							@include gradient-linear(to bottom, (color.adjust($primary, $lightness: 5%) 0%, color.adjust($primary, $lightness: -5%) 100%));
 						}
 					}
 					
@@ -136,13 +137,13 @@
 					position: relative;
 					z-index: 10;
 					color: $white;
-					background: darken($dark, 4%);
+					background: color.adjust($dark, $lightness: -4%);
 					
 					@include gradient-enabled {
 						@if ($primary-color == 'yellow') {
 							color: $dark;	
 						}
-						@include gradient-linear(to bottom, (lighten($primary, 5%) 0%, darken($primary, 5%) 100%));
+						@include gradient-linear(to bottom, (color.adjust($primary, $lightness: 5%) 0%, color.adjust($primary, $lightness: -5%) 100%));
 					}
 					
 					& i {
@@ -455,7 +456,7 @@
 					top: rem(11px);
 					width: rem(11px);
 					height: rem(2px);
-					background: darken($dark, 4%);
+					background: color.adjust($dark, $lightness: -4%);
 					
 					@if $enable-rtl {
 						right: rem(-11px);
@@ -470,7 +471,7 @@
 				top: 0;
 				bottom: 0;
 				width: rem(2px);
-				background: darken($dark, 4%);
+				background: color.adjust($dark, $lightness: -4%);
 				
 				@if $enable-rtl {
 					right: rem(-13px);
@@ -512,7 +513,7 @@
 			&.has-sub {
 				& > a {
 					&:before {
-						background: darken($dark, 4%);
+						background: color.adjust($dark, $lightness: -4%);
 					}
 				}
 			}
@@ -539,7 +540,7 @@
 		margin: rem(10px) 0;
 		float: right;
 		padding: rem(5px) rem(20px) rem(5px) rem(10px) !important;
-		background: darken($dark, 4%);
+		background: color.adjust($dark, $lightness: -4%);
 		color: $white;
 		
 		@include border-radius($border-radius * 5 0 0 $border-radius * 5);
@@ -555,7 +556,7 @@
 		}
 		&:hover,
 		&:focus {
-			background: darken($dark, 8%) !important;
+			background: color.adjust($dark, $lightness: -8%) !important;
 		}
 	}
 	& .slimScrollDiv {
@@ -572,8 +573,8 @@
 					margin-top: -1px;
 				}
 				& > a {
-					border-top: 1px solid lighten($dark, 7.5%);
-					border-bottom: 1px solid lighten($dark, 7.5%);
+					border-top: 1px solid color.adjust($dark, $lightness: 7.5%);
+					border-bottom: 1px solid color.adjust($dark, $lightness: 7.5%);
 				}
 				
 				&.expanding,

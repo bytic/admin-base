@@ -1,3 +1,4 @@
+@use 'sass:color';
 .bootstrap-calendar {
 	& .calendar {
 		background: $white;
@@ -38,7 +39,7 @@
 						cursor: pointer;
 						font-size: rem(14px);
 						height: 100%;
-						color: lighten($dark, 60%);
+						color: color.adjust($dark, $lightness: 60%);
 						
 						@include display-flex();
 						@include flex-align(center);
@@ -70,7 +71,7 @@
 						border: none;
 						padding: rem(7px) rem(10px);
 						font-weight: 600;
-						color: lighten($dark, 30%);
+						color: color.adjust($dark, $lightness: 30%);
 						
 						
 						& a {
@@ -98,7 +99,7 @@
 					&.week_days {
 						& td {
 							background: none;
-							color: lighten($dark, 15%);
+							color: color.adjust($dark, $lightness: 15%);
 							font-weight: bold;
 						}
 					}

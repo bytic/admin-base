@@ -1,3 +1,4 @@
+@use 'sass:color';
 .gallery {
 	margin: rem(-5px);
 	
@@ -56,7 +57,7 @@
 		& .image-info {
 			background: $white;
 			padding: rem(15px);
-			color: lighten($dark, 15%);
+			color: color.adjust($dark, $lightness: 15%);
 			
 			@include border-radius(0 0 $border-radius $border-radius);
 			
@@ -82,7 +83,7 @@
 						
 						&:before {
 							content: '\f005';
-							color: lighten($dark, 65%);
+							color: color.adjust($dark, $lightness: 65%);
 							
 							@include fontawesome();
 						}

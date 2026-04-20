@@ -1,3 +1,4 @@
+@use 'sass:color';
 
 .registered-users-list {
 	list-style-type: none;
@@ -31,7 +32,7 @@
 			& small {
 				display: block;
 				font-size: rem(11px);
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				line-height: rem(15px);
 			}
 		}

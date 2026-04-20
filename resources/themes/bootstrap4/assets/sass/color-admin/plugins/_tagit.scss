@@ -1,3 +1,4 @@
+@use 'sass:color';
 .tagit {
 	&.ui-widget {
 		border: 1px solid $border-color;
@@ -14,9 +15,9 @@
 			float: none;
 			
 			&.tagit-choice {
-				background: lighten($dark, 65%);
+				background: color.adjust($dark, $lightness: 65%);
 				border: none;
-				color: lighten($dark, 15%);
+				color: color.adjust($dark, $lightness: 15%);
 				padding: rem(2px) rem(24px) rem(2px) rem(6px);
 				font-weight: 600;
 				

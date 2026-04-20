@@ -1,3 +1,4 @@
+@use 'sass:color';
 .parsley-error {
 	background: $white !important;
 	border-color: $danger !important;
@@ -26,7 +27,7 @@
 	padding: 0 !important;
 	list-style-type: none !important;
 	margin: 0 !important;
-	color: darken($danger, 15%);
+	color: color.adjust($danger, $lightness: -15%);
 	font-size: rem(12px) !important;
 	line-height: inherit !important;
 	

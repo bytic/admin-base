@@ -1,3 +1,4 @@
+@use 'sass:color';
 body {
 	& .bootstrap-datetimepicker-widget {
 		& .prev,
@@ -78,7 +79,7 @@ body {
 											padding: rem(7px) rem(9px);
 											height: auto;
 											line-height: rem(16px) !important;
-											color: lighten($dark, 30%);
+											color: color.adjust($dark, $lightness: 30%);
 											font-weight: 600;
 						
 											@include border-radius($border-radius-lg);
@@ -114,17 +115,17 @@ body {
 										}
 										&.day {
 											&.today {
-												background: lighten($dark, 70%);
+												background: color.adjust($dark, $lightness: 70%);
 												color: $dark;
 												
 												&:before {
-													border-bottom-color: lighten($dark, 45%);
+													border-bottom-color: color.adjust($dark, $lightness: 45%);
 												}
 												&.active {
 													color: $white;
 													
 													&:before {
-														border-bottom-color: lighten($blue, 30%);
+														border-bottom-color: color.adjust($blue, $lightness: 30%);
 													}
 												}
 											}
@@ -158,7 +159,7 @@ body {
 										padding: rem(10px);
 										height: auto;
 										line-height: rem(16px) !important;
-										color: lighten($dark, 30%);
+										color: color.adjust($dark, $lightness: 30%);
 										font-weight: 600;
 					
 										@include border-radius($border-radius-lg);
@@ -202,7 +203,7 @@ body {
 											padding: rem(10px);
 											height: auto;
 											line-height: rem(16px) !important;
-											color: lighten($dark, 30%);
+											color: color.adjust($dark, $lightness: 30%);
 											font-weight: 600;
 					
 											@include border-radius($border-radius-lg);
@@ -238,13 +239,13 @@ body {
 										}
 										&.btn-primary {
 											padding: rem(5px) rem(15px);
-											background: lighten($dark, 45%);
+											background: color.adjust($dark, $lightness: 45%);
 											margin-right: rem(5px);
 											margin-left: rem(5px);
 											
 											&:hover,
 											&:focus {
-												background: lighten($dark, 30%);
+												background: color.adjust($dark, $lightness: 30%);
 											}
 										}
 									}
@@ -257,7 +258,7 @@ body {
 										&:hover,
 										&:focus {
 											background: none;
-											border-color: lighten($dark, 45%);
+											border-color: color.adjust($dark, $lightness: 45%);
 										}
 									}
 								}
@@ -282,7 +283,7 @@ body {
 											@include border-radius(0);
 				
 											&:hover {
-												background: lighten($dark, 73%);
+												background: color.adjust($dark, $lightness: 73%);
 											}
 										}
 										& a {

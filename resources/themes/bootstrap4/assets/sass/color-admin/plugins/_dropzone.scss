@@ -1,5 +1,6 @@
+@use 'sass:color';
 .dropzone {
-	border: 2px dashed lighten($dark, 60%) !important;
+	border: 2px dashed color.adjust($dark, $lightness: 60%) !important;
 	background: none !important;
 	
 	& .dz-message {
@@ -14,7 +15,7 @@
 			font-weight: normal !important;
 			display: block !important;
 			margin-top: rem(20px);
-			color: lighten($dark, 30%);
+			color: color.adjust($dark, $lightness: 30%);
 		}
 	}
 	
@@ -44,9 +45,9 @@
 				content: '\f00d';
 				width: rem(54px);
 				height: rem(54px);
-				background: lighten($dark, 60%);
+				background: color.adjust($dark, $lightness: 60%);
 				font-size: rem(28px);
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				
 				@include display-flex();
 				@include flex-align(center);
@@ -57,8 +58,8 @@
 			&:hover,
 			&:focus {
 				&:before {
-					background: lighten($dark, 45%);
-					color: lighten($dark, 15%);
+					background: color.adjust($dark, $lightness: 45%);
+					color: color.adjust($dark, $lightness: 15%);
 				}
 			}
 			& svg {

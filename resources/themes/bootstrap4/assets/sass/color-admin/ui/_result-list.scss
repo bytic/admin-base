@@ -1,3 +1,4 @@
+@use 'sass:color';
 .result-list {
 	list-style-type: none;
 	margin: 0;
@@ -81,7 +82,7 @@
 				}
 			}
 			& .location {
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				margin-bottom: rem(15px);
 			}
 			& .decs {
@@ -115,7 +116,7 @@
 					}
 					&:hover,
 					&:focus {
-						background: lighten($dark, 65%);
+						background: color.adjust($dark, $lightness: 65%);
 					}
 				}
 			}
@@ -145,7 +146,7 @@
 				display: block;
 				font-size: rem(11px);
 				font-weight: 600;
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 			}
 			& .btn {
 				margin-top: rem(30px);

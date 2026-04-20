@@ -1,3 +1,4 @@
+@use 'sass:color';
 .datepicker {
 	body & {
 		color: $dark;
@@ -14,7 +15,7 @@
 				& .today {
 					&:hover,
 					&:focus {
-						background: lighten($dark, 75%);
+						background: color.adjust($dark, $lightness: 75%);
 					}
 				}
 			}
@@ -38,7 +39,7 @@
 								
 								&:hover,
 								&:focus {
-									background: lighten($dark, 75%);
+									background: color.adjust($dark, $lightness: 75%);
 									
 									&:before {
 										color: $dark;
@@ -54,7 +55,7 @@
 								@include fontawesome();
 								
 								&:before {
-									color: lighten($dark, 30%);
+									color: color.adjust($dark, $lightness: 30%);
 									position: absolute;
 									font-size: rem(14px);
 									height: rem(14px);
@@ -96,17 +97,17 @@
 								&.month,
 								&.century {
 									font-weight: 600;
-									color: lighten($dark, 30%);
+									color: color.adjust($dark, $lightness: 30%);
 									text-shadow: none;
 									
 									@include border-radius($border-radius);
 									
 									&:hover,
 									&:focus {
-										background: lighten($dark, 75%);
+										background: color.adjust($dark, $lightness: 75%);
 									}
 									&.focused {
-										background: lighten($dark, 70%);
+										background: color.adjust($dark, $lightness: 70%);
 										color: $dark;
 									}
 									&.active {
@@ -117,7 +118,7 @@
 							}
 							&.day {
 								font-weight: 600;
-								color: lighten($dark, 15%);
+								color: color.adjust($dark, $lightness: 15%);
 								padding: rem(5px);
 									
 								@include border-radius($border-radius);
@@ -127,11 +128,11 @@
 								&.selected,
 								&.highlighted,
 								&.range {
-									background: lighten($dark, 75%);
+									background: color.adjust($dark, $lightness: 75%);
 									text-shadow: none;
 								}
 								&.today {
-									background: lighten($dark, 70%) !important;
+									background: color.adjust($dark, $lightness: 70%) !important;
 									color: $dark;
 								}
 								&.active {
@@ -149,13 +150,13 @@
 									@include border-radius(0 $border-radius $border-radius 0);
 								}
 								&.old {
-									color: lighten($dark, 60%);
+									color: color.adjust($dark, $lightness: 60%);
 								}
 								&.new {
-									color: lighten($dark, 45%);
+									color: color.adjust($dark, $lightness: 45%);
 								}
 								&.disabled {
-									color: lighten($dark, 60%);
+									color: color.adjust($dark, $lightness: 60%);
 									
 									&:hover,
 									&:focus {
@@ -211,8 +212,8 @@
 		& .input-group-addon {
 			margin: 0;
 			font-weight: 600;
-			background: lighten($dark, 65%);
-			color: lighten($dark, 30%);
+			background: color.adjust($dark, $lightness: 65%);
+			color: color.adjust($dark, $lightness: 30%);
 			
 			@include display-flex();
 			@include flex-align(center);

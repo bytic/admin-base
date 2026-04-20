@@ -1,10 +1,11 @@
+@use 'sass:color';
 .nav {
 	&.nav-tabs {
 		& .nav-item {
 			& .nav-link {
 				padding: rem(10px) rem(15px);
 				font-weight: 600;
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				
 				&.active,
 				&:hover,
@@ -20,7 +21,7 @@
 			
 			& .nav-item {
 				& .nav-link {
-					color: lighten($dark, 60%);
+					color: color.adjust($dark, $lightness: 60%);
 					
 					&.active {
 						color: $dark;
@@ -43,7 +44,7 @@
 			& .nav-link {
 				padding: rem(10px) rem(15px);
 				font-weight: 600;
-				color: lighten($dark, 30%);
+				color: color.adjust($dark, $lightness: 30%);
 				
 				&:hover,
 				&:focus {

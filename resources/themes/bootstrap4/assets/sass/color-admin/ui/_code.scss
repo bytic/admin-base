@@ -1,13 +1,14 @@
+@use 'sass:color';
 code {
 	padding: rem(2px) rem(4px);
 	font-size: 90%;
-	color: darken($pink, 15%);
-	background-color: lighten($red, 30%);
+	color: color.adjust($pink, $lightness: -15%);
+	background-color: color.adjust($red, $lightness: 30%);
 	
 	@include border-radius($border-radius);
 }
 .inverse-mode code,
 code.inverse-mode {
 	background: $dark;
-	color: lighten($pink, 15%);
+	color: color.adjust($pink, $lightness: 15%);
 }

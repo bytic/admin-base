@@ -1,3 +1,4 @@
+@use 'sass:color';
 .slider-wrapper {
 	padding: rem(15px) rem(30px);
 	
@@ -7,7 +8,7 @@
 	}
 	
 	& .range-bar {
-		background: lighten($dark, 70%);
+		background: color.adjust($dark, $lightness: 70%);
 		
 		& .range-min,
 		& .range-max {

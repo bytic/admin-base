@@ -1,3 +1,4 @@
+@use 'sass:color';
 .list-group-item {
 	&.list-group-item-inverse {
 		background: $dark-darker;
@@ -11,7 +12,7 @@
 		&:hover, 
 		&:focus {
 			color: $white;
-			background: lighten($dark-darker, 3%);
+			background: color.adjust($dark-darker, $lightness: 3%);
 			text-decoration: none;
 		}
 	}
