@@ -57,12 +57,16 @@ $iconTheme = $theme ?: 'primary';
             <div class="flex-grow-1">
                 <p class="text-uppercase fw-semibold text-muted small mb-1">
                     <?php if ($url) { ?>
-                        <a href="<?= $url ?>" class="text-decoration-none link-secondary"><?= $title ?></a>
+                        <a href="<?= $url ?>" class="text-decoration-none link-secondary">
+                            <?= $title ?>
+                        </a>
                     <?php } else { ?>
                         <?= $title ?>
                     <?php } ?>
                 </p>
-                <h3 class="fw-bold mb-0<?= $theme ? ' text-' . $theme : '' ?>"><?= $data->get('value'); ?></h3>
+                <h3 class="fw-bold mb-0<?= $theme ? ' text-' . $theme : '' ?>">
+                    <?= $data->get('value'); ?>
+                </h3>
             </div>
             <?php if ($icon) { ?>
                 <div class="card-stats-icon rounded-3 text-<?= $iconTheme ?>" style="background-color: rgba(var(--bs-<?= $iconTheme ?>-rgb), .1);">

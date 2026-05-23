@@ -36,13 +36,23 @@
 }
 
 .card-inverse {
+  border: 1px solid color.adjust($dark, $lightness: -10%);
+
   & > .card-header {
-    background: color.adjust($dark, $lightness: -7.5%);
-    color: color.adjust($white, $alpha: -.3);
+    background: $dark;
+    color: color.adjust($white, $alpha: -.2);
+    border-bottom: 1px solid color.adjust($dark, $lightness: -5%);
 
     .card-title {
       color: $white;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+  }
+
+  .card-body {
+    background-color: $white;
   }
 }
 
