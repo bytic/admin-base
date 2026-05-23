@@ -1,58 +1,10 @@
-@use 'sass:color';
+@import "../../../../abstract/assets/sass/ui/card";
 
 .card .card-header {
-  @include display-flex();
-  align-items: center;
-
   .card-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    @include flex(1);
     font-size: $card-title-font-size;
     font-weight: 600;
     line-height: 1.4;
-  }
-
-  & .card-header-btn,
-  & .card-heading-btn {
-    @include display-flex();
-    @include flex-align(center);
-
-    & .btn {
-      margin-top: rem(-7px);
-      margin-bottom: rem(-7px);
-
-      &.btn-sm {
-        margin-top: rem(-5px);
-        margin-bottom: rem(-5px);
-      }
-
-      &.btn-xs {
-        margin-top: rem(-1px);
-        margin-bottom: rem(-1px);
-      }
-    }
-  }
-}
-
-.card-inverse {
-  border: 1px solid color.adjust($dark, $lightness: -10%);
-
-  & > .card-header {
-    background: $dark;
-    color: color.adjust($white, $alpha: -.2);
-    border-bottom: 1px solid color.adjust($dark, $lightness: -5%);
-
-    .card-title {
-      color: $white;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-  }
-
-  .card-body {
-    background-color: $white;
   }
 }
 
