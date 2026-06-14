@@ -1,0 +1,45 @@
+.btc-autocomplete-create-field {
+    .btc-autocomplete-create-menu {
+        max-height: 260px;
+        overflow-y: auto;
+        margin-top: .125rem;
+        border: 1px solid var(--bs-border-color);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .12);
+    }
+
+    .btc-autocomplete-create-option.active,
+    .btc-autocomplete-create-option:active {
+        background-color: var(--bs-primary);
+        color: var(--bs-white);
+    }
+
+    .btc-autocomplete-create-new {
+        border-top: 1px solid var(--bs-border-color-translucent);
+        font-weight: 500;
+    }
+
+    .btc-autocomplete-create-feedback {
+        margin-top: .35rem;
+    }
+
+    .btc-autocomplete-create-reset {
+        min-width: 2.5rem;
+    }
+
+    &.is-loading {
+        .btc-autocomplete-create-input {
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(13, 110, 253, .1) 50%, rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            animation: btc-autocomplete-loading 1s linear infinite;
+        }
+    }
+}
+
+@keyframes btc-autocomplete-loading {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
