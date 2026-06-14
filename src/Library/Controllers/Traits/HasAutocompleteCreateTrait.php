@@ -2,14 +2,11 @@
 
 namespace ByTIC\AdminBase\Library\Controllers\Traits;
 
+use JsonException;
 use Throwable;
 
 trait HasAutocompleteCreateTrait
 {
-    protected function bootHasAutocompleteCreateTrait(): void
-    {
-    }
-
     /**
      * Generic endpoint for inline create in autocomplete components.
      */
@@ -172,11 +169,23 @@ trait HasAutocompleteCreateTrait
 
     protected function autocompleteCreateRespondJson(array $payload, int $statusCode = 200): void
     {
+        $encodedPayload = null;
+        try {
+            $encodedPayload = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+        } catch (JsonException $exception) {
+            if (!headers_sent()) {
+                http_response_code(500);
+                header('Content-Type: application/json; charset=utf-8');
+            }
+            echo '{"success":false,"error":{"code":"json_encode_failed","message":"Response encoding failed."}}';
+            return;
+        }
+
         if (!headers_sent()) {
             http_response_code($statusCode);
             header('Content-Type: application/json; charset=utf-8');
         }
 
-        echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        echo $encodedPayload;
     }
 }

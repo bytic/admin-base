@@ -2,14 +2,11 @@
 
 namespace ByTIC\AdminBase\Library\Controllers\Traits;
 
+use JsonException;
 use Throwable;
 
 trait HasAutocompleteSearchTrait
 {
-    protected function bootHasAutocompleteSearchTrait(): void
-    {
-    }
-
     /**
      * Generic endpoint for autocomplete search.
      */
@@ -180,11 +177,23 @@ trait HasAutocompleteSearchTrait
 
     protected function autocompleteSearchRespondJson(array $payload, int $statusCode = 200): void
     {
+        $encodedPayload = null;
+        try {
+            $encodedPayload = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+        } catch (JsonException $exception) {
+            if (!headers_sent()) {
+                http_response_code(500);
+                header('Content-Type: application/json; charset=utf-8');
+            }
+            echo '{"success":false,"error":{"code":"json_encode_failed","message":"Response encoding failed."}}';
+            return;
+        }
+
         if (!headers_sent()) {
             http_response_code($statusCode);
             header('Content-Type: application/json; charset=utf-8');
         }
 
-        echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        echo $encodedPayload;
     }
 }

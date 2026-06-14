@@ -2,13 +2,15 @@ import $ from 'jquery';
 import { BaseComponent } from './base-component';
 
 const FIELD_SELECTOR = '[data-autocomplete-create-field="true"]';
+const DEBOUNCE_DELAY = 250;
+const BLUR_CLOSE_DELAY = 200;
 
-function toInt(value, fallback) {
+function parseIntOrDefault(value, fallback) {
     var parsed = parseInt(value, 10);
     return Number.isNaN(parsed) ? fallback : parsed;
 }
 
-function toBool(value) {
+function coerceToBoolean(value) {
     return value === true || value === 'true' || value === 1 || value === '1';
 }
 
@@ -23,14 +25,16 @@ function getConfig($field) {
         queryParam: dataset.queryParam || 'q',
         limitParam: dataset.limitParam || 'limit',
         nameParam: dataset.nameParam || 'name',
-        minChars: toInt(dataset.minChars, 2),
-        limit: toInt(dataset.limit, 10),
+        minChars: parseIntOrDefault(dataset.minChars, 2),
+        limit: parseIntOrDefault(dataset.limit, 10),
+        debounceDelay: parseIntOrDefault(dataset.debounceDelay, DEBOUNCE_DELAY),
+        blurCloseDelay: parseIntOrDefault(dataset.blurCloseDelay, BLUR_CLOSE_DELAY),
         messageEmpty: dataset.messageEmpty || 'No matches found',
         messageCreate: dataset.messageCreate || 'Create',
         messageLoading: dataset.messageLoading || 'Loading',
         messageError: dataset.messageError || 'Something went wrong',
-        readonly: toBool(dataset.readonly),
-        disabled: toBool(dataset.disabled),
+        readonly: coerceToBoolean(dataset.readonly),
+        disabled: coerceToBoolean(dataset.disabled),
     };
 }
 
@@ -121,12 +125,14 @@ function renderMenu($field, items, query) {
 
     if (items.length > 0) {
         var rows = items.map(function (item, index) {
-            return (
-                '<button type="button" class="dropdown-item btc-autocomplete-create-option" ' +
-                'data-index="' + index + '" data-id="' + String(item.id) + '">' +
-                $('<div/>').text(item.label).html() +
-                '</button>'
-            );
+            var $button = $('<button/>', {
+                type: 'button',
+                class: 'dropdown-item btc-autocomplete-create-option',
+            });
+            $button.attr('data-index', String(index));
+            $button.attr('data-id', String(item.id));
+            $button.text(item.label);
+            return $button.prop('outerHTML');
         });
         $elements.menu.html(rows.join(''));
         openMenu($elements);
@@ -135,11 +141,14 @@ function renderMenu($field, items, query) {
 
     var html = '<span class="dropdown-item-text text-muted">' + $('<div/>').text(config.messageEmpty).html() + '</span>';
     if (config.createUrl) {
-        html += (
-            '<button type="button" class="dropdown-item btc-autocomplete-create-new" data-name="' + $('<div/>').text(query).html() + '">' +
-            '<i class="fa fa-plus me-1"></i>' + $('<div/>').text(config.messageCreate + ' "' + query + '"').html() +
-            '</button>'
-        );
+        var $createButton = $('<button/>', {
+            type: 'button',
+            class: 'dropdown-item btc-autocomplete-create-new',
+        });
+        $createButton.attr('data-name', query);
+        $createButton.append('<i class="fa fa-plus me-1"></i>');
+        $createButton.append(document.createTextNode(config.messageCreate + ' "' + query + '"'));
+        html += $createButton.prop('outerHTML');
     }
     $elements.menu.html(html);
     openMenu($elements);
@@ -332,7 +341,7 @@ export class AutocompleteCreateComponent extends BaseComponent {
 
                 state.debounceTimer = setTimeout(function () {
                     searchRecords($field, query);
-                }, 250);
+                }, config.debounceDelay);
             });
 
         $(document)
@@ -371,7 +380,7 @@ export class AutocompleteCreateComponent extends BaseComponent {
             .on('click.colorAdminAutocompleteCreate', FIELD_SELECTOR + ' .btc-autocomplete-create-option', function () {
                 var $option = $(this);
                 var $field = $option.closest(FIELD_SELECTOR);
-                var index = toInt($option.data('index'), -1);
+                var index = parseIntOrDefault($option.data('index'), -1);
                 var state = getState($field);
                 var item = state.items[index];
 
@@ -418,9 +427,10 @@ export class AutocompleteCreateComponent extends BaseComponent {
             .off('blur.colorAdminAutocompleteCreate', FIELD_SELECTOR + ' .btc-autocomplete-create-input')
             .on('blur.colorAdminAutocompleteCreate', FIELD_SELECTOR + ' .btc-autocomplete-create-input', function () {
                 var $field = $(this).closest(FIELD_SELECTOR);
+                var config = getConfig($field);
                 window.setTimeout(function () {
                     closeMenu(getElements($field));
-                }, 200);
+                }, config.blurCloseDelay);
             });
     }
 }

@@ -16,6 +16,8 @@ $limitParam = $limitParam ?? 'limit';
 $nameParam = $nameParam ?? 'name';
 $minChars = (int)($minChars ?? 2);
 $limit = (int)($limit ?? 10);
+$debounceDelay = (int)($debounceDelay ?? 250);
+$blurCloseDelay = (int)($blurCloseDelay ?? 200);
 $disabled = (bool)($disabled ?? false);
 
 $selectedId = $selectedId ?? ($item && isset($item->{$field}) ? $item->{$field} : '');
@@ -52,6 +54,8 @@ $messages = array_merge(
                  data-name-param="<?= htmlspecialchars((string)$nameParam, ENT_QUOTES, 'UTF-8'); ?>"
                  data-min-chars="<?= (int)$minChars; ?>"
                  data-limit="<?= (int)$limit; ?>"
+                 data-debounce-delay="<?= (int)$debounceDelay; ?>"
+                 data-blur-close-delay="<?= (int)$blurCloseDelay; ?>"
                  data-readonly="<?= $readonly ? 'true' : 'false'; ?>"
                  data-disabled="<?= $disabled ? 'true' : 'false'; ?>"
                  data-message-empty="<?= htmlspecialchars((string)$messages['empty'], ENT_QUOTES, 'UTF-8'); ?>"
