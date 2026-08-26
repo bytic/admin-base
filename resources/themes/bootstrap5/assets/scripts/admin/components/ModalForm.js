@@ -59,7 +59,7 @@ class ModalForm {
                 this._modalLoading();
             }.bind(this),
             success: function (data, _textStatus, jqXHR) {
-                if (this._shouldReloadAfterSubmit(data, this._settings.source, jqXHR)) {
+                if (this._shouldReloadAfterSubmit(data, jqXHR)) {
                     this._reloadModalAndPage();
                     return;
                 }
@@ -106,7 +106,7 @@ class ModalForm {
         this._settings = $.extend({}, Default, settings)
     }
 
-    _shouldReloadAfterSubmit(data, _requestSource, jqXHR) {
+    _shouldReloadAfterSubmit(data, jqXHR) {
         if (data === 'REFRESH') {
             return true;
         }
