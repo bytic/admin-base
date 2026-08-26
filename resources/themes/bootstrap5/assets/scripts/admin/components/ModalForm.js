@@ -60,7 +60,7 @@ class ModalForm {
                 this._modalLoading();
             }.bind(this),
             success: function (data, _textStatus, jqXHR) {
-                if (this._shouldReloadAfterSubmit(data, url, jqXHR)) {
+                if (this._shouldReloadAfterSubmit(data, this._settings.source, jqXHR)) {
                     this._reloadModalAndPage();
                     return;
                 }
@@ -106,7 +106,7 @@ class ModalForm {
         this._settings = $.extend({}, Default, settings)
     }
 
-    _shouldReloadAfterSubmit(data, requestUrl, jqXHR) {
+    _shouldReloadAfterSubmit(data, requestSource, jqXHR) {
         if (data === 'REFRESH') {
             return true;
         }
@@ -136,11 +136,11 @@ class ModalForm {
         }
 
         try {
-            var requested = new URL(requestUrl.toString(), window.location.href);
+            var requested = new URL(requestSource, window.location.href);
             var response = new URL(responseUrl, window.location.href);
             return response.href !== requested.href;
         } catch (e) {
-            return responseUrl !== requestUrl.toString();
+            return responseUrl !== String(requestSource);
         }
     }
 
