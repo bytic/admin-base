@@ -59,8 +59,8 @@ class ModalForm {
             beforeSend: function () {
                 this._modalLoading();
             }.bind(this),
-            success: function (data) {
-                if (this._shouldReloadAfterSubmit(data, url, arguments[2])) {
+            success: function (data, _textStatus, jqXHR) {
+                if (this._shouldReloadAfterSubmit(data, url, jqXHR)) {
                     this._reloadModalAndPage();
                     return;
                 }
@@ -130,8 +130,18 @@ class ModalForm {
             return true;
         }
 
-        var responseUrl = jqXHR && jqXHR.responseURL ? String(jqXHR.responseURL) : '';
-        return responseUrl.length > 0 && responseUrl !== requestUrl.toString();
+        var responseUrl = jqXHR && typeof jqXHR.responseURL === 'string' ? jqXHR.responseURL : '';
+        if (!responseUrl) {
+            return false;
+        }
+
+        try {
+            var requested = new URL(requestUrl.toString(), window.location.href);
+            var response = new URL(responseUrl, window.location.href);
+            return response.href !== requested.href;
+        } catch (e) {
+            return responseUrl !== requestUrl.toString();
+        }
     }
 
     _isSubmitRequest() {
