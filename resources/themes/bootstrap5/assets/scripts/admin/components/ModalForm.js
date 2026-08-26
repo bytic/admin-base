@@ -139,13 +139,12 @@ class ModalForm {
     }
 
     _reloadModalAndPage() {
-        this.modalContainer.data('modalFormReloadOnHidden', true);
         if (this.modalContainer.hasClass('show')) {
+            this.modalContainer.data('modalFormReloadOnHidden', true);
             this.modal.hide();
             return;
         }
 
-        this.modalContainer.data('modalFormReloadOnHidden', false);
         location.reload();
     }
 
