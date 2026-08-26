@@ -60,7 +60,7 @@ class ModalForm {
                 this._modalLoading();
             }.bind(this),
             success: function (data) {
-                if (this._shouldReloadAfterSubmit(data)) {
+                if (this._shouldReloadAfterSubmit(data, url, arguments[2])) {
                     this._reloadModalAndPage();
                     return;
                 }
@@ -71,11 +71,8 @@ class ModalForm {
                 if (form.length) {
                     var modalTarget = this._settings.modalTarget;
                     form.off('submit.modalForm').on('submit.modalForm', function (event) {
-                        if (event) {
-                            event.preventDefault();
-                        }
+                        event.preventDefault();
                         (new ModalForm($(this), { modalTarget: modalTarget })).load();
-                        return false;
                     });
                 }
             }.bind(this),
@@ -109,7 +106,7 @@ class ModalForm {
         this._settings = $.extend({}, Default, settings)
     }
 
-    _shouldReloadAfterSubmit(data) {
+    _shouldReloadAfterSubmit(data, requestUrl, jqXHR) {
         if (data === 'REFRESH') {
             return true;
         }
@@ -122,7 +119,19 @@ class ModalForm {
             return false;
         }
 
-        return !(typeof data === 'string' && /<form[\s>]/i.test(data));
+        if (jqXHR && typeof jqXHR.getResponseHeader === 'function') {
+            var refreshHeader = jqXHR.getResponseHeader('X-Modal-Refresh');
+            if (refreshHeader && /^(1|true|yes)$/i.test(String(refreshHeader))) {
+                return true;
+            }
+        }
+
+        if (jqXHR && jqXHR.status === 204) {
+            return true;
+        }
+
+        var responseUrl = jqXHR && jqXHR.responseURL ? String(jqXHR.responseURL) : '';
+        return responseUrl.length > 0 && responseUrl !== requestUrl.toString();
     }
 
     _isSubmitRequest() {
