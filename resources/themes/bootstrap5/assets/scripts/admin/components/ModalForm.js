@@ -87,7 +87,7 @@ class ModalForm {
 
     _parseSettings(settings = {}) {
         const elementModalTarget = this._element.data('bs-target');
-        settings.modalTarget = elementModalTarget ?? settings.modalTarget;
+        settings.modalTarget = elementModalTarget || settings.modalTarget;
 
         // if element is a form
         if (this._element.attr('action')) {
@@ -106,7 +106,7 @@ class ModalForm {
         this._settings = $.extend({}, Default, settings)
     }
 
-    _shouldReloadAfterSubmit(data, requestSource, jqXHR) {
+    _shouldReloadAfterSubmit(data, _requestSource, jqXHR) {
         if (data === 'REFRESH') {
             return true;
         }
@@ -130,18 +130,7 @@ class ModalForm {
             return true;
         }
 
-        var responseUrl = jqXHR && typeof jqXHR.responseURL === 'string' ? jqXHR.responseURL : '';
-        if (!responseUrl) {
-            return false;
-        }
-
-        try {
-            var requested = new URL(requestSource, window.location.href);
-            var response = new URL(responseUrl, window.location.href);
-            return response.href !== requested.href;
-        } catch (e) {
-            return responseUrl !== String(requestSource);
-        }
+        return false;
     }
 
     _isSubmitRequest() {
