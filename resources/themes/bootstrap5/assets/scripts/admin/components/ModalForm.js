@@ -134,12 +134,19 @@ class ModalForm {
     }
 
     _isSubmitRequest() {
-        return String(this._settings.source_method || 'GET').toUpperCase() !== 'GET';
+        var method = String(this._settings.source_method || 'GET').toUpperCase();
+        return ['POST', 'PUT', 'PATCH', 'DELETE'].indexOf(method) !== -1;
     }
 
     _reloadModalAndPage() {
         this.modalContainer.data('modalFormReloadOnHidden', true);
-        this.modal.hide();
+        if (this.modalContainer.hasClass('show')) {
+            this.modal.hide();
+            return;
+        }
+
+        this.modalContainer.data('modalFormReloadOnHidden', false);
+        location.reload();
     }
 
     _updateModal() {
