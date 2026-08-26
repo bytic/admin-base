@@ -28,7 +28,6 @@ const Default = {
 class ModalForm {
     constructor(element, settings) {
         this._element = element;
-        this._reloadOnHidden = false;
         this._parseSettings(settings);
         this._init();
     }
@@ -87,7 +86,8 @@ class ModalForm {
     }
 
     _parseSettings(settings = {}) {
-        settings.modalTarget = this._element.data('bs-target') || settings.modalTarget;
+        const elementModalTarget = this._element.data('bs-target');
+        settings.modalTarget = elementModalTarget ?? settings.modalTarget;
 
         // if element is a form
         if (this._element.attr('action')) {
@@ -149,7 +149,7 @@ class ModalForm {
     }
 
     _reloadModalAndPage() {
-        this._reloadOnHidden = true;
+        this.modalContainer.data('modalFormReloadOnHidden', true);
         this.modal.hide();
     }
 
@@ -168,7 +168,10 @@ class ModalForm {
         this.modalContainer
             .off('hidden.bs.modal.modalForm')
             .on('hidden.bs.modal.modalForm', function () {
-                if (this._reloadOnHidden) location.reload();
+                if (this.modalContainer.data('modalFormReloadOnHidden')) {
+                    this.modalContainer.data('modalFormReloadOnHidden', false);
+                    location.reload();
+                }
             }.bind(this));
     }
 
