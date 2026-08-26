@@ -165,9 +165,11 @@ class ModalForm {
 
         this.modal = new Modal(this.modalContainer);
 
-        this.modalContainer.on('hidden.bs.modal', function () {
-            if (this._reloadOnHidden) location.reload();
-        }.bind(this));
+        this.modalContainer
+            .off('hidden.bs.modal.modalForm')
+            .on('hidden.bs.modal.modalForm', function () {
+                if (this._reloadOnHidden) location.reload();
+            }.bind(this));
     }
 
     // Static
