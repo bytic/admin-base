@@ -7,6 +7,7 @@ import { TopMenuComponent } from './components/top-menu';
 import { PanelComponent } from './components/panel';
 import { ThemeComponent } from './components/theme';
 import { AjaxComponent, applyPageOption } from './components/ajax';
+import { AutocompleteCreateComponent } from './components/AutocompleteCreate';
 
 /**
  * ByticAdminApp
@@ -34,6 +35,7 @@ class ByticAdminApp {
             .register(new TopMenuComponent())
             .register(new PanelComponent())
             .register(new ThemeComponent())
+            .register(new AutocompleteCreateComponent())
             .register(new AjaxComponent());
     }
 

@@ -62,6 +62,81 @@ The default modern color palette includes:
 - **Warning**: Amber (#f59e0b)
 - **Danger**: Modern red (#ef4444)
 
+## Autocomplete + Create Field (Bootstrap 5)
+
+This package includes reusable backend traits and a Bootstrap 5 field partial for "search and create if missing" flows.
+
+### 1) Controller traits
+
+Use one or both traits from:
+
+- `ByTIC\AdminBase\Library\Controllers\Traits\HasAutocompleteSearchTrait`
+- `ByTIC\AdminBase\Library\Controllers\Traits\HasAutocompleteCreateTrait`
+
+You must implement:
+
+- `autocompleteSearchFetchRecords(string $query, int $limit): iterable`
+- `autocompleteCreatePersistRecord(string $name): mixed`
+
+Optional extension points:
+
+- duplicate lookup: `autocompleteCreateFindDuplicateRecord(string $name): mixed`
+- request parameter names (`q`, `limit`, `name`)
+- limits, error messages, and record formatting
+
+### 2) Response contract
+
+Search success:
+
+```json
+{
+  "success": true,
+  "data": [{"id": 1, "label": "Example"}],
+  "meta": {"query": "exa", "limit": 10, "count": 1}
+}
+```
+
+Create success:
+
+```json
+{
+  "success": true,
+  "data": {"id": 1, "label": "Example"},
+  "meta": {"created": true}
+}
+```
+
+Error:
+
+```json
+{
+  "success": false,
+  "error": {"code": "duplicate", "message": "...", "details": {}}
+}
+```
+
+### 3) View partial
+
+Use field partial:
+
+- `/abstract/modules/item-form/fields/autocomplete_create`
+
+Expected variables:
+
+- required: `field`, `searchUrl`
+- optional: `createUrl`, `selectedId`, `selectedLabel`, `label`, `placeholder`, `minChars`, `limit`, `required`, `readonly`
+
+### 4) Frontend behavior
+
+The Bootstrap 5 admin bundle now includes an autocomplete component that:
+
+- debounces search requests
+- renders results dropdown
+- supports keyboard navigation and selection
+- shows inline "create new" when no results
+- creates and selects new record via AJAX
+- handles Turbo navigation lifecycle cleanup
+
 #### UI INSPIRATION
 https://coreui.io/
 https://github.com/coreui/coreui-free-bootstrap-admin-template
