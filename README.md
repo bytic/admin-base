@@ -12,6 +12,9 @@ Components for building admin modules
 - **Modern Tables**: Hover effects and improved typography
 - **Enhanced Components**: Modernized badges, alerts, dropdowns, modals, and pagination
 
+Tables inside cards allow dropdown menus to extend beyond the table and card body.
+An explicit overflow utility or a `.table-responsive` wrapper can still clip menus.
+
 ### Symfony UX Turbo Integration
 The package now includes [Symfony UX Turbo](https://turbo.hotwired.dev/) for fast, SPA-like page navigation without the complexity of a JavaScript framework.
 
