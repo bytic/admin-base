@@ -32,6 +32,8 @@ abstract class AbstractAction implements Action, Renderable
 
     protected string $type;
 
+    protected string $htmlElement = 'a';
+
     public function __construct()
     {
         $this->type = static::TYPE;

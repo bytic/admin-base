@@ -42,7 +42,7 @@ trait AcceptanceBootstrap5Trait
      */
     public function clickSidebarSubmenuByTitle($title)
     {
-        $this->getBrowserModule()->click($title,'#sidebar .sub-menu');
+        $this->getBrowserModule()->click($title, '#sidebar .sub-menu');
     }
 
     /**

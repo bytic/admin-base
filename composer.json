@@ -33,10 +33,16 @@
     "bytic/seo-meta": "^1.0|^2.0"
   },
   "require-dev": {
-    "bytic/translation": "^0.9|^1.0|^2.0",
     "bytic/mvc": "^0.9|^1.0|^2.0",
     "bytic/codeception": "^4.0",
-    "bytic/phpqatools": "^1.0"
+    "bytic/phpqatools": "^1.0",
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^2.1"
+  },
+  "scripts": {
+    "test": "phpunit --no-coverage",
+    "analyse": "phpstan analyse --no-progress",
+    "format:check": "php-cs-fixer fix --dry-run --diff --using-cache=no"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

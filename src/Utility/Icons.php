@@ -9,7 +9,6 @@ use ByTIC\Icons\Icon;
  */
 class Icons
 {
-
     public static function for($icon): Icon|string
     {
         if ($icon instanceof Icon) {

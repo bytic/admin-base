@@ -27,7 +27,7 @@ trait IsRenderable
 
     public function __toString(): string
     {
-        return $this->render();
+        return $this->render() ?? '';
     }
 
     public function render(): ?string
@@ -77,7 +77,7 @@ trait IsRenderable
         return $this->renderEngine()->load($template, $variables, true);
     }
 
-    protected function renderEngine():  View|Template
+    protected function renderEngine(): View|Template
     {
         if ($this->viewEngine === null) {
             $this->viewEngine = $this->renderEngineGenerate();
@@ -92,8 +92,10 @@ trait IsRenderable
 
     protected function renderTemplatePath(): ?string
     {
-        if (defined(static::class . '::VIEW')) {
-            return static::VIEW;
+        $viewConstant = static::class . '::VIEW';
+        if (defined($viewConstant)) {
+            $view = constant($viewConstant);
+            return is_string($view) ? $view : null;
         }
         return null;
     }

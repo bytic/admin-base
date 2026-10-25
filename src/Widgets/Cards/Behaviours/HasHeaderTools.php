@@ -20,4 +20,3 @@ trait HasHeaderTools
         return $this;
     }
 }
-

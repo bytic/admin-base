@@ -7,7 +7,6 @@ namespace ByTIC\AdminBase\Utility\Behaviours;
  */
 trait HasContentSlots
 {
-
     protected $contentData = [];
 
     public const CONTENT_SUFFIX = 'suffix';

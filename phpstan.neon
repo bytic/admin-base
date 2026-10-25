@@ -1,0 +1,14 @@
+parameters:
+    level: 1
+    paths:
+        - src
+        - tests
+    bootstrapFiles:
+        - tests/bootstrap.php
+    excludePaths:
+        analyse:
+            - tests/fixtures/*
+    ignoreErrors:
+        -
+            message: '#Unsafe usage of new static\(\)\.#'
+            path: src/Utility/Behaviours/Makeable.php

@@ -2,7 +2,6 @@
 
 namespace ByTIC\AdminBase\Tests;
 
-
 use Bytic\Phpqa\PHPUnit\TestCase;
 
 /**
@@ -10,7 +9,6 @@ use Bytic\Phpqa\PHPUnit\TestCase;
  */
 abstract class AbstractTest extends TestCase
 {
-
     /**
      * Compare two HTML fragments.
      */

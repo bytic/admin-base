@@ -58,7 +58,7 @@ trait HasHtmlAttributes
      */
     public function removeHtmlClass($class, $element = null): self
     {
-//        $class = Str::toString($class);
+        //        $class = Str::toString($class);
 
         $classes = array_filter(explode(' ', $class), 'strlen');
 
