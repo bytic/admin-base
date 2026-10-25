@@ -9,7 +9,7 @@ use Nip\Collections\Collection;
  */
 trait HasData
 {
-    protected Collection|null $data = null;
+    protected ?Collection $data = null;
 
     public function setDataFromArray(array $data): void
     {
@@ -21,7 +21,7 @@ trait HasData
     /**
      * @param string $key
      * @param $value
-     * @return HasData|self
+     * @return $this
      */
     public function setDataItem(string $key, $value): self
     {
@@ -45,7 +45,7 @@ trait HasData
         return $this->checkData();
     }
 
-    protected function checkData(): ?Collection
+    protected function checkData(): Collection
     {
         if (!isset($this->data)) {
             $this->data = new Collection([]);

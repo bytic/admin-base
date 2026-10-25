@@ -7,7 +7,6 @@ namespace ByTIC\AdminBase\Utility\Behaviours;
  */
 trait HasLabel
 {
-
     protected ?string $label = null;
     protected $showLabel = true;
 

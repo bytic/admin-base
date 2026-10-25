@@ -11,13 +11,13 @@ trait HasContent
 
     public function content(): ?string
     {
-        return $this->content;
+        return $this->getContent();
     }
 
     public function getContent(): ?string
     {
         if (is_callable($this->content)) {
-            $this->content = call_user_func($this->content);
+            $this->content = ($this->content)();
         }
 
         return $this->content;

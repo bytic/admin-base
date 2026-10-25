@@ -43,6 +43,19 @@ yarn run dev
 yarn run prod
 ```
 
+## Development checks
+
+The package supports PHP 8.2 and later. Run the test suite, PHPStan, and the PSR-12
+format check locally with:
+
+```bash
+composer test
+composer analyse
+composer format:check
+```
+
+These checks also run in GitHub Actions against PHP 8.2 through 8.5.
+
 ## Theme Customization
 
 The modern theme can be customized by overriding SCSS variables in your project:

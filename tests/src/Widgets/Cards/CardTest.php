@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ByTIC\AdminBase\Tests\Widgets\Cards;
 
 use ByTIC\AdminBase\Screen\Actions\Dto\ButtonAction;
@@ -16,6 +18,26 @@ use Mockery\Mock;
  */
 class CardTest extends AbstractTest
 {
+    public function test_callable_content_is_resolved_by_both_accessors(): void
+    {
+        $evaluations = 0;
+        $card = Card::make()->withContent(static function () use (&$evaluations): string {
+            $evaluations++;
+            return 'Dynamic content';
+        });
+
+        self::assertSame('Dynamic content', $card->content());
+        self::assertSame('Dynamic content', $card->getContent());
+        self::assertSame(1, $evaluations);
+    }
+
+    public function test_string_conversion_is_empty_when_rendering_is_disabled(): void
+    {
+        $card = Card::make()->renderIf(static fn () => false);
+
+        self::assertSame('', (string) $card);
+    }
+
     public function test_basic()
     {
         $card = $this->basicCard();

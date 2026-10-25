@@ -45,4 +45,3 @@ trait HasFooter
         return (string)$this->footer;
     }
 }
-

@@ -7,7 +7,6 @@ namespace ByTIC\AdminBase\Utility\Behaviours;
  */
 trait HasName
 {
-
     protected string $name;
 
     /**
