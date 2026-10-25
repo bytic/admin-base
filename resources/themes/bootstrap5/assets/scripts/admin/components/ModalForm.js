@@ -48,7 +48,7 @@ class ModalForm {
         let type = typeof this._settings.source_method !== 'undefined' ? this._settings.source_method : 'GET';
         let params = typeof this._settings.source_params !== 'undefined' ? this._settings.source_params : [];
 
-        let url = new URL(this._settings.source);
+        let url = new URL(this._settings.source, window.location.href);
         url.searchParams.set('_format', "modal");
 
         $.ajax({
@@ -58,16 +58,20 @@ class ModalForm {
             beforeSend: function () {
                 this._modalLoading();
             }.bind(this),
-            success: function (data) {
-                if (data === 'REFRESH') {
-                    this._modalLoading();
-                    location.reload();
-                } else {
-                    this.modalBody.html(data);
-                    var form = this.modalBody.find("form");
-                    form.submit(function () {
-                        (new ModalForm(form)).load();
-                        return false;
+            success: function (data, _textStatus, jqXHR) {
+                if (this._shouldReloadAfterSubmit(data, jqXHR)) {
+                    this._reloadModalAndPage();
+                    return;
+                }
+
+                this.modalBody.html(data);
+                var form = this.modalBody.find('form');
+
+                if (form.length) {
+                    var modalTarget = this._settings.modalTarget;
+                    form.off('submit.modalForm').on('submit.modalForm', function (event) {
+                        event.preventDefault();
+                        (new ModalForm($(this), { modalTarget: modalTarget })).load();
                     });
                 }
             }.bind(this),
@@ -81,8 +85,9 @@ class ModalForm {
         this.modalBody.html(HTML_LOADING);
     }
 
-    _parseSettings(settings) {
-        settings.modalTarget = this._element.data('bs-target');
+    _parseSettings(settings = {}) {
+        const elementModalTarget = this._element.data('bs-target');
+        settings.modalTarget = elementModalTarget || settings.modalTarget;
 
         // if element is a form
         if (this._element.attr('action')) {
@@ -101,6 +106,48 @@ class ModalForm {
         this._settings = $.extend({}, Default, settings)
     }
 
+    _shouldReloadAfterSubmit(data, jqXHR) {
+        if (data === 'REFRESH') {
+            return true;
+        }
+
+        if (data && typeof data === 'object' && data.refresh === true) {
+            return true;
+        }
+
+        if (!this._isSubmitRequest()) {
+            return false;
+        }
+
+        if (jqXHR && typeof jqXHR.getResponseHeader === 'function') {
+            var refreshHeader = jqXHR.getResponseHeader('X-Modal-Refresh');
+            if (refreshHeader && /^(1|true|yes)$/i.test(String(refreshHeader))) {
+                return true;
+            }
+        }
+
+        if (jqXHR && jqXHR.status === 204) {
+            return true;
+        }
+
+        return false;
+    }
+
+    _isSubmitRequest() {
+        var method = String(this._settings.source_method || 'GET').toUpperCase();
+        return ['POST', 'PUT', 'PATCH', 'DELETE'].indexOf(method) !== -1;
+    }
+
+    _reloadModalAndPage() {
+        if (this.modalContainer.hasClass('show')) {
+            this.modalContainer.data('modalFormReloadOnHidden', true);
+            this.modal.hide();
+            return;
+        }
+
+        location.reload();
+    }
+
     _updateModal() {
         this.modalTitle.textContent = this._settings.modalTitle;
     }
@@ -108,17 +155,19 @@ class ModalForm {
     _bindModal() {
         this.modalContainer = $(this._settings.modalTarget);
 
-        console.log(this.modalContainer);
-        console.log(this);
-
         this.modalTitle = this.modalContainer.find('.modal-title')
         this.modalBody = this.modalContainer.find('.modal-body')
 
         this.modal = new Modal(this.modalContainer);
 
-        this.modalContainer.on('hidden.bs.modal', function () {
-            location.reload();
-        });
+        this.modalContainer
+            .off('hidden.bs.modal.modalForm')
+            .on('hidden.bs.modal.modalForm', function () {
+                if (this.modalContainer.data('modalFormReloadOnHidden')) {
+                    this.modalContainer.data('modalFormReloadOnHidden', false);
+                    location.reload();
+                }
+            }.bind(this));
     }
 
     // Static
